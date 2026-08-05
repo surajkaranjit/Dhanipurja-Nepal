@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanipura Nepal | Prime Real Estate & Land Sales</title>
+    <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
     <style>
-        /* Reset and Fonts */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,15 +13,43 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            color: #333;
+            color: #2c3e50;
             line-height: 1.6;
-            background-color: #f8f9fa;
+            background-color: #f9fbf9;
+        }
+
+        /* Color Palette Constants */
+        :root {
+            --primary-green: #1e7e34;
+            --primary-orange: #d95d08;
+            --dark-green: #145222;
+            --light-bg: #f4f7f4;
+        }
+
+        /* Top Header Bar */
+        .top-bar {
+            background-color: var(--dark-green);
+            color: #fff;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .top-bar-info {
+            display: flex;
+            gap: 20px;
+        }
+        .top-bar-info a {
+            color: #ffc107;
+            text-decoration: none;
+            font-weight: 600;
         }
 
         /* Navigation */
         nav {
-            background-color: #003822;
-            color: white;
+            background-color: #ffffff;
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
@@ -29,32 +57,75 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
-        nav .logo {
-            font-size: 1.5rem;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-box {
+            background-color: var(--primary-orange);
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
             font-weight: bold;
-            color: #d4af37;
+            font-size: 24px;
+            border: 2px solid white;
         }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title {
+            color: var(--primary-green);
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .logo-tagline {
+            color: var(--primary-orange);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         nav ul li {
-            margin-left: 20px;
+            margin-left: 25px;
         }
         nav ul li a {
-            color: white;
+            color: #333;
             text-decoration: none;
+            font-weight: 600;
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #d4af37;
+            color: var(--primary-green);
+        }
+        .btn-nav {
+            background-color: var(--primary-green);
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
+        .btn-nav:hover {
+            background-color: var(--dark-green);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            height: 65vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -64,25 +135,27 @@
             padding: 0 20px;
         }
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 12px;
         }
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 20px;
-            max-width: 600px;
+            margin-bottom: 25px;
+            max-width: 650px;
         }
         .btn {
-            background-color: #d4af37;
-            color: #003822;
-            padding: 12px 28px;
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
             transition: background 0.3s;
+            border: none;
+            cursor: pointer;
         }
         .btn:hover {
-            background-color: #f1c40f;
+            background-color: #b84c03;
         }
 
         /* Container */
@@ -92,14 +165,13 @@
             margin: auto;
         }
 
-        /* Section Headings */
         .section-title {
             text-align: center;
             margin-bottom: 40px;
         }
         .section-title h2 {
-            font-size: 2.2rem;
-            color: #003822;
+            font-size: 2rem;
+            color: var(--primary-green);
         }
 
         /* Listings Grid */
@@ -112,7 +184,8 @@
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e1e8e1;
         }
         .card img {
             width: 100%;
@@ -123,37 +196,40 @@
             padding: 20px;
         }
         .card-content h3 {
-            margin-bottom: 10px;
-            color: #003822;
+            margin-bottom: 8px;
+            color: var(--primary-green);
         }
         .price {
-            color: #27ae60;
+            color: var(--primary-orange);
             font-weight: bold;
             font-size: 1.1rem;
             margin-top: 10px;
         }
 
-        /* Features */
-        .features {
-            background-color: #e9ecef;
-            padding: 60px 5%;
-        }
-        .feature-grid {
+        /* Contact Details Section */
+        .contact-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-        .feature-box {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-orange);
+        }
+        .contact-info-box h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+        .info-item {
+            margin-bottom: 15px;
+        }
+        .info-item strong {
+            display: block;
+            color: var(--primary-orange);
         }
 
-        /* Contact Section */
         .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -164,113 +240,133 @@
             border-radius: 5px;
             width: 100%;
         }
-        .contact-form button {
-            border: none;
-            cursor: pointer;
-        }
 
         /* Footer */
         footer {
-            background-color: #002214;
+            background-color: var(--dark-green);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        footer p {
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div>📍 Location: Danchhi, Bagdhara, Kathmandu, Nepal</div>
+        <div class="top-bar-info">
+            <span>📞 Call/WhatsApp: <a href="tel:9851029228">9851029228</a> | <a href="tel:9851315115">9851315115</a></span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
     <nav>
-        <div class="logo">Dhanipura Nepal</div>
+        <a href="#" class="logo-container">
+            <div class="logo-box">D</div>
+            <div class="logo-text">
+                <span class="logo-title">Dhanipurja Nepal</span>
+                <span class="logo-tagline">धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी</span>
+            </div>
+        </a>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#listings">Plots & Land</a></li>
-            <li><a href="#why-us">Why Us</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#listings">Properties</a></li>
+            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Find Your Dream Land in Nepal</h1>
-        <p>Verified, prime location land plots across Nepal with clear legal paperwork and high investment potential.</p>
-        <a href="#listings" class="btn">Explore Lands</a>
+        <h1>Your Gateway to Owning Land in Nepal</h1>
+        <p>Verified residential, commercial, and agricultural land plots across Danchhi, Bagdhara, Kathmandu & beyond.</p>
+        <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
     <!-- Land Listings -->
     <section class="container" id="listings">
         <div class="section-title">
-            <h2>Featured Land Plots</h2>
-            <p>Select from our hand-picked properties ready for building or investment.</p>
+            <h2>Featured Land Plots for Sale</h2>
+            <p>Direct plots with legal verification (Lalpurja clear).</p>
         </div>
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Land Plot 1">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot">
                 <div class="card-content">
-                    <h3>Residential Plot - Kathmandu Outer Rim</h3>
-                    <p>Road Access: 16ft | Water & Electricity available. Ideal for family residential building.</p>
-                    <p class="price">Area: 4 Aana</p>
+                    <h3>Residential Plot - Danchhi, Kathmandu</h3>
+                    <p>Road Access: 20ft | Ready for house construction with full utilities.</p>
+                    <p class="price">Area: 4 Aana | Price: Negotiable</p>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Land Plot 2">
+                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot">
                 <div class="card-content">
-                    <h3>Commercial Highway Plot</h3>
-                    <p>Direct highway touch, suitable for commercial complex, hotel, or long-term investment.</p>
-                    <p class="price">Area: 1 Ropani</p>
+                    <h3>Prime Land Plot - Bagdhara Chowk</h3>
+                    <p>South-facing plot, excellent sunlight, 20ft wide road access.</p>
+                    <p class="price">Area: 3.5 Aana | Price: On Request</p>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Land Plot 3">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land">
                 <div class="card-content">
-                    <h3>Scenic Resort Land</h3>
-                    <p>Peaceful environment with mountain view, suitable for agriculture, farmhouses, or resorts.</p>
-                    <p class="price">Area: 2 Ropani</p>
+                    <h3>Commercial / Farming Plot - Kathmandu</h3>
+                    <p>Peaceful surroundings, high value growth potential for investment.</p>
+                    <p class="price">Area: 1 Ropani | Price: Negotiable</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="features" id="why-us">
-        <div class="section-title">
-            <h2>Why Choose Dhanipura Nepal?</h2>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-box">
-                <h3>100% Legal Clear</h3>
-                <p>All land titles (Lalpurja) are thoroughly checked and verified by legal experts.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Prime Locations</h3>
-                <p>Lands selected specifically for high future valuation and good road access.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Transparent Pricing</h3>
-                <p>Direct deal pricing with no hidden charges or misleading fees.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
+    <!-- Contact & Location Section -->
     <section class="container" id="contact">
         <div class="section-title">
             <h2>Contact Us</h2>
-            <p>Interested in buying land? Send us a message or call today!</p>
+            <p>Visit our office or call us directly for site visits and land inquiries.</p>
         </div>
-        <form class="contact-form">
-            <input type="text" placeholder="Your Full Name" required>
-            <input type="tel" placeholder="Phone Number" required>
-            <input type="email" placeholder="Email Address">
-            <textarea rows="5" placeholder="Tell us about the land area or location you are looking for..." required></textarea>
-            <button type="submit" class="btn">Send Inquiry</button>
-        </form>
+        
+        <div class="contact-wrapper">
+            <!-- Address & Phone Box -->
+            <div class="contact-info-box">
+                <h3>Office Information</h3>
+                
+                <div class="info-item">
+                    <strong>🏢 Office Location:</strong>
+                    Danchhi, Bagdhara Chowk,<br>
+                    Kageshwori Manohara Municipality,<br>
+                    Kathmandu, Nepal
+                </div>
+
+                <div class="info-item">
+                    <strong>📞 Phone / WhatsApp:</strong>
+                    <a href="tel:9851029228" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851029228</a><br>
+                    <a href="tel:9851315115" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851315115</a>
+                </div>
+
+                <div class="info-item">
+                    <strong>⏱️ Working Hours:</strong>
+                    Sunday – Friday: 9:00 AM – 6:00 PM
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form">
+                <input type="text" placeholder="Your Full Name" required>
+                <input type="tel" placeholder="Your Contact Number" required>
+                <textarea rows="4" placeholder="Mention the plot location, size (Aana/Ropani), or requirement..." required></textarea>
+                <button type="submit" class="btn">Send Direct Inquiry</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Dhanipura Nepal Real Estate. All rights reserved.</p>
+        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी)</p>
+        <p>Address: Danchhi, Bagdhara, Kathmandu | Phone: 9851029228, 9851315115</p>
+        <p style="margin-top:10px; color:#aaa; font-size:0.8rem;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
     </footer>
 
 </body>
