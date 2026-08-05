@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanipura Nepal | Prime Real Estate & Land Sales</title>
+    <style>
+        /* Reset and Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #003822;
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .btn {
+            background-color: #d4af37;
+            color: #003822;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #f1c40f;
+        }
+
+        /* Container */
+        .container {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #003822;
+        }
+
+        /* Listings Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #003822;
+        }
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Features */
+        .features {
+            background-color: #e9ecef;
+            padding: 60px 5%;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .contact-form button {
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #002214;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Dhanipura Nepal</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#listings">Plots & Land</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Find Your Dream Land in Nepal</h1>
+        <p>Verified, prime location land plots across Nepal with clear legal paperwork and high investment potential.</p>
+        <a href="#listings" class="btn">Explore Lands</a>
+    </section>
+
+    <!-- Land Listings -->
+    <section class="container" id="listings">
+        <div class="section-title">
+            <h2>Featured Land Plots</h2>
+            <p>Select from our hand-picked properties ready for building or investment.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Land Plot 1">
+                <div class="card-content">
+                    <h3>Residential Plot - Kathmandu Outer Rim</h3>
+                    <p>Road Access: 16ft | Water & Electricity available. Ideal for family residential building.</p>
+                    <p class="price">Area: 4 Aana</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Land Plot 2">
+                <div class="card-content">
+                    <h3>Commercial Highway Plot</h3>
+                    <p>Direct highway touch, suitable for commercial complex, hotel, or long-term investment.</p>
+                    <p class="price">Area: 1 Ropani</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Land Plot 3">
+                <div class="card-content">
+                    <h3>Scenic Resort Land</h3>
+                    <p>Peaceful environment with mountain view, suitable for agriculture, farmhouses, or resorts.</p>
+                    <p class="price">Area: 2 Ropani</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features" id="why-us">
+        <div class="section-title">
+            <h2>Why Choose Dhanipura Nepal?</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3>100% Legal Clear</h3>
+                <p>All land titles (Lalpurja) are thoroughly checked and verified by legal experts.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Prime Locations</h3>
+                <p>Lands selected specifically for high future valuation and good road access.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Transparent Pricing</h3>
+                <p>Direct deal pricing with no hidden charges or misleading fees.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="container" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Interested in buying land? Send us a message or call today!</p>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Full Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="email" placeholder="Email Address">
+            <textarea rows="5" placeholder="Tell us about the land area or location you are looking for..." required></textarea>
+            <button type="submit" class="btn">Send Inquiry</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Dhanipura Nepal Real Estate. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
