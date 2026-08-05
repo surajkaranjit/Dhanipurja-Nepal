@@ -60,12 +60,18 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
+      /* Logo Styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-container img {
+    height: 50px; /* Adjust height based on your logo image size */
+    width: auto;  /* Maintains logo proportion */
+    object-fit: contain;
+}
         
         .logo-box {
             background-color: var(--primary-orange);
@@ -331,20 +337,10 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <a href="#" class="logo-container">
-            <div class="logo-box">D</div>
-            <div class="logo-text">
-                <span class="logo-title">Dhanipurja Nepal</span>
-                <span class="logo-tagline">धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी</span>
-            </div>
-        </a>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#listings">Properties</a></li>
-            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
-        </ul>
-    </nav>
-
+<!-- NEW CODE WITH YOUR LOGO IMAGE -->
+<a href="#" class="logo-container">
+    <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
+</a>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>Your Gateway to Owning Land in Nepal</h1>
