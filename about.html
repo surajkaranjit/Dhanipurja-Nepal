@@ -17,126 +17,66 @@
             padding: 20px;
         }
 
-        /* Navigation Bar Demo Wrapper */
+        /* Navigation with Blur Effect */
         nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        .logo {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-green);
+        /* Image Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .nav-links {
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav ul {
             display: flex;
             list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
+             align-items: center;
         }
-
-        .nav-links > li {
-            margin-left: 25px;
-            position: relative; /* Crucial for absolute positioning of the dropdown */
-        }
-
-        .nav-links a {
+        nav ul li {
+             margin-left: 25px;
+         }
+        nav ul li a {
             color: #333;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+             font-weight: 600;
             transition: color 0.3s;
-            padding: 8px 0;
-            display: block;
-        }
+         }
 
-        .nav-links a:hover {
+        nav ul li a:hover {
             color: var(--primary-green);
         }
-
-        /* --- DROPDOWN STYLING --- */
-        
-        /* Dropdown Trigger Link Arrow */
-        .dropdown-toggle::after {
-            content: ' ▾';
-            font-size: 0.8rem;
-            color: var(--primary-green);
-        }
-
-        /* Dropdown Content Box */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            min-width: 200px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            border-radius: 10px;
-            padding: 8px 0;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-        }
-
-        /* Dropdown Individual Links */
-        .dropdown-menu a {
-            padding: 10px 18px;
-            color: #444;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-
-        /* Hover Effect on Dropdown Items */
-        .dropdown-menu a:hover {
-            background-color: var(--primary-green);
-            color: #ffffff;
-            padding-left: 24px; /* Subtle slide-right effect on hover */
-        }
-
-        /* Reveal Dropdown Menu on Mouse Hover */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
+  
         .btn-nav {
             background-color: var(--primary-green);
             color: white !important;
-            padding: 8px 18px !important;
-            border-radius: 6px;
+            padding: 8px 18px;
+            border-radius: 5px;
         }
 
         .btn-nav:hover {
             background-color: var(--dark-green);
         }
-
-        /* Team Single-Row Container Box */
-        .team-row-box {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Single Row Scroll Area */
+         /* Single Row Scroll Area */
         .team-row-scroll {
             display: flex;
             flex-wrap: nowrap;
