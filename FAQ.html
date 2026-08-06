@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | Dhanipurja Nepal</title>
+    <style>
+        :root {
+            --primary-green: #1e7e34;
+            --primary-orange: #d95d08;
+            --dark-green: #145222;
+            --light-bg: #eef2ee;
+            --card-bg: rgba(255, 255, 255, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .logo-container img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-nav {
+            background-color: var(--primary-green);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
+
+        /* Hero Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-section h2 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary-orange);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(30, 126, 52, 0.05);
+            color: var(--primary-green);
+        }
+
+        .faq-toggle-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
+            padding: 0 20px;
+            background: #ffffff;
+            color: #555;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 18px 20px;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
+        </a>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#listings">Properties</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html" style="color: var(--primary-green);">FAQs</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="index.html#contact" class="btn-nav">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="page-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about purchasing land and property verification with us.</p>
+    </header>
+
+    <div class="container">
+        <div class="faq-section">
+            <h2>Common Questions</h2>
+
+            <div class="faq-container">
+                
+                <!-- Q1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I schedule a land or plot site visit?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can schedule a site visit by calling us directly at <strong>+977 9851029228</strong> or <strong>+977 9851315115</strong>, or by filling out the contact form on our website. Our team will arrange transportation and guide you through the property on-site.</p>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are all listed properties legally verified?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, every plot listed on Dhanipurja Nepal undergoes strict legal screening. We verify ownership certificates (Lalpurja), official survey maps (Naksha), road access, and tax clearance at the local Land Revenue Office (Malpot) before listing.</p>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are there any hidden agency or agent fees?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. We believe in complete pricing transparency. All costs, property rates, and transfer fees are clearly discussed with potential buyers upfront with no hidden commission surprises.</p>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What documents are required to transfer land ownership in Nepal?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>To transfer property ownership, you will need your official Nepali Citizenship Card (Nagarikta), passport-size photos, the original Lalpurja, and land tax payment receipts. Our legal team assists buyers through every step of the registration process.</p>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Where is your main office located?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our office is located at Kageshwori Manohara - 05, Bagdhara Chowk, Danchhi, Kathmandu. You are welcome to visit us during regular office hours (Sunday to Friday, 9:00 AM – 6:00 PM).</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी)</p>
+        <p style="font-size:0.85rem; margin-top:5px;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
+    </footer>
+
+    <!-- Accordion Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function () {
+                    const faqItem = this.parentElement;
+
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    faqItem.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
