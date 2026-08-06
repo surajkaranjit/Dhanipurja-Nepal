@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Location | Dhanipurja Nepal</title>
+    <style>
+        /* CSS Variables & Base Rules */
+        :root {
+            --primary-green: #1e7e34;
+            --primary-orange: #d95d08;
+            --dark-green: #145222;
+            --light-bg: #eef2ee;
+            --card-bg: rgba(255, 255, 255, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .logo-container img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-nav {
+            background-color: var(--primary-green);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
+
+        /* Hero Banner */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Two-Column Grid Layout */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card h2 {
+            color: var(--primary-green);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--primary-orange);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 1.4rem;
+            background: rgba(30, 126, 52, 0.1);
+            color: var(--primary-green);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .contact-text p, .contact-text a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .contact-text a:hover {
+            color: var(--primary-orange);
+        }
+
+        .btn-directions {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: var(--primary-green);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-directions:hover {
+            background: var(--dark-green);
+        }
+
+        /* Google Map Card */
+        .map-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            min-height: 450px;
+        }
+
+        .map-card iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 430px;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-card {
+                min-height: 350px;
+            }
+
+            .map-card iframe {
+                min-height: 330px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav>
+        <a href="index.html" class="logo-container">
+            <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
+        </a>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#listings">Properties</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="location.html" style="color: var(--primary-green);">Location</a></li>
+            <li><a href="index.html#contact" class="btn-nav">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="page-header">
+        <h1>Visit Our Office</h1>
+        <p>Drop by for face-to-face real estate consultation & property verification.</p>
+    </header>
+
+    <div class="container">
+        <div class="location-grid">
+            
+            <!-- Left: Office Details -->
+            <div class="info-card">
+                <h2>Dhanipurja Nepal</h2>
+                <br>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <h4>Office Address</h4>
+                        <p>Kageshwori Manohara - 05, Bagdhara Chowk, Danchhi, Kathmandu, Nepal</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">
+                        <h4>Phone Numbers</h4>
+                        <p><a href="tel:+9779851029228">+977 9851029228</a></p>
+                        <p><a href="tel:+9779851315115">+977 9851315115</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-text">
+                        <h4>Email Address</h4>
+                        <p><a href="mailto:info@dhanipurjanepal.com">info@dhanipurjanepal.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div class="contact-text">
+                        <h4>Office Hours</h4>
+                        <p>Sunday – Friday: 9:00 AM – 6:00 PM</p>
+                        <p>Saturday: Closed / Field Visits by Appointment</p>
+                    </div>
+                </div>
+
+                <a href="https://maps.google.com/?q=Danchhi,+Kageshwori+Manohara,+Kathmandu" target="_blank" class="btn-directions">
+                    Get Directions on Google Maps ↗
+                </a>
+            </div>
+
+            <!-- Right: Interactive Google Map Embed -->
+            <div class="map-card">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14128.031575822363!2d85.385!3d27.717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1a361c472f85%3A0x633d7d13038a8e10!2sKageshwori%20Manohara%2C%20Nepal!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी)</p>
+        <p style="font-size:0.85rem; margin-top:5px;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
