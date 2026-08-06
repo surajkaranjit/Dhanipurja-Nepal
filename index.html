@@ -546,42 +546,10 @@ nav ul li a:hover {
     display: flex;
 }
 
-/* Container Box */
-.team-row-box {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Single Horizontal Row Container */
-.team-row {
-    display: flex;
-    flex-direction: row;     /* Forces items side-by-side */
-    flex-wrap: nowrap;        /* Prevents cards from breaking into multiple rows */
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;         /* Allows horizontal scrolling */
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    scrollbar-width: none;    /* Hides scrollbar for Firefox */
-    -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
-}
-
-/* Hide scrollbar for Chrome/Safari/Brave */
-.team-row::-webkit-scrollbar {
-    display: none;
-}
-
-/* Single Row Card */
+/* Increased Team Card Dimensions */
 .team-card {
-    flex: 0 0 280px;          /* Fixed width per card */
+    flex: 0 0 320px; /* Increased width from 260px to 320px */
+    min-height: 380px; /* Gives the card extra vertical height */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -590,67 +558,77 @@ nav ul li a:hover {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 20px 15px;
+    padding: 30px 20px; /* Increased internal padding */
     transition: transform 0.3s ease;
-}  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Horizontal Card Layout */
+.team-card {
+    flex: 0 0 420px; /* Wider card to fit image and text side-by-side */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    transition: transform 0.3s ease;
+    
+    /* Row layout inside the card */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
 
 .team-card:hover {
     transform: translateY(-5px);
 }
- 
+
+/* Side Photo */
 .team-img {
-    width: 100%;
-    height: 200px;
+    width: 140px;
+    height: 160px;
     border-radius: 10px;
     object-fit: cover;
-    margin-bottom: 15px;
+    flex-shrink: 0; /* Keeps photo from shrinking */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.team-card h3 {
+/* Text Container on the Right */
+.team-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.team-info h3 {
     color: #2c3e50;
     font-size: 1.2rem;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
-.team-card .position {
+.team-info .position {
     color: var(--primary-orange, #d95d08);
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 8px;
 }
 
-.team-card .phone {
+.team-info .phone {
     font-size: 0.88rem;
     color: #444;
     font-weight: 500;
-}
-
-/* Controls */
-.row-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.row-arrow-btn {
-    background: var(--primary-green, #1e7e34);
-    color: white;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.row-arrow-btn:hover {
-    background: var(--dark-green, #145222);
-    transform: scale(1.08);
 }
 
        
@@ -1019,7 +997,7 @@ nav ul li a:hover {
     }
 </script>
 
-
+<!-- Our Team Section -->
 <section class="container" id="team">
     <div class="section-title">
         <h2>Our Dedicated Team</h2>
@@ -1049,7 +1027,7 @@ nav ul li a:hover {
             <div class="team-card">
                 <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Team Member 3" class="team-img">
                 <h3>Hari Karki</h3>
-                <p class="position">Legal Specialist</p>
+                <p class="position">Legal & Documentation Specialist</p>
                 <p class="phone">📞 +977 9800000000</p>
             </div>
 
@@ -1069,23 +1047,37 @@ nav ul li a:hover {
                 <p class="phone">📞 +977 9822222222</p>
             </div>
 
+              <!-- Member 6 -->
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Team Member 5" class="team-img">
+                <h3>Bikash Thapa</h3>
+                <p class="position">Client Relationship Executive</p>
+                <p class="phone">📞 +977 9822222222</p>
+            </div>
+
+              <!-- Member 7 -->
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Team Member 5" class="team-img">
+                <h3>Bikash Thapa</h3>
+                <p class="position">Client Relationship Executive</p>
+                <p class="phone">📞 +977 9822222222</p>
+            </div>
+
+
         </div>
 
-        <!-- Arrow Controls -->
+        <!-- Manual Navigation Controls -->
         <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollTeam(-305)" aria-label="Scroll Left">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollTeam(305)" aria-label="Scroll Right">&#10095;</button>
+            <button class="row-arrow-btn" onclick="scrollTeam(-445)">&#10094;</button>
+            <button class="row-arrow-btn" onclick="scrollTeam(445)">&#10095;</button>  
         </div>
     </div>
 </section>
-
-        <script>function scrollTeam(distance) {
+    
+<script>function scrollTeam(distance) {
     const container = document.getElementById('teamContainer');
     if (container) {
-        container.scrollBy({
-            left: distance,
-            behavior: 'smooth'
-        });
+        container.scrollBy({ left: distance, behavior: 'smooth' });
     }
 }
 
@@ -1093,7 +1085,7 @@ function startTeamAutoSlide() {
     const container = document.getElementById('teamContainer');
     if (!container) return;
 
-    let scrollAmount = 305; // 280px card width + 25px gap
+    let scrollAmount = 445; // 420px card width + 25px gap
     let autoSlideTimer = setInterval(() => {
         if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
             container.scrollTo({ left: 0, behavior: 'smooth' });
@@ -1107,7 +1099,8 @@ function startTeamAutoSlide() {
 }
 
 document.addEventListener('DOMContentLoaded', startTeamAutoSlide);</script>
- 
+   
+
     <!-- Contact & Location Section -->
     <section class="container" id="contact">
         <div class="section-title">
