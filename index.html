@@ -558,11 +558,14 @@ nav ul li a:hover {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 16px;
-    padding: 30px 20px;
+    padding: 30px 15px;                  /* Reduced side padding to give more room */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;                          /* Added: Ensures box spans full parent width */
+    max-width: 1400px;                    /* Added: Expands the maximum box width */
+    margin: 0 auto;                       /* Added: Keeps the box centered */
 }
 
 /* Single Horizontal Row Container */
@@ -570,7 +573,7 @@ nav ul li a:hover {
     display: flex;
     flex-direction: row;     /* Forces items side-by-side */
     flex-wrap: nowrap;        /* Prevents cards from breaking into multiple rows */
-    gap: 25px;
+    gap: 15px;                /* Updated: Reduced gap from 25px to 15px so cards fit better */
     width: 100%;
     overflow-x: auto;         /* Allows horizontal scrolling */
     scroll-behavior: smooth;
@@ -586,7 +589,7 @@ nav ul li a:hover {
 
 /* Single Row Card */
 .team-card {
-    flex: 0 0 280px;          /* Fixed width per card */
+    flex: 0 0 240px;          /* Updated: Reduced card width from 280px to 240px */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -605,7 +608,7 @@ nav ul li a:hover {
 
 .team-img {
     width: 100%;
-    height: 300px;
+    height: 260px;            /* Updated: Adjusted image height to fit slimmer cards */
     border-radius: 15px;
     object-fit: cover;
     margin-bottom: 15px;
@@ -613,19 +616,19 @@ nav ul li a:hover {
 
 .team-card h3 {
     color: #2c3e50;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
 }
 
 .team-card .position {
     color: var(--primary-orange, #d95d08);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 8px;
 }
 
 .team-card .phone {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: #444;
     font-weight: 500;
 }
@@ -657,6 +660,7 @@ nav ul li a:hover {
     background: var(--dark-green, #145222);
     transform: scale(1.08);
 }
+
 /* Reviews Section Styles */
 .reviews-section {
     background: rgba(255, 255, 255, 0.65);
@@ -1531,6 +1535,6 @@ document.addEventListener('DOMContentLoaded', startReviewsAutoSlide);</script>
             }, 3000);
         });
     </script>
-    
+
 </body>
 </html>
