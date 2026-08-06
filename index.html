@@ -445,6 +445,47 @@
     </div>
 </section>
 
+ <script>
+    // Update slideshow position and indicator dots
+    function updateCardSlide(slideshow, index) {
+        const wrapper = slideshow.querySelector('.slides-wrapper');
+        const slides = wrapper.querySelectorAll('img');
+        const dots = slideshow.querySelectorAll('.dot');
+        
+        let targetIndex = (index + slides.length) % slides.length;
+        slideshow.setAttribute('data-current-index', targetIndex);
+
+        wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
+
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === targetIndex);
+        });
+    }
+
+    // Manual controls: Next & Previous
+    function moveSlide(button, direction) {
+        const slideshow = button.closest('.card-slideshow');
+        let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
+        updateCardSlide(slideshow, currentIndex + direction);
+    }
+
+    // Manual controls: Clickable dots
+    function jumpSlide(dot, index) {
+        const slideshow = dot.closest('.card-slideshow');
+        updateCardSlide(slideshow, index);
+    }
+
+    // Initialize auto-sliding for all card galleries (3-second interval)
+    document.querySelectorAll('.card-slideshow').forEach(slideshow => {
+        slideshow.setAttribute('data-current-index', 0);
+        
+        setInterval(() => {
+            let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
+            updateCardSlide(slideshow, currentIndex + 1);
+        }, 3000); // 3000ms = 3 seconds
+    });
+</script>
+
 
    <style>/* Video Section Container */
 .video-carousel-wrapper {
@@ -740,46 +781,6 @@
         </svg>
     </a>
 
-    <script>
-    // Update slideshow position and indicator dots
-    function updateCardSlide(slideshow, index) {
-        const wrapper = slideshow.querySelector('.slides-wrapper');
-        const slides = wrapper.querySelectorAll('img');
-        const dots = slideshow.querySelectorAll('.dot');
-        
-        let targetIndex = (index + slides.length) % slides.length;
-        slideshow.setAttribute('data-current-index', targetIndex);
-
-        wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
-
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === targetIndex);
-        });
-    }
-
-    // Manual controls: Next & Previous
-    function moveSlide(button, direction) {
-        const slideshow = button.closest('.card-slideshow');
-        let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-        updateCardSlide(slideshow, currentIndex + direction);
-    }
-
-    // Manual controls: Clickable dots
-    function jumpSlide(dot, index) {
-        const slideshow = dot.closest('.card-slideshow');
-        updateCardSlide(slideshow, index);
-    }
-
-    // Initialize auto-sliding for all card galleries (3-second interval)
-    document.querySelectorAll('.card-slideshow').forEach(slideshow => {
-        slideshow.setAttribute('data-current-index', 0);
-        
-        setInterval(() => {
-            let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-            updateCardSlide(slideshow, currentIndex + 1);
-        }, 3000); // 3000ms = 3 seconds
-    });
-</script>
-
+   
 </body>
 </html>
