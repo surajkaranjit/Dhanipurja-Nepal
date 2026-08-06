@@ -545,82 +545,62 @@ nav ul li a:hover {
 .has-dropdown:hover .dropdown-menu {
     display: flex;
 }
-/* Team Section Styles */
-.team-row-box {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.team-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.team-row::-webkit-scrollbar {
-    display: none;
-}
-
+/* Increased Team Card Dimensions */
 .team-card {
-    flex: 0 0 260px;
+    flex: 0 0 320px; /* Increased width from 260px to 320px */
+    min-height: 380px; /* Gives the card extra vertical height */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 20px 15px;
+    padding: 30px 20px; /* Increased internal padding */
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .team-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
+/* Larger Profile Image */
 .team-img {
-    width: 120px;
-    height: 120px;
+    width: 150px; /* Increased size from 120px to 150px */
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 15px auto;
-    border: 3px solid var(--primary-green, #1e7e34);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin: 0 auto 20px auto;
+    border: 4px solid var(--primary-green, #1e7e34);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
+/* Larger Typography */
 .team-card h3 {
     color: #2c3e50;
-    font-size: 1.15rem;
-    margin-bottom: 5px;
+    font-size: 1.35rem; /* Bigger name text */
+    margin-bottom: 8px;
 }
 
 .team-card .position {
     color: var(--primary-orange, #d95d08);
     font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+    font-size: 1rem; /* Bigger position text */
+    margin-bottom: 12px;
 }
 
 .team-card .phone {
-    font-size: 0.85rem;
-    color: #555;
+    font-size: 0.95rem;
+    color: #444;
     font-weight: 500;
 }
+
        
 
     </style>
@@ -1058,8 +1038,8 @@ nav ul li a:hover {
 
         <!-- Manual Navigation Controls -->
         <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollTeam(-285)" aria-label="Scroll Left">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollTeam(285)" aria-label="Scroll Right">&#10095;</button>
+            <button class="row-arrow-btn" onclick="scrollTeam(-345)" aria-label="Scroll Left">&#10094;</button>
+            <button class="row-arrow-btn" onclick="scrollTeam(345)" aria-label="Scroll Right">&#10095;</button>
         </div>
     </div>
 </section>
@@ -1080,22 +1060,19 @@ function startTeamAutoSlide() {
     const container = document.getElementById('teamContainer');
     if (!container) return;
 
-    let scrollAmount = 285; // Card width + gap
+    let scrollAmount = 345; // Updated to match new card size + gap (320 + 25)
     let autoSlideTimer = setInterval(() => {
-        // If reached the end, loop back to start
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+         if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
             container.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
             container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
-    }, 3500); // Scrolls every 3.5 seconds
-
-    // Pause auto-sliding when user hovers over the cards
+    }, 3500);
+ 
     container.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
     container.addEventListener('mouseleave', () => startTeamAutoSlide());
 }
-
-// Run auto-slide after page load
+ 
 document.addEventListener('DOMContentLoaded', startTeamAutoSlide);</script>
    
 
