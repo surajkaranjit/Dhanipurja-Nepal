@@ -336,6 +336,84 @@
         </div>
     </section>
 
+    <style>/* Why Choose Us Section Styling */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.feature-card h3 {
+    color: var(--primary-green);
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: #444;
+}</style>
+
+<!-- WHY CHOOSE US SECTION -->
+<section class="container" id="why-us">
+    <div class="section-title">
+        <h2>Why Choose Dhanipurja Nepal?</h2>
+        <p>Your trusted partner for safe, hassle-free land buying and selling in Kathmandu.</p>
+    </div>
+
+    <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h3>100% Legal Verification</h3>
+            <p>Every land plot is thoroughly checked for clear title deeds (Lalpurja) and clean legal standing before listing.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>Direct Seller Deals</h3>
+            <p>No hidden markups. We connect you directly with genuine land buyers and owners for transparent transactions.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <h3>Prime Locations</h3>
+            <p>Specialized focus on high-growth residential and commercial plots across Danchhi, Bagdhara, and Kathmandu.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+            <div class="feature-icon">🚘</div>
+            <h3>Free Site Visits</h3>
+            <p>Get in touch with our team to arrange free guided site visits to inspect the property road access and surroundings.</p>
+        </div>
+    </div>
+</section>
+
     <!-- Contact & Location Section -->
     <section class="container" id="contact">
         <div class="section-title">
