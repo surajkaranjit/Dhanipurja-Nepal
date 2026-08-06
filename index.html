@@ -411,17 +411,22 @@
             border-radius: 5px;
             width: 100%;
         }
+/* Fixed Footer CSS */
+footer {
+    background-color: var(--dark-green, #145222);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px; /* Reduced from 400px to a clean 50px gap */
+    width: 100%;       /* Forces full width */
+    box-sizing: border-box;
+    clear: both;      /* Clears any floating elements above it */
+}
 
-        /* Footer */
-        footer {
-            background-color: var(--dark-green);
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 400px;
-        }
-        footer p {
-            font-size: 0.9rem;
+footer p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    line-height: 1.5;
         }
 
         /* Floating WhatsApp Button */
