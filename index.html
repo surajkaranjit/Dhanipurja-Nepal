@@ -158,11 +158,48 @@
             color: var(--primary-green);
         }
 
-        /* Card Slideshow Container Styling */
+        /* Single Row Container Box for Listings */
+.listings-row-box {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Single Row Scroll Area */
+.grid-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 5px 15px 5px;
+    /* Hide scrollbars */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.grid-row::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Fixed card size for single row */
+.card-row-item {
+    flex: 0 0 320px; /* Forces cards to stay in a row with fixed width */
+}
+
+/* Card Slideshow Styling */
 .card-slideshow {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -175,9 +212,82 @@
 
 .slides-wrapper img {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
     flex-shrink: 0;
+}
+
+/* Slide Navigation Arrows & Dots inside Card */
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 5;
+    transition: background 0.3s ease;
+}
+
+.slide-btn:hover { background: rgba(0, 0, 0, 0.8); }
+.slide-btn.prev { left: 6px; }
+.slide-btn.next { right: 6px; }
+
+.slide-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 5;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #ffffff;
+    width: 16px;
+    border-radius: 10px;
+}
+
+/* Row Scroll Navigation Controls at Bottom */
+.row-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.row-arrow-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.row-arrow-btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.08);
 }
 
 /* Slide Navigation Arrows */
@@ -366,87 +476,128 @@
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
-   <!-- Land Listings with Auto-Slide Photo Galleries -->
+    <!-- Land Listings - Single Row inside Box Container -->
 <section class="container" id="listings">
     <div class="section-title">
         <h2>Featured Land Plots for Sale</h2>
         <p>Direct plots with legal verification (Lalpurja clear).</p>
     </div>
-    
-    <div class="grid">
-        <!-- Card 1 -->
-        <div class="card card-slider">
-            <div class="card-slideshow">
-                <div class="slides-wrapper">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 1">
-                    <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 2">
-                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 3">
+
+    <!-- Outer Glass Box Container -->
+    <div class="listings-row-box">
+        <!-- Single Row Flex Wrapper -->
+        <div class="grid-row" id="listingsContainer">
+            
+            <!-- Card 1 -->
+            <div class="card card-row-item">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 1">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 2">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 3">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
+                    </div>
                 </div>
-                <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                <div class="slide-dots">
-                    <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 2)"></span>
+                <div class="card-content">
+                    <h3>Residential Plot - Danchhi</h3>
+                    <p>Road Access: 20ft | Ready for house construction.</p>
+                    <p class="price">Area: 4 Aana | Negotiable</p>
                 </div>
             </div>
-            <div class="card-content">
-                <h3>Residential Plot - Danchhi, Kathmandu</h3>
-                <p>Road Access: 20ft | Ready for house construction with full utilities.</p>
-                <p class="price">Area: 4 Aana | Price: Negotiable</p>
+
+            <!-- Card 2 -->
+            <div class="card card-row-item">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 1">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 2">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 3">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Prime Land - Bagdhara Chowk</h3>
+                    <p>South-facing plot, excellent sunlight, 20ft road.</p>
+                    <p class="price">Area: 3.5 Aana | On Request</p>
+                </div>
             </div>
+
+            <!-- Card 3 -->
+            <div class="card card-row-item">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 1">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 2">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 3">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Farming Plot - Kathmandu</h3>
+                    <p>Peaceful surroundings, high investment potential.</p>
+                    <p class="price">Area: 1 Ropani | Negotiable</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card card-row-item">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 1">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 2">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Hillside Heights - Bagdhara</h3>
+                    <p>Clean air, scenic mountain view, road connection.</p>
+                    <p class="price">Area: 5 Aana | On Request</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Card 2 -->
-        <div class="card card-slider">
-            <div class="card-slideshow">
-                <div class="slides-wrapper">
-                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 1">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 2">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 3">
-                </div>
-                <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                <div class="slide-dots">
-                    <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                </div>
-            </div>
-            <div class="card-content">
-                <h3>Prime Land Plot - Bagdhara Chowk</h3>
-                <p>South-facing plot, excellent sunlight, 20ft wide road access.</p>
-                <p class="price">Area: 3.5 Aana | Price: On Request</p>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="card card-slider">
-            <div class="card-slideshow">
-                <div class="slides-wrapper">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 1">
-                    <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 2">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 3">
-                </div>
-                <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                <div class="slide-dots">
-                    <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                    <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                </div>
-            </div>
-            <div class="card-content">
-                <h3>Commercial / Farming Plot - Kathmandu</h3>
-                <p>Peaceful surroundings, high value growth potential for investment.</p>
-                <p class="price">Area: 1 Ropani | Price: Negotiable</p>
-            </div>
+        <!-- Row Navigation Arrows at Bottom of Box -->
+        <div class="row-controls">
+            <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
+            <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
         </div>
     </div>
-</section>
+</section> 
 
- <script>
-    // Update slideshow position and indicator dots
+<script>
+    // Scroll row container left/right
+    function scrollListings(distance) {
+        document.getElementById('listingsContainer').scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+
+    // Card Slideshow image updater
     function updateCardSlide(slideshow, index) {
         const wrapper = slideshow.querySelector('.slides-wrapper');
         const slides = wrapper.querySelectorAll('img');
@@ -462,27 +613,24 @@
         });
     }
 
-    // Manual controls: Next & Previous
     function moveSlide(button, direction) {
         const slideshow = button.closest('.card-slideshow');
         let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
         updateCardSlide(slideshow, currentIndex + direction);
     }
 
-    // Manual controls: Clickable dots
     function jumpSlide(dot, index) {
         const slideshow = dot.closest('.card-slideshow');
         updateCardSlide(slideshow, index);
     }
 
-    // Initialize auto-sliding for all card galleries (3-second interval)
+    // Auto-slide every 3 seconds
     document.querySelectorAll('.card-slideshow').forEach(slideshow => {
         slideshow.setAttribute('data-current-index', 0);
-        
         setInterval(() => {
             let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
             updateCardSlide(slideshow, currentIndex + 1);
-        }, 3000); // 3000ms = 3 seconds
+        }, 3000);
     });
 </script>
 
