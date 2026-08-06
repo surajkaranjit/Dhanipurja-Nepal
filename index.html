@@ -538,6 +538,140 @@
     color: #444;
     line-height: 1.6;
 }
+ /* Team Single-Row Container Box */
+.team-row-box {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Single Row Scroll Area */
+.team-row-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 5px 15px 5px;
+    /* Hide scrollbars */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.team-row-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Team Card Width for Single Row */
+.team-card-item {
+    flex: 0 0 280px; /* Fixed card width */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.team-card-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Profile Image Circle */
+.team-img-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-green);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card-item h3 {
+    color: var(--dark-green);
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.team-role {
+    color: var(--primary-orange);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.team-bio {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.team-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary-green);
+    color: white;
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.team-contact-btn:hover {
+    background: var(--dark-green);
+}
+
+/* Bottom Controls */
+.team-row-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.team-arrow-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.team-arrow-btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.08);
+}
     </style>
 </head>
 <body>
@@ -1036,6 +1170,108 @@
 
     </div>
 </section>
+ 
+<!-- MEET OUR TEAM SECTION (SINGLE ROW AUTO-SLIDE) -->
+<section class="container" id="team">
+    <div class="section-title">
+        <h2>Meet Our Team</h2>
+        <p>Our dedicated real estate experts ready to guide you through safe land transactions.</p>
+    </div>
+
+    <div class="team-row-box">
+        <!-- Single Row Scrollable Wrapper -->
+        <div class="team-row-scroll" id="teamContainer">
+            
+            <!-- Team Member 1 -->
+            <div class="team-card-item">
+                <div class="team-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Managing Director">
+                </div>
+                <h3>Real Estate Director</h3>
+                <div class="team-role">Founder & Director</div>
+                <p class="team-bio">10+ years in land valuation and title deed verification.</p>
+                <a href="tel:9851029228" class="team-contact-btn">📞 Call: 9851029228</a>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-card-item">
+                <div class="team-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Property Manager">
+                </div>
+                <h3>Property Manager</h3>
+                <div class="team-role">Site Visit Specialist</div>
+                <p class="team-bio">Leads site tours, road measuring, and local inspections.</p>
+                <a href="tel:9851315115" class="team-contact-btn">📞 Call: 9851315115</a>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-card-item">
+                <div class="team-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Legal Representative">
+                </div>
+                <h3>Legal Advisor</h3>
+                <div class="team-role">Lalpurja Verification</div>
+                <p class="team-bio">Ensures 100% clean Lalpurja credentials and tax clearances.</p>
+                <a href="https://wa.me/9779851029228" target="_blank" class="team-contact-btn">💬 WhatsApp</a>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="team-card-item">
+                <div class="team-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Client Relations">
+                </div>
+                <h3>Client Relations</h3>
+                <div class="team-role">Customer Support</div>
+                <p class="team-bio">Assists buyers with initial property search & budget consultation.</p>
+                <a href="tel:9851029228" class="team-contact-btn">📞 Call Representative</a>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="team-card-item">
+                <div class="team-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Field Officer">
+                </div>
+                <h3>Field Surveyor</h3>
+                <div class="team-role">Land Mapping</div>
+                <p class="team-bio">Verifies government road maps, boundaries, and land dimensions.</p>
+                <a href="tel:9851315115" class="team-contact-btn">📞 Call Surveyor</a>
+            </div>
+
+        </div>
+
+        <!-- Navigation Arrows at Bottom -->
+        <div class="team-row-controls">
+            <button class="team-arrow-btn" onclick="scrollTeam(-305)" aria-label="Scroll Left">&#10094;</button>
+            <button class="team-arrow-btn" onclick="scrollTeam(305)" aria-label="Scroll Right">&#10095;</button>
+        </div>
+    </div>
+</section>
+ 
+<script>
+    // Manual arrow scrolling for team section
+    function scrollTeam(distance) {
+        const container = document.getElementById('teamContainer');
+        if (container) {
+            container.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Auto-slide team row every 3.5 seconds
+    const teamContainer = document.getElementById('teamContainer');
+    if (teamContainer) {
+        setInterval(() => {
+            // If scrolled to the end, loop back to start
+            if (teamContainer.scrollLeft + teamContainer.clientWidth >= teamContainer.scrollWidth - 10) {
+                teamContainer.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                teamContainer.scrollBy({ left: 305, behavior: 'smooth' });
+            }
+        }, 3500); // 3500ms = 3.5 seconds
+    }
+</script>
 
     <!-- Contact & Location Section -->
     <section class="container" id="contact">
