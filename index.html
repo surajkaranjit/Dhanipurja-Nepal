@@ -793,6 +793,18 @@
     </div>
 </section>
 
+    <script>
+    function scrollVideos(distance) {
+        const container = document.getElementById('videoContainer');
+        if (container) {
+            container.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+    }
+</script>
+
     <style>/* Why Choose Us Section - Single Row Layout */
 .features-row {
     display: flex;
