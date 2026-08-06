@@ -652,25 +652,29 @@ nav ul li a:hover {
     background: var(--dark-green, #145222);
     transform: scale(1.08);
 }
-/* Review Section Styling */
+/* Reviews Section Styles */
 .reviews-section {
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 16px;
-    padding: 35px;
+    padding: 35px 25px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .reviews-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .reviews-header h2 {
@@ -681,58 +685,76 @@ nav ul li a:hover {
     padding-bottom: 5px;
 }
 
-/* Google Badge Header */
+/* Google Rating Badge */
 .google-badge {
     display: flex;
     align-items: center;
     gap: 12px;
     background: #ffffff;
-    padding: 10px 18px;
+    padding: 8px 16px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     border: 1px solid #eee;
 }
 
 .google-logo {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #4285F4;
 }
 
 .badge-info strong {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #2c3e50;
 }
 
 .badge-info span {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: #777;
     display: block;
 }
 
-/* Review Cards Grid */
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+/* Single Horizontal Row Container */
+.reviews-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;     /* Forces single row */
+    gap: 25px;
+    width: 100%;
+    overflow-x: auto;      /* Enables smooth horizontal scroll */
+    scroll-behavior: smooth;
+    padding: 10px 5px 15px 5px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+.reviews-row::-webkit-scrollbar {
+    display: none;        /* Hides scrollbar across browsers */
+}
+
+/* Review Cards in Row */
 .review-card {
+    flex: 0 0 320px;      /* Fixed card width */
     background: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
 }
 
 .reviewer-info {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .reviewer-img {
@@ -766,19 +788,32 @@ nav ul li a:hover {
     font-style: italic;
 }
 
-.btn-write-review {
-    display: inline-block;
-    background: #4285F4;
-    color: white;
-    padding: 10px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease;
+/* Control Buttons */
+.row-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.btn-write-review:hover {
-    background: #2b6cb0;
+.row-arrow-btn {
+    background: var(--primary-green, #1e7e34);
+    color: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.row-arrow-btn:hover {
+    background: var(--dark-green, #145222);
+    transform: scale(1.08);
 }
 
     </style>
@@ -1248,6 +1283,131 @@ function startTeamAutoSlide() {
 }
 
 document.addEventListener('DOMContentLoaded', startTeamAutoSlide);</script>
+
+<!-- Client Reviews Single Row Section -->
+<section class="container" id="reviews">
+    <div class="reviews-section">
+        <div class="reviews-header">
+            <div>
+                <h2>What Our Clients Say</h2>
+                <p>Real experiences from land buyers & owners across Nepal</p>
+            </div>
+            
+            <div class="google-badge">
+                <div class="google-logo">G</div>
+                <div class="badge-info">
+                    <strong>4.9 / 5.0</strong>
+                    <div class="stars">★★★★★</div>
+                    <span>Google Verified Reviews</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal Single Row -->
+        <div class="reviews-row" id="reviewsContainer">
+            
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div>
+                    <div class="reviewer-info">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
+                        <div>
+                            <h4>Subash Shrestha</h4>
+                            <span class="review-date">Google Review • 2 weeks ago</span>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Buying land through Dhanipurja Nepal was completely stress-free. They helped verify all legal documents at the Malpot office before I made any deposit."</p>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div>
+                    <div class="reviewer-info">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
+                        <div>
+                            <h4>Prakash Adhikari</h4>
+                            <span class="review-date">Google Review • 1 month ago</span>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Very professional team in Kageshwori Manohara. Clear guidance on road access, plot boundaries, and fair pricing. Highly recommended!"</p>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div>
+                    <div class="reviewer-info">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
+                        <div>
+                            <h4>Sunita Karki</h4>
+                            <span class="review-date">Google Review • 2 months ago</span>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Transparent deals with no hidden commissions. Ram Bahadur sir personally guided us through the property site visit and land transfer process."</p>
+                </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card">
+                <div>
+                    <div class="reviewer-info">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
+                        <div>
+                            <h4>Bikram Thapa</h4>
+                            <span class="review-date">Google Review • 3 months ago</span>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Trustworthy service. Clear boundaries and clean title deed (Lalpurja) verified smoothly. Great experience!"</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Manual Navigation Controls -->
+        <div class="row-controls">
+            <button class="row-arrow-btn" onclick="scrollReviews(-345)" aria-label="Scroll Left">&#10094;</button>
+            <button class="row-arrow-btn" onclick="scrollReviews(345)" aria-label="Scroll Right">&#10095;</button>
+        </div>
+    </div>
+</section>
+
+<script>// Manual Scroll Function
+function scrollReviews(distance) {
+    const container = document.getElementById('reviewsContainer');
+    if (container) {
+        container.scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Auto-Slide Function
+function startReviewsAutoSlide() {
+    const container = document.getElementById('reviewsContainer');
+    if (!container) return;
+
+    let scrollAmount = 345; // Card width (320px) + Gap (25px)
+    let autoSlideTimer = setInterval(() => {
+        // If reached the end, reset scroll back to start
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }, 3500); // Slides every 3.5 seconds
+
+    // Pause sliding when user hovers over the cards
+    container.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
+    container.addEventListener('mouseleave', () => startReviewsAutoSlide());
+}
+
+document.addEventListener('DOMContentLoaded', startReviewsAutoSlide);</script>
    
 
     <!-- Contact & Location Section -->
@@ -1283,63 +1443,7 @@ document.addEventListener('DOMContentLoaded', startTeamAutoSlide);</script>
                 <h2>What Our Clients Say</h2>
                 <p>Real experiences from buyers and land owners across Nepal</p>
             </div>
-            <!-- Google Rating Summary Badge -->
-            <div class="google-badge">
-                <div class="google-logo">G</div>
-                <div class="badge-info">
-                    <strong>4.9 / 5.0</strong>
-                    <div class="stars">★★★★★</div>
-                    <span>Based on Google Reviews</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="reviews-grid">
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div class="reviewer-info">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client Photo" class="reviewer-img">
-                    <div>
-                        <h4>Subash Shrestha</h4>
-                        <span class="review-date">Google Review • 2 weeks ago</span>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Buying land through Dhanipurja Nepal was completely stress-free. They helped verify all legal documents at the Malpot office before I made any deposit."</p>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div class="reviewer-info">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client Photo" class="reviewer-img">
-                    <div>
-                        <h4>Prakash Adhikari</h4>
-                        <span class="review-date">Google Review • 1 month ago</span>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Very professional team in Kageshwori Manohara. Clear guidance on road access, plot boundaries, and fair pricing. Highly recommended!"</p>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div class="reviewer-info">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Client Photo" class="reviewer-img">
-                    <div>
-                        <h4>Sunita Karki</h4>
-                        <span class="review-date">Google Review • 2 months ago</span>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Transparent deals with no hidden commissions. Ram Bahadur sir personally guided us through the property site visit and land transfer process."</p>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 25px;">
-            <a href="https://maps.google.com" target="_blank" class="btn-write-review">Write a Google Review ↗</a>
-        </div>
-    </div>
-</section>
+      
 
             <!-- Contact Form -->
             <form class="contact-form">
