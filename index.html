@@ -3,78 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
+    <title>Dhanipurja Nepal - Real Estate & Land Properties</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Reset & Base Styles */
+        :root {
+            --primary-green: #2E7D32;
+            --dark-green: #1B5E20;
+            --accent-gold: #D4AF37;
+            --light-bg: #F4F7F5;
+            --text-dark: #2C3E50;
+            --text-light: #607D8B;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
+
         body {
-            color: #2c3e50;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
-            background-color: #eef2ee; /* Slightly darker background to make glass blur pop */
         }
 
-        /* Color Palette Constants */
-        :root {
-            --primary-green: #1e7e34;
-            --primary-orange: #d95d08;
-            --dark-green: #145222;
-            --light-bg: #f4f7f4;
-            --whatsapp-green: #25d366;
-            --whatsapp-hover: #1eb956;
-        }
-
-        /* Top Header Bar */
+        /* Top Bar */
         .top-bar {
             background-color: var(--dark-green);
-            color: #fff;
+            color: var(--white);
             padding: 8px 5%;
-            font-size: 0.85rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-        }
-        .top-bar-info {
-            display: flex;
-            gap: 20px;
-        }
-        .top-bar-info a {
-            color: #ffc107;
-            text-decoration: none;
-            font-weight: 600;
+            font-size: 0.85rem;
         }
 
-        /* Navigation with Blur Effect */
+        .top-info span {
+            margin-right: 20px;
+        }
+
+        .top-info i {
+            color: var(--accent-gold);
+            margin-right: 5px;
+        }
+
+        /* Navigation Bar */
         nav {
-            background: rgba(255, 255, 255, 0.75);
+            background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 0.8rem 5%;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        /* Image Logo Styling */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
+            box-shadow: var(--box-shadow);
         }
 
         .logo-container img {
-            height: 60px;
+            height: 50px;
             width: auto;
             object-fit: contain;
         }
@@ -83,381 +84,285 @@
             display: flex;
             list-style: none;
             align-items: center;
+            gap: 25px;
         }
-        nav ul li {
-            margin-left: 25px;
-        }
-        nav ul li a {
-            color: #333;
+
+        nav a {
             text-decoration: none;
+            color: var(--text-dark);
             font-weight: 600;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
-        nav ul li a:hover {
+
+        nav a:hover {
             color: var(--primary-green);
         }
+
+        /* Dropdown Styling */
+        nav ul li.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            min-width: 180px;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--glass-border);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-green);
+        }
+
+        nav ul li.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
         .btn-nav {
             background-color: var(--primary-green);
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 5px;
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.2s !important;
         }
+
         .btn-nav:hover {
             background-color: var(--dark-green);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            height: 65vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            color: var(--white);
             padding: 0 20px;
         }
+
         .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            max-width: 650px;
-        }
-        .btn {
-            background-color: var(--primary-orange);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #b84c03;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
-        /* Container */
-        .container {
-            padding: 60px 5%;
-            max-width: 1200px;
-            margin: auto;
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* Search Filter Box */
+        .search-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--box-shadow);
+            width: 80%;
+            max-width: 900px;
+            margin-top: -50px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) 120px;
+            gap: 15px;
+        }
+
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-search {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-search:hover {
+            background-color: var(--dark-green);
+        }
+
+        /* Section Commons */
+        .section-padding {
+            padding: 80px 5%;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 40px;
         }
+
         .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary-green);
+            font-size: 2.2rem;
+            color: var(--dark-green);
+            margin-bottom: 10px;
         }
 
-        /* Single Row Container Box for Listings */
-.listings-row-box {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Single Row Scroll Area */
-.grid-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    /* Hide scrollbars */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-
-.grid-row::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-/* Fixed card size for single row */
-.card-row-item {
-    flex: 0 0 320px; /* Forces cards to stay in a row with fixed width */
-}
-
-/* Card Slideshow Styling */
-.card-slideshow {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.slides-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slides-wrapper img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-/* Slide Navigation Arrows & Dots inside Card */
-.slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    font-size: 1rem;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    z-index: 5;
-    transition: background 0.3s ease;
-}
-
-.slide-btn:hover { background: rgba(0, 0, 0, 0.8); }
-.slide-btn.prev { left: 6px; }
-.slide-btn.next { right: 6px; }
-
-.slide-dots {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    z-index: 5;
-}
-
-.dot {
-    width: 7px;
-    height: 7px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dot.active {
-    background: #ffffff;
-    width: 16px;
-    border-radius: 10px;
-}
-
-/* Row Scroll Navigation Controls at Bottom */
-.row-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.row-arrow-btn {
-    background: var(--primary-green);
-    color: white;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.row-arrow-btn:hover {
-    background: var(--dark-green);
-    transform: scale(1.08);
-}
-
-/* Slide Navigation Arrows */
-.slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    font-size: 1.1rem;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-.slide-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.slide-btn.prev { left: 8px; }
-.slide-btn.next { right: 8px; }
-
-/* Slide Navigation Dots */
-.slide-dots {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-    z-index: 10;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.dot.active {
-    background: #ffffff;
-    width: 18px;
-    border-radius: 10px;
-}
-
-        /* Blur/Glassmorphism Effect for Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        }
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .card-content {
-            padding: 20px;
-        }
-        .card-content h3 {
-            margin-bottom: 8px;
-            color: var(--primary-green);
-        }
-        .price {
-            color: var(--primary-orange);
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 10px;
+        .section-title p {
+            color: var(--text-light);
         }
 
-        /* Blur/Glassmorphism Effect for Contact Section */
-        .contact-wrapper {
+        /* Property Listings Grid */
+        .property-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-top: 4px solid var(--primary-orange);
-        }
-        .contact-info-box h3 {
-            color: var(--primary-green);
-            margin-bottom: 15px;
-        }
-        .info-item {
-            margin-bottom: 15px;
-        }
-        .info-item strong {
-            display: block;
-            color: var(--primary-orange);
+            gap: 30px;
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .property-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #EAEAEA;
         }
-        .contact-form input, .contact-form textarea {
-            padding: 12px;
-            border: 1px solid rgba(200, 200, 200, 0.6);
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-img {
+            height: 200px;
             width: 100%;
+            object-fit: cover;
+        }
+
+        .property-content {
+            padding: 20px;
+        }
+
+        .property-price {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .property-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .property-location {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .property-details {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #EAEAEA;
+            padding-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
         /* Footer */
         footer {
             background-color: var(--dark-green);
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-        }
-        footer p {
-            font-size: 0.9rem;
+            color: var(--white);
+            padding: 50px 5% 20px 5%;
         }
 
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--whatsapp-green);
-            color: #ffffff;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.25);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #CCCCCC;
             text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: color 0.3s;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: var(--whatsapp-hover);
-        }
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: #ffffff;
-        } 
-       
 
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #AAAAAA;
+        }
     </style>
 </head>
 <body>
-   
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fas fa-phone"></i> +977 1234567890</span>
+            <span><i class="fas fa-envelope"></i> info@dhanipurjanepal.com</span>
+            <span><i class="fas fa-location-dot"></i> Kathmandu, Nepal</span>
+        </div>
+        <div class="top-socials">
+            <a href="#" style="color:white; margin-left:10px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color:white; margin-left:10px;"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
 
     <!-- Navigation Bar -->
     <nav>
@@ -467,13 +372,8 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#listings">Properties</a></li>
-                    <!-- Points to the separate file -->
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
-        </ul>
-    </nav>
-     
-      <!-- ABOUT US DROPDOWN -->
+            
+            <!-- ABOUT US DROPDOWN -->
             <li class="dropdown">
                 <a href="about.html" class="dropdown-toggle">About Us</a>
                 <div class="dropdown-menu">
@@ -483,403 +383,130 @@
                 </div>
             </li>
 
-            <li><a href="#gallery">Land Photos</a></li>
-            <li><a href="#listings">Properties</a></li>
+            <li><a href="#videos">Land Photos & Videos</a></li>
             <li><a href="#contact" class="btn-nav">Contact Us</a></li>
         </ul>
     </nav>
 
-
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Your Gateway to Owning Land in Nepal</h1>
-        <p>Verified residential, commercial, and agricultural land plots across Danchhi, Bagdhara, Kathmandu & beyond.</p>
-        <a href="#listings" class="btn">Explore Land Listings</a>
+        <h1>Find Your Dream Land in Nepal</h1>
+        <p>Verified real estate listings, land plots, and properties with complete legal transparency.</p>
     </section>
 
-    <!-- Land Listings - Single Row inside Box Container -->
-<section class="container" id="listings">
-    <div class="section-title">
-        <h2>Featured Land Plots for Sale</h2>
-        <p>Direct plots with legal verification (Lalpurja clear).</p>
+    <!-- Filter Search Container -->
+    <div class="search-container">
+        <form class="search-form">
+            <div class="form-group">
+                <select>
+                    <option value="">Location (City/District)</option>
+                    <option value="kathmandu">Kathmandu</option>
+                    <option value="lalitpur">Lalitpur</option>
+                    <option value="pokhara">Pokhara</option>
+                    <option value="chitwan">Chitwan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select>
+                    <option value="">Property Type</option>
+                    <option value="land">Land Plot</option>
+                    <option value="house">House/Villa</option>
+                    <option value="commercial">Commercial Space</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select>
+                    <option value="">Budget Range</option>
+                    <option value="1">Under 50 Lakhs</option>
+                    <option value="2">50 Lakhs - 1 Crore</option>
+                    <option value="3">Above 1 Crore</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-search"><i class="fas fa-search"></i> Search</button>
+        </form>
     </div>
 
-    <!-- Outer Glass Box Container -->
-    <div class="listings-row-box">
-        <!-- Single Row Flex Wrapper -->
-        <div class="grid-row" id="listingsContainer">
-            
-            <!-- Card 1 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 1">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 2">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Residential Plot - Danchhi</h3>
-                    <p>Road Access: 20ft | Ready for house construction.</p>
-                    <p class="price">Area: 4 Aana | Negotiable</p>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 1">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 2">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Prime Land - Bagdhara Chowk</h3>
-                    <p>South-facing plot, excellent sunlight, 20ft road.</p>
-                    <p class="price">Area: 3.5 Aana | On Request</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 1">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 2">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Farming Plot - Kathmandu</h3>
-                    <p>Peaceful surroundings, high investment potential.</p>
-                    <p class="price">Area: 1 Ropani | Negotiable</p>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 1">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 2">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Hillside Heights - Bagdhara</h3>
-                    <p>Clean air, scenic mountain view, road connection.</p>
-                    <p class="price">Area: 5 Aana | On Request</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Row Navigation Arrows at Bottom of Box -->
-        <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
-        </div>
-    </div>
-</section> 
-
-<script>
-    // Scroll row container left/right
-    function scrollListings(distance) {
-        document.getElementById('listingsContainer').scrollBy({
-            left: distance,
-            behavior: 'smooth'
-        });
-    }
-
-    // Card Slideshow image updater
-    function updateCardSlide(slideshow, index) {
-        const wrapper = slideshow.querySelector('.slides-wrapper');
-        const slides = wrapper.querySelectorAll('img');
-        const dots = slideshow.querySelectorAll('.dot');
-        
-        let targetIndex = (index + slides.length) % slides.length;
-        slideshow.setAttribute('data-current-index', targetIndex);
-
-        wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
-
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === targetIndex);
-        });
-    }
-
-    function moveSlide(button, direction) {
-        const slideshow = button.closest('.card-slideshow');
-        let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-        updateCardSlide(slideshow, currentIndex + direction);
-    }
-
-    function jumpSlide(dot, index) {
-        const slideshow = dot.closest('.card-slideshow');
-        updateCardSlide(slideshow, index);
-    }
-
-    // Auto-slide every 3 seconds
-    document.querySelectorAll('.card-slideshow').forEach(slideshow => {
-        slideshow.setAttribute('data-current-index', 0);
-        setInterval(() => {
-            let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-            updateCardSlide(slideshow, currentIndex + 1);
-        }, 3000);
-    });
-</script>
-
-
-   <style>/* Video Section Container */
-.video-carousel-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Single Row Video Flex Container */
-.video-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 5px 20px 5px;
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.video-row::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
-
-/* Video Card Styling with Glass Effect */
-.video-card {
-    flex: 0 0 320px; /* Fixed width per video card in single row */
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.video-card:hover {
-    transform: translateY(-5px);
-}
-
-.video-card video, 
-.video-card iframe {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border: none;
-    display: block;
-}
-
-.video-card-content {
-    padding: 15px;
-}
-
-.video-card-content h3 {
-    color: var(--primary-green);
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.video-card-content p {
-    font-size: 0.88rem;
-    color: #444;
-}
-
-/* Navigation Arrows at the Bottom */
-.arrow-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.arrow-btn {
-    background: var(--primary-green);
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.arrow-btn:hover {
-    background: var(--dark-green);
-    transform: scale(1.08);
-}</style>
-
-<!-- LAND VIDEOS SECTION (SINGLE ROW WITH BOTTOM ARROWS) -->
-<section class="container" id="videos">
-    <div class="section-title">
-        <h2>Land Video Tours</h2>
-        <p>Take a virtual video tour of our featured plots in Danchhi & Bagdhara.</p>
-    </div>
-
-    <div class="video-carousel-wrapper">
-        <!-- Single Row Video List -->
-        <div class="video-row" id="videoContainer">
-            
-            <!-- Video 1 (Self-Hosted MP4 Example) -->
-            <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80">
-                    <source src="land-tour-1.mp4" type="video/mp4">
-                    Your browser does not support video.
-                </video>
-                <div class="video-card-content">
-                    <h3>Danchhi Plot Video Tour</h3>
-                    <p>Drone & ground view of 4 Aana residential plot with 20ft road access.</p>
-                </div>
-            </div>
-
-            <!-- Video 2 (YouTube Embed Example) -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-                <div class="video-card-content">
-                    <h3>Bagdhara Chowk Site Visit</h3>
-                    <p>Complete road connectivity and neighborhood view for commercial plot.</p>
-                </div>
-            </div>
-
-            <!-- Video 3 (Self-Hosted MP4 Example) -->
-            <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80">
-                    <source src="land-tour-2.mp4" type="video/mp4">
-                    Your browser does not support video.
-                </video>
-                <div class="video-card-content">
-                    <h3>Kageshwori Farm Land</h3>
-                    <p>Wide angle view of 1 Ropani agricultural & resort land.</p>
-                </div>
-            </div>
-
-            <!-- Video 4 (YouTube Embed Example) -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-                <div class="video-card-content">
-                    <h3>Hillside View Heights</h3>
-                    <p>Overview of scenic mountain views and surrounding road access.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Navigation Arrows at the Bottom -->
-        <div class="arrow-controls">
-            <button class="arrow-btn" onclick="scrollVideos(-340)" aria-label="Scroll Left">&#10094;</button>
-            <button class="arrow-btn" onclick="scrollVideos(340)" aria-label="Scroll Right">&#10095;</button>
-        </div>
-    </div>
-</section>
-
-    <script>
-    function scrollVideos(distance) {
-        const container = document.getElementById('videoContainer');
-        if (container) {
-            container.scrollBy({
-                left: distance,
-                behavior: 'smooth'
-            });
-        }
-    }
-</script>
-   
-
-    <!-- Contact & Location Section -->
-    <section class="container" id="contact">
+    <!-- Property Listings Section -->
+    <section class="section-padding" id="listings">
         <div class="section-title">
-            <h2>Contact Us</h2>
-            <p>Visit our office or call us directly for site visits and land inquiries.</p>
+            <h2>Featured Properties</h2>
+            <p>Explore hand-picked properties available for immediate purchase</p>
         </div>
-        
-        <div class="contact-wrapper">
-            <!-- Address & Phone Box -->
-            <div class="contact-info-box">
-                <h3>Office Information</h3>
-                
-                <div class="info-item">
-                    <strong>🏢 Office Location:</strong>
-                    Danchhi, Bagdhara Chowk,<br>
-                    Kageshwori Manohara Municipality,<br>
-                    Kathmandu, Nepal
-                </div>
 
-                <div class="info-item">
-                    <strong>📞 Phone / WhatsApp:</strong>
-                    <a href="tel:9851029228" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851029228</a><br>
-                    <a href="tel:9851315115" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851315115</a>
+        <div class="property-grid">
+            <!-- Property Item 1 -->
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Land Plot" class="property-img">
+                <div class="property-content">
+                    <div class="property-price">NPR 45,00,000 / Aana</div>
+                    <div class="property-title">Residential Land Plot</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Budhanilkantha, Kathmandu</div>
+                    <div class="property-details">
+                        <span><i class="fas fa-ruler-combined"></i> 0-4-0-0 Aana</span>
+                        <span><i class="fas fa-road"></i> 13 ft Road</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <form class="contact-form">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="tel" placeholder="Your Contact Number" required>
-                <textarea rows="4" placeholder="Mention the plot location, size (Aana/Ropani), or requirement..." required></textarea>
-                <button type="submit" class="btn">Send Direct Inquiry</button>
-            </form>
+            <!-- Property Item 2 -->
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="House" class="property-img">
+                <div class="property-content">
+                    <div class="property-price">NPR 3,20,00,000</div>
+                    <div class="property-title">Modern 2.5 Storey House</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Baishepati, Lalitpur</div>
+                    <div class="property-details">
+                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Item 3 -->
+            <div class="property-card">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Commercial Land" class="property-img">
+                <div class="property-content">
+                    <div class="property-price">NPR 85,00,000 / Aana</div>
+                    <div class="property-title">Commercial Land Plot</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Koteshwor, Kathmandu</div>
+                    <div class="property-details">
+                        <span><i class="fas fa-ruler-combined"></i> 0-8-0-0 Aana</span>
+                        <span><i class="fas fa-road"></i> 20 ft Road</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहजी)</p>
-        <p>Address: Danchhi, Bagdhara, Kathmandu | Phone: 9851029228, 9851315115</p>
-        <p style="margin-top:10px; color:#aaa; font-size:0.8rem;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Dhanipurja Nepal</h3>
+                <p>Your trusted real estate partner in Nepal. Providing reliable and hassle-free property buying and selling services.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#listings">Properties</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</li>
+                    <li><i class="fas fa-phone"></i> +977 1234567890</li>
+                    <li><i class="fas fa-envelope"></i> info@dhanipurjanepal.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dhanipurja Nepal. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/9779851029228?text=Hello%20Dhanipurja%20Nepal,%20I%20am%20interested%20in%20buying%20land." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
-    </a>
-
-   
 </body>
 </html>
