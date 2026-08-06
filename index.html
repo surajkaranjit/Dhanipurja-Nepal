@@ -546,10 +546,42 @@ nav ul li a:hover {
     display: flex;
 }
 
-/* Increased Team Card Dimensions */
+/* Container Box */
+.team-row-box {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Single Horizontal Row Container */
+.team-row {
+    display: flex;
+    flex-direction: row;     /* Forces items side-by-side */
+    flex-wrap: nowrap;        /* Prevents cards from breaking into multiple rows */
+    gap: 25px;
+    width: 100%;
+    overflow-x: auto;         /* Allows horizontal scrolling */
+    scroll-behavior: smooth;
+    padding: 10px 5px 15px 5px;
+    scrollbar-width: none;    /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
+}
+
+/* Hide scrollbar for Chrome/Safari/Brave */
+.team-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* Single Row Card */
 .team-card {
-    flex: 0 0 320px; /* Increased width from 260px to 320px */
-    min-height: 380px; /* Gives the card extra vertical height */
+    flex: 0 0 280px;          /* Fixed width per card */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -558,77 +590,67 @@ nav ul li a:hover {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 30px 20px; /* Increased internal padding */
+    padding: 20px 15px;
     transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.team-card:hover {
-    transform: translateY(-8px);
-}
-
-/* Horizontal Card Layout */
-.team-card {
-    flex: 0 0 420px; /* Wider card to fit image and text side-by-side */
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    transition: transform 0.3s ease;
-    
-    /* Row layout inside the card */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
 }
 
 .team-card:hover {
     transform: translateY(-5px);
 }
 
-/* Side Photo */
 .team-img {
-    width: 140px;
-    height: 160px;
+    width: 100%;
+    height: 200px;
     border-radius: 10px;
     object-fit: cover;
-    flex-shrink: 0; /* Keeps photo from shrinking */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
 }
 
-/* Text Container on the Right */
-.team-info {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.team-info h3 {
+.team-card h3 {
     color: #2c3e50;
     font-size: 1.2rem;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
-.team-info .position {
+.team-card .position {
     color: var(--primary-orange, #d95d08);
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 8px;
 }
 
-.team-info .phone {
+.team-card .phone {
     font-size: 0.88rem;
     color: #444;
     font-weight: 500;
+}
+
+/* Controls */
+.row-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.row-arrow-btn {
+    background: var(--primary-green, #1e7e34);
+    color: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.row-arrow-btn:hover {
+    background: var(--dark-green, #145222);
+    transform: scale(1.08);
 }
 
        
