@@ -49,7 +49,7 @@
             font-weight: 600;
         }
 
-        /* Navigation with Blur Effect */
+        /* Navigation Container */
         nav {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
@@ -79,31 +79,93 @@
             object-fit: contain;
         }
 
-        nav ul {
+        /* Main Nav List */
+        nav > ul {
             display: flex;
             list-style: none;
             align-items: center;
+            margin: 0;
+            padding: 0;
         }
-        nav ul li {
+
+        nav > ul > li {
             margin-left: 25px;
+            position: relative; /* CRITICAL: Anchors the absolute dropdown */
         }
+
         nav ul li a {
             color: #333;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
+            display: block;
+            padding: 10px 0;
         }
+
         nav ul li a:hover {
             color: var(--primary-green);
         }
+
         .btn-nav {
             background-color: var(--primary-green);
             color: white !important;
-            padding: 8px 18px;
+            padding: 8px 18px !important;
             border-radius: 5px;
         }
+
         .btn-nav:hover {
             background-color: var(--dark-green);
+        }
+
+        /* Dropdown Menu Fixing */
+        .has-dropdown > a::after {
+            content: ' ▾';
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
+
+        .has-dropdown {
+            position: relative; /* Ensures dropdown lines up under 'About Us' */
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute; /* Positions dropdown out of normal nav flow */
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 1001;
+            list-style: none;
+            flex-direction: column; /* Stacks links vertically */
+        }
+
+        .dropdown-menu li {
+            margin-left: 0 !important; /* Resets outer li margin */
+            width: 100%;
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 18px;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f4f7f4;
+            color: var(--primary-green);
+        }
+
+        /* Hover trigger to display vertical list */
+        .has-dropdown:hover .dropdown-menu {
+            display: flex;
         }
 
         /* Hero Section */
@@ -137,6 +199,7 @@
             transition: background 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
         .btn:hover {
             background-color: #b84c03;
@@ -159,185 +222,136 @@
         }
 
         /* Single Row Container Box for Listings */
-.listings-row-box {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .listings-row-box {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* Single Row Scroll Area */
-.grid-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    /* Hide scrollbars */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
+        /* Single Row Scroll Area */
+        .grid-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 25px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 15px 5px;
+            /* Hide scrollbars */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
 
-.grid-row::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
+        .grid-row::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
 
-/* Fixed card size for single row */
-.card-row-item {
-    flex: 0 0 320px; /* Forces cards to stay in a row with fixed width */
-}
+        /* Fixed card size for single row */
+        .card-row-item {
+            flex: 0 0 320px; /* Forces cards to stay in a row with fixed width */
+        }
 
-/* Card Slideshow Styling */
-.card-slideshow {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
+        /* Card Slideshow Styling */
+        .card-slideshow {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
 
-.slides-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
 
-.slides-wrapper img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
+        .slides-wrapper img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
 
-/* Slide Navigation Arrows & Dots inside Card */
-.slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    font-size: 1rem;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    z-index: 5;
-    transition: background 0.3s ease;
-}
+        /* Slide Navigation Arrows & Dots inside Card */
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
 
-.slide-btn:hover { background: rgba(0, 0, 0, 0.8); }
-.slide-btn.prev { left: 6px; }
-.slide-btn.next { right: 6px; }
+        .slide-btn:hover { background: rgba(0, 0, 0, 0.8); }
+        .slide-btn.prev { left: 8px; }
+        .slide-btn.next { right: 8px; }
 
-.slide-dots {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    z-index: 5;
-}
+        .slide-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
 
-.dot {
-    width: 7px;
-    height: 7px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.dot.active {
-    background: #ffffff;
-    width: 16px;
-    border-radius: 10px;
-}
+        .dot.active {
+            background: #ffffff;
+            width: 18px;
+            border-radius: 10px;
+        }
 
-/* Row Scroll Navigation Controls at Bottom */
-.row-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
+        /* Row Scroll Navigation Controls at Bottom */
+        .row-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-.row-arrow-btn {
-    background: var(--primary-green);
-    color: white;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
+        .row-arrow-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
 
-.row-arrow-btn:hover {
-    background: var(--dark-green);
-    transform: scale(1.08);
-}
-
-/* Slide Navigation Arrows */
-.slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    font-size: 1.1rem;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-.slide-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.slide-btn.prev { left: 8px; }
-.slide-btn.next { right: 8px; }
-
-/* Slide Navigation Dots */
-.slide-dots {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-    z-index: 10;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.dot.active {
-    background: #ffffff;
-    width: 18px;
-    border-radius: 10px;
-}
+        .row-arrow-btn:hover {
+            background: var(--dark-green);
+            transform: scale(1.08);
+        }
 
         /* Blur/Glassmorphism Effect for Cards */
         .card {
@@ -371,6 +385,315 @@
             font-weight: bold;
             font-size: 1.1rem;
             margin-top: 10px;
+        }
+
+        /* Video Section Container */
+        .video-carousel-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Single Row Video Flex Container */
+        .video-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 20px 5px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .video-row::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+
+        /* Video Card Styling with Glass Effect */
+        .video-card {
+            flex: 0 0 320px; /* Fixed width per video card in single row */
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-card video, 
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: none;
+            display: block;
+        }
+
+        .video-card-content {
+            padding: 15px;
+        }
+
+        .video-card-content h3 {
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .video-card-content p {
+            font-size: 0.88rem;
+            color: #444;
+        }
+
+        /* Navigation Arrows at the Bottom */
+        .arrow-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .arrow-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .arrow-btn:hover {
+            background: var(--dark-green);
+            transform: scale(1.08);
+        }
+
+        /* Team Row Box */
+        .team-row-box {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 30px 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Single Horizontal Row Container */
+        .team-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 15px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 15px 5px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .team-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Single Row Card */
+        .team-card {
+            flex: 0 0 240px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px 15px;
+            transition: transform 0.3s ease;
+        } 
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 260px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .team-card .position {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .team-card .phone {
+            font-size: 0.85rem;
+            color: #444;
+            font-weight: 500;
+        }
+
+        /* Reviews Section Styles */
+        .reviews-section {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 35px 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reviews-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .reviews-header h2 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--primary-orange);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Google Rating Badge */
+        .google-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #ffffff;
+            padding: 8px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eee;
+        }
+
+        .google-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4285F4;
+        }
+
+        .badge-info strong {
+            font-size: 1.05rem;
+            color: #2c3e50;
+        }
+
+        .badge-info span {
+            font-size: 0.78rem;
+            color: #777;
+            display: block;
+        }
+
+        .reviews-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 25px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 15px 5px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .reviews-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            flex: 0 0 320px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .reviewer-info h4 {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .review-date {
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        .stars {
+            color: #f1c40f;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 0.93rem;
+            color: #555;
+            line-height: 1.5;
+            font-style: italic;
         }
 
         /* Blur/Glassmorphism Effect for Contact Section */
@@ -411,22 +734,23 @@
             border-radius: 5px;
             width: 100%;
         }
-/* Fixed Footer CSS */
-footer {
-    background-color: var(--dark-green, #145222);
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 20px; /* Reduced from 400px to a clean 50px gap */
-    width: 100%;       /* Forces full width */
-    box-sizing: border-box;
-    clear: both;      /* Clears any floating elements above it */
-}
 
-footer p {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-    line-height: 1.5;
+        /* Fixed Footer CSS */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            clear: both;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
         /* Floating WhatsApp Button */
@@ -457,1046 +781,397 @@ footer p {
             height: 32px;
             fill: #ffffff;
         }
-        
-        /* Navigation Container */
-nav {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 0.8rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-/* Main Nav List */
-nav > ul {
-    display: flex;
-    list-style: none;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav > ul > li {
-    margin-left: 25px;
-    position: relative; /* CRITICAL: Anchors the absolute dropdown */
-}
-
-nav ul li a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-    display: block;
-    padding: 10px 0;
-}
-
-nav ul li a:hover {
-    color: var(--primary-green, #1e7e34);
-}
-
-/* Dropdown Menu Fixing */
-.has-dropdown > a::after {
-    content: ' ▾';
-    font-size: 0.8rem;
-    margin-left: 4px;
-}
-
-.has-dropdown {
-    position: relative; /* Ensures dropdown lines up under 'About Us' */
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute; /* Positions dropdown out of normal nav flow */
-    top: 100%;
-    left: 0;
-    background: #ffffff;
-    min-width: 200px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    padding: 8px 0;
-    z-index: 1001;
-    list-style: none;
-    flex-direction: column; /* Stacks links vertically */
-}
-
-.dropdown-menu li {
-    margin-left: 0 !important; /* Resets outer li margin */
-    width: 100%;
-    display: block;
-}
-
-.dropdown-menu li a {
-    padding: 10px 18px;
-    color: #333;
-    font-size: 0.95rem;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: background 0.2s, color 0.2s;
-}
-
-.dropdown-menu li a:hover {
-    background-color: #f4f7f4;
-    color: var(--primary-green, #1e7e34);
-}
-
-/* Hover trigger to display vertical list */
-.has-dropdown:hover .dropdown-menu {
-    display: flex;
-}
-
-/* Container Box */
-.team-row-box {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 30px 15px;                  /* Reduced side padding to give more room */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;                          /* Added: Ensures box spans full parent width */
-    max-width: 1400px;                    /* Added: Expands the maximum box width */
-    margin: 0 auto;                       /* Added: Keeps the box centered */
-}
-
-/* Single Horizontal Row Container */
-.team-row {
-    display: flex;
-    flex-direction: row;     /* Forces items side-by-side */
-    flex-wrap: nowrap;        /* Prevents cards from breaking into multiple rows */
-    gap: 15px;                /* Updated: Reduced gap from 25px to 15px so cards fit better */
-    width: 100%;
-    overflow-x: auto;         /* Allows horizontal scrolling */
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    scrollbar-width: none;    /* Hides scrollbar for Firefox */
-    -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
-}
-
-/* Hide scrollbar for Chrome/Safari/Brave */
-.team-row::-webkit-scrollbar {
-    display: none;
-}
-
-/* Single Row Card */
-.team-card {
-    flex: 0 0 240px;          /* Updated: Reduced card width from 280px to 240px */
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px 15px;
-    transition: transform 0.3s ease;
-} 
-
-.team-card:hover {
-    transform: translateY(-5px);
-}
-
-.team-img {
-    width: 100%;
-    height: 260px;            /* Updated: Adjusted image height to fit slimmer cards */
-    border-radius: 15px;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-.team-card h3 {
-    color: #2c3e50;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.team-card .position {
-    color: var(--primary-orange, #d95d08);
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-}
-
-.team-card .phone {
-    font-size: 0.85rem;
-    color: #444;
-    font-weight: 500;
-}
-
-/* Controls */
-.row-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.row-arrow-btn {
-    background: var(--primary-green, #1e7e34);
-    color: white;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.row-arrow-btn:hover {
-    background: var(--dark-green, #145222);
-    transform: scale(1.08);
-}
-
-/* Reviews Section Styles */
-.reviews-section {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 35px 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    margin: 40px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.reviews-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-.reviews-header h2 {
-    color: var(--primary-green, #1e7e34);
-    font-size: 1.8rem;
-    border-bottom: 3px solid var(--primary-orange, #d95d08);
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* Google Rating Badge */
-.google-badge {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #ffffff;
-    padding: 8px 16px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    border: 1px solid #eee;
-}
-
-.google-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4285F4;
-}
-
-.badge-info strong {
-    font-size: 1.05rem;
-    color: #2c3e50;
-}
-
-.badge-info span {
-    font-size: 0.78rem;
-    color: #777;
-    display: block;
-}
-
-/* Single Horizontal Row Container */
-.reviews-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;     /* Forces single row */
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;      /* Enables smooth horizontal scroll */
-    scroll-behavior: smooth;
-    padding: 10px 5px 15px 5px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.reviews-row::-webkit-scrollbar {
-    display: none;        /* Hides scrollbar across browsers */
-}
-
-/* Review Cards in Row */
-.review-card {
-    flex: 0 0 320px;      /* Fixed card width */
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease;
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-}
-
-.reviewer-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-}
-
-.reviewer-img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.reviewer-info h4 {
-    font-size: 1rem;
-    color: #2c3e50;
-    margin: 0;
-}
-
-.review-date {
-    font-size: 0.78rem;
-    color: #888;
-}
-
-.stars {
-    color: #f1c40f;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.review-text {
-    font-size: 0.93rem;
-    color: #555;
-    line-height: 1.5;
-    font-style: italic;
-}
-
-/* Control Buttons */
-.row-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.row-arrow-btn {
-    background: var(--primary-green, #1e7e34);
-    color: white;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.row-arrow-btn:hover {
-    background: var(--dark-green, #145222);
-    transform: scale(1.08);
-}
-
     </style>
 </head>
 <body>
-   
 
- <!-- Navigation Bar -->
-<nav>
-    <a href="#" class="logo-container">
-        <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
-    </a>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#listings">Properties</a></li>
-        <li><a href="#Team">Our Team</a></li>
-        <!-- About Us Dropdown -->
-        <li class="has-dropdown">
-            <a href="about.html">About Us</a>
-            <ul class="dropdown-menu">
-                <li><a href="about.html#story">Our Story</a></li>
-                <li><a href="office location.html#location">Office Location</a></li>
-                <li><a href="FAQ.html#FAQ">FAQ</a></li>
-            </ul>
-        </li>
-        <li><a href="#contact" class="btn-nav">Contact Us</a></li>
-    </ul>
-</nav>
-     
-    
-
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
+        </a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#listings">Properties</a></li>
+            <li><a href="#Team">Our Team</a></li>
+            <!-- About Us Dropdown -->
+            <li class="has-dropdown">
+                <a href="about.html">About Us</a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html#story">Our Story</a></li>
+                    <li><a href="office location.html#location">Office Location</a></li>
+                    <li><a href="FAQ.html#FAQ">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
+        </ul>
+    </nav>
+        
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>Your Gateway to Owning Land in Nepal</h1>
-        <p>Verified residential, commercial, and agricultural land plots across Danchhi, Bagdhara, Kathmandu & beyond.</p>
+        <p>Verified residential, commercial, and agricultural land plots across Danchhi, Bagdhara, Kathmandu &amp; beyond.</p>
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
     <!-- Land Listings - Single Row inside Box Container -->
-<section class="container" id="listings">
-    <div class="section-title">
-        <h2>Featured Land Plots for Sale</h2>
-        <p>Direct plots with legal verification (Lalpurja clear).</p>
-    </div>
-
-    <!-- Outer Glass Box Container -->
-    <div class="listings-row-box">
-        <!-- Single Row Flex Wrapper -->
-        <div class="grid-row" id="listingsContainer">
-            
-            <!-- Card 1 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 1">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 2">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Danchhi Plot Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Residential Plot - Danchhi</h3>
-                    <p>Road Access: 20ft | Ready for house construction.</p>
-                    <p class="price">Area: 4 Aana | Negotiable</p>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 1">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 2">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Bagdhara Plot Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Prime Land - Bagdhara Chowk</h3>
-                    <p>South-facing plot, excellent sunlight, 20ft road.</p>
-                    <p class="price">Area: 3.5 Aana | On Request</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 1">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 2">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Agricultural Land Photo 3">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Farming Plot - Kathmandu</h3>
-                    <p>Peaceful surroundings, high investment potential.</p>
-                    <p class="price">Area: 1 Ropani | Negotiable</p>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="card card-row-item">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 1">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Hillside Land Photo 2">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Hillside Heights - Bagdhara</h3>
-                    <p>Clean air, scenic mountain view, road connection.</p>
-                    <p class="price">Area: 5 Aana | On Request</p>
-                </div>
-            </div>
-
+    <section class="container" id="listings">
+        <div class="section-title">
+            <h2>Featured Land Plots for Sale</h2>
+            <p>Direct plots with legal verification (Lalpurja clear).</p>
         </div>
 
-        <!-- Row Navigation Arrows at Bottom of Box -->
-        <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
-        </div>
-    </div>
-</section> 
-
-<script>
-    // Scroll row container left/right
-    function scrollListings(distance) {
-        document.getElementById('listingsContainer').scrollBy({
-            left: distance,
-            behavior: 'smooth'
-        });
-    }
-
-    // Card Slideshow image updater
-    function updateCardSlide(slideshow, index) {
-        const wrapper = slideshow.querySelector('.slides-wrapper');
-        const slides = wrapper.querySelectorAll('img');
-        const dots = slideshow.querySelectorAll('.dot');
-        
-        let targetIndex = (index + slides.length) % slides.length;
-        slideshow.setAttribute('data-current-index', targetIndex);
-
-        wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
-
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === targetIndex);
-        });
-    }
-
-    function moveSlide(button, direction) {
-        const slideshow = button.closest('.card-slideshow');
-        let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-        updateCardSlide(slideshow, currentIndex + direction);
-    }
-
-    function jumpSlide(dot, index) {
-        const slideshow = dot.closest('.card-slideshow');
-        updateCardSlide(slideshow, index);
-    }
-
-    // Auto-slide every 3 seconds
-    document.querySelectorAll('.card-slideshow').forEach(slideshow => {
-        slideshow.setAttribute('data-current-index', 0);
-        setInterval(() => {
-            let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-            updateCardSlide(slideshow, currentIndex + 1);
-        }, 3000);
-    });
-</script>
-
-
-   <style>/* Video Section Container */
-.video-carousel-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Single Row Video Flex Container */
-.video-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 10px 5px 20px 5px;
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-
-.video-row::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
-
-/* Video Card Styling with Glass Effect */
-.video-card {
-    flex: 0 0 320px; /* Fixed width per video card in single row */
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.video-card:hover {
-    transform: translateY(-5px);
-}
-
-.video-card video, 
-.video-card iframe {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border: none;
-    display: block;
-}
-
-.video-card-content {
-    padding: 15px;
-}
-
-.video-card-content h3 {
-    color: var(--primary-green);
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.video-card-content p {
-    font-size: 0.88rem;
-    color: #444;
-}
-
-/* Navigation Arrows at the Bottom */
-.arrow-controls {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.arrow-btn {
-    background: var(--primary-green);
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.arrow-btn:hover {
-    background: var(--dark-green);
-    transform: scale(1.08);
-}</style>
-
-<!-- LAND VIDEOS SECTION (SINGLE ROW WITH BOTTOM ARROWS) -->
-<section class="container" id="videos">
-    <div class="section-title">
-        <h2>Land Video Tours</h2>
-        <p>Take a virtual video tour of our featured plots in Danchhi & Bagdhara.</p>
-    </div>
-
-    <div class="video-carousel-wrapper">
-        <!-- Single Row Video List -->
-        <div class="video-row" id="videoContainer">
-            
-            <!-- Video 1 (Self-Hosted MP4 Example) -->
-            <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80">
-                    <source src="land-tour-1.mp4" type="video/mp4">
-                    Your browser does not support video.
-                </video>
-                <div class="video-card-content">
-                    <h3>Danchhi Plot Video Tour</h3>
-                    <p>Drone & ground view of 4 Aana residential plot with 20ft road access.</p>
-                </div>
-            </div>
-
-            <!-- Video 2 (YouTube Embed Example) -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-                <div class="video-card-content">
-                    <h3>Bagdhara Chowk Site Visit</h3>
-                    <p>Complete road connectivity and neighborhood view for commercial plot.</p>
-                </div>
-            </div>
-
-            <!-- Video 3 (Self-Hosted MP4 Example) -->
-            <div class="video-card">
-                <video controls poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80">
-                    <source src="land-tour-2.mp4" type="video/mp4">
-                    Your browser does not support video.
-                </video>
-                <div class="video-card-content">
-                    <h3>Kageshwori Farm Land</h3>
-                    <p>Wide angle view of 1 Ropani agricultural & resort land.</p>
-                </div>
-            </div>
-
-            <!-- Video 4 (YouTube Embed Example) -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-                <div class="video-card-content">
-                    <h3>Hillside View Heights</h3>
-                    <p>Overview of scenic mountain views and surrounding road access.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Navigation Arrows at the Bottom -->
-        <div class="arrow-controls">
-            <button class="arrow-btn" onclick="scrollVideos(-340)" aria-label="Scroll Left">&#10094;</button>
-            <button class="arrow-btn" onclick="scrollVideos(340)" aria-label="Scroll Right">&#10095;</button>
-        </div>
-    </div>
-</section>
-
-    <script>
-    function scrollVideos(distance) {
-        const container = document.getElementById('videoContainer');
-        if (container) {
-            container.scrollBy({
-                left: distance,
-                behavior: 'smooth'
-            });
-        }
-    }
-</script>
-
-<!-- Our Team Section -->
-<section class="container" id="team">
-    <div class="section-title">
-        <h2>Our Dedicated Team</h2>
-        <p>Meet the professionals behind Dhanipurja Nepal.</p>
-    </div>
-
-    <div class="team-row-box">
-        <div class="team-row" id="teamContainer">
-            
-            <!-- Member 1 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Team Member 1" class="team-img">
-                <h3>Ram Bahadur Shrestha</h3>
-                <p class="position">Founder & Managing Director</p>
-                <p class="phone">📞 +977 9851029228</p>
-            </div>
-
-            <!-- Member 2 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Team Member 2" class="team-img">
-                <h3>Sita Sharma</h3>
-                <p class="position">Senior Real Estate Advisor</p>
-                <p class="phone">📞 +977 9851315115</p>
-            </div>
-
-            <!-- Member 3 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Team Member 3" class="team-img">
-                <h3>Hari Karki</h3>
-                <p class="position">Legal & Documentation Specialist</p>
-                <p class="phone">📞 +977 9800000000</p>
-            </div>
-
-            <!-- Member 4 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Team Member 4" class="team-img">
-                <h3>Gita Adhikari</h3>
-                <p class="position">Site Inspection Manager</p>
-                <p class="phone">📞 +977 9811111111</p>
-            </div>
-
-            <!-- Member 5 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Team Member 5" class="team-img">
-                <h3>Bikash Thapa</h3>
-                <p class="position">Client Relationship Executive</p>
-                <p class="phone">📞 +977 9822222222</p>
-            </div>
-
-              <!-- Member 6 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Team Member 5" class="team-img">
-                <h3>Bikash Thapa</h3>
-                <p class="position">Client Relationship Executive</p>
-                <p class="phone">📞 +977 9822222222</p>
-            </div>
-
-              <!-- Member 7 -->
-            <div class="team-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Team Member 5" class="team-img">
-                <h3>Bikash Thapa</h3>
-                <p class="position">Client Relationship Executive</p>
-                <p class="phone">📞 +977 9822222222</p>
-            </div>
-
-
-        </div>
-
-        <!-- Manual Navigation Controls -->
-        <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollTeam(-445)">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollTeam(445)">&#10095;</button>  
-        </div>
-    </div>
-</section>
-    
-<script>function scrollTeam(distance) {
-    const container = document.getElementById('teamContainer');
-    if (container) {
-        container.scrollBy({ left: distance, behavior: 'smooth' });
-    }
-}
-
-function startTeamAutoSlide() {
-    const container = document.getElementById('teamContainer');
-    if (!container) return;
-
-    let scrollAmount = 445; // 420px card width + 25px gap
-    let autoSlideTimer = setInterval(() => {
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-            container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }, 3500);
-
-    container.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
-    container.addEventListener('mouseleave', () => startTeamAutoSlide());
-}
-
-document.addEventListener('DOMContentLoaded', startTeamAutoSlide);</script>
-
-<!-- Client Reviews Single Row Section -->
-<section class="container" id="reviews">
-    <div class="reviews-section">
-        <div class="reviews-header">
-            <div>
-                <h2>What Our Clients Say</h2>
-                <p>Real experiences from land buyers & owners across Nepal</p>
-            </div>
-            
-            <div class="google-badge">
-                <div class="google-logo">G</div>
-                <div class="badge-info">
-                    <strong>4.9 / 5.0</strong>
-                    <div class="stars">★★★★★</div>
-                    <span>Google Verified Reviews</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Horizontal Single Row -->
-        <div class="reviews-row" id="reviewsContainer">
-            
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div>
-                    <div class="reviewer-info">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
-                        <div>
-                            <h4>Subash Shrestha</h4>
-                            <span class="review-date">Google Review • 2 weeks ago</span>
+        <!-- Outer Glass Box Container -->
+        <div class="listings-row-box">
+            <!-- Single Row Flex Wrapper -->
+            <div class="grid-row" id="listingsContainer">
+                
+                <!-- Card 1 -->
+                <div class="card card-row-item">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 1">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 2">
+                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 3">
+                        </div>
+                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                        <div class="slide-dots">
+                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
                         </div>
                     </div>
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Buying land through Dhanipurja Nepal was completely stress-free. They helped verify all legal documents at the Malpot office before I made any deposit."</p>
+                    <div class="card-content">
+                        <h3>Residential Plot - Danchhi</h3>
+                        <p>Road Access: 20ft | Ready for house construction.</p>
+                        <p class="price">Area: 4 Aana | Negotiable</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div>
-                    <div class="reviewer-info">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
-                        <div>
-                            <h4>Prakash Adhikari</h4>
-                            <span class="review-date">Google Review • 1 month ago</span>
+                <!-- Card 2 -->
+                <div class="card card-row-item">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot Photo 1">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot Photo 2">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot Photo 3">
+                        </div>
+                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                        <div class="slide-dots">
+                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
                         </div>
                     </div>
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Very professional team in Kageshwori Manohara. Clear guidance on road access, plot boundaries, and fair pricing. Highly recommended!"</p>
+                    <div class="card-content">
+                        <h3>Prime Land - Bagdhara Chowk</h3>
+                        <p>South-facing plot, excellent sunlight, 20ft road.</p>
+                        <p class="price">Area: 3.5 Aana | On Request</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div>
-                    <div class="reviewer-info">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
-                        <div>
-                            <h4>Sunita Karki</h4>
-                            <span class="review-date">Google Review • 2 months ago</span>
+                <!-- Card 3 -->
+                <div class="card card-row-item">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Agricultural Land Photo 1">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Agricultural Land Photo 2">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Agricultural Land Photo 3">
+                        </div>
+                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                        <div class="slide-dots">
+                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
                         </div>
                     </div>
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Transparent deals with no hidden commissions. Ram Bahadur sir personally guided us through the property site visit and land transfer process."</p>
+                    <div class="card-content">
+                        <h3>Farming Plot - Kathmandu</h3>
+                        <p>Peaceful surroundings, high investment potential.</p>
+                        <p class="price">Area: 1 Ropani | Negotiable</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Review 4 -->
-            <div class="review-card">
-                <div>
-                    <div class="reviewer-info">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Client" class="reviewer-img">
-                        <div>
-                            <h4>Bikram Thapa</h4>
-                            <span class="review-date">Google Review • 3 months ago</span>
+                <!-- Card 4 -->
+                <div class="card card-row-item">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Hillside Land Photo 1">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Hillside Land Photo 2">
+                        </div>
+                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                        <div class="slide-dots">
+                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
                         </div>
                     </div>
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Trustworthy service. Clear boundaries and clean title deed (Lalpurja) verified smoothly. Great experience!"</p>
+                    <div class="card-content">
+                        <h3>Hillside Heights - Bagdhara</h3>
+                        <p>Clean air, scenic mountain view, road connection.</p>
+                        <p class="price">Area: 5 Aana | On Request</p>
+                    </div>
                 </div>
+
             </div>
 
+            <!-- Row Navigation Arrows at Bottom of Box -->
+            <div class="row-controls">
+                <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
+                <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
+            </div>
+        </div>
+    </section> 
+
+    <!-- LAND VIDEOS SECTION -->
+    <section class="container" id="videos">
+        <div class="section-title">
+            <h2>Land Video Tours</h2>
+            <p>Take a virtual video tour of our featured plots in Danchhi &amp; Bagdhara.</p>
         </div>
 
-        <!-- Manual Navigation Controls -->
-        <div class="row-controls">
-            <button class="row-arrow-btn" onclick="scrollReviews(-345)" aria-label="Scroll Left">&#10094;</button>
-            <button class="row-arrow-btn" onclick="scrollReviews(345)" aria-label="Scroll Right">&#10095;</button>
+        <div class="video-carousel-wrapper">
+            <!-- Single Row Video List -->
+            <div class="video-row" id="videoContainer">
+                
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <video controls poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80">
+                        <source src="land-tour-1.mp4" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <div class="video-card-content">
+                        <h3>Danchhi Residential Plot</h3>
+                        <p>Walkthrough video showing plot layout and nearby main road access.</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" title="Bagdhara Plot Tour" allowfullscreen></iframe>
+                    <div class="video-card-content">
+                        <h3>Bagdhara Plot Overview</h3>
+                        <p>Drone footage highlighting 20ft road access &amp; local surroundings.</p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <video controls poster="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80">
+                        <source src="land-tour-2.mp4" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <div class="video-card-content">
+                        <h3>Kathmandu Agricultural Land</h3>
+                        <p>Full perimeter walk-through of the 1-Ropani farming plot.</p>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="video-card">
+                    <video controls poster="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80">
+                        <source src="land-tour-3.mp4" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <div class="video-card-content">
+                        <h3>Hillside View - Bagdhara</h3>
+                        <p>Scenery view showing elevation, sunlight, and neighborhood layout.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Video Row Navigation Controls -->
+            <div class="arrow-controls">
+                <button class="arrow-btn" onclick="scrollRow('videoContainer', -340)" aria-label="Scroll Left">&#10094;</button>
+                <button class="arrow-btn" onclick="scrollRow('videoContainer', 340)" aria-label="Scroll Right">&#10095;</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>// Manual Scroll Function
-function scrollReviews(distance) {
-    const container = document.getElementById('reviewsContainer');
-    if (container) {
-        container.scrollBy({
-            left: distance,
-            behavior: 'smooth'
-        });
-    }
-}
+    <!-- OUR TEAM SECTION -->
+    <section class="container" id="Team">
+        <div class="section-title">
+            <h2>Meet Our Team</h2>
+            <p>Experienced local real estate advisors ready to assist your land purchase.</p>
+        </div>
 
-// Auto-Slide Function
-function startReviewsAutoSlide() {
-    const container = document.getElementById('reviewsContainer');
-    if (!container) return;
+        <div class="team-row-box">
+            <div class="team-row" id="teamContainer">
+                
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Team Member 1" class="team-img">
+                    <h3>Ram Shrestha</h3>
+                    <p class="position">Lead Property Consultant</p>
+                    <p class="phone">+977 9800000000</p>
+                </div>
 
-    let scrollAmount = 345; // Card width (320px) + Gap (25px)
-    let autoSlideTimer = setInterval(() => {
-        // If reached the end, reset scroll back to start
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-            container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }, 3500); // Slides every 3.5 seconds
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Team Member 2" class="team-img">
+                    <h3>Sita Adhikari</h3>
+                    <p class="position">Legal &amp; Documentation Head</p>
+                    <p class="phone">+977 9811111111</p>
+                </div>
 
-    // Pause sliding when user hovers over the cards
-    container.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
-    container.addEventListener('mouseleave', () => startReviewsAutoSlide());
-}
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Team Member 3" class="team-img">
+                    <h3>Bikash Karki</h3>
+                    <p class="position">Field Verification Officer</p>
+                    <p class="phone">+977 9822222222</p>
+                </div>
 
-document.addEventListener('DOMContentLoaded', startReviewsAutoSlide);</script>
-   
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Team Member 4" class="team-img">
+                    <h3>Aarti Thapa</h3>
+                    <p class="position">Customer Relations</p>
+                    <p class="phone">+977 9833333333</p>
+                </div>
 
-    <!-- Contact & Location Section -->
+            </div>
+
+            <div class="row-controls">
+                <button class="row-arrow-btn" onclick="scrollRow('teamContainer', -255)" aria-label="Scroll Left">&#10094;</button>
+                <button class="row-arrow-btn" onclick="scrollRow('teamContainer', 255)" aria-label="Scroll Right">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="container" id="reviews">
+        <div class="reviews-section">
+            <div class="reviews-header">
+                <h2>Client Testimonials</h2>
+                <div class="google-badge">
+                    <span class="google-logo">G</span>
+                    <div class="badge-info">
+                        <strong>4.9 / 5.0 Stars</strong>
+                        <span>Verified Google Reviews</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-row" id="reviewsContainer">
+                
+                <div class="review-card">
+                    <div>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Reviewer 1" class="reviewer-img">
+                            <div>
+                                <h4>Sujan Maharjan</h4>
+                                <span class="review-date">2 weeks ago</span>
+                            </div>
+                        </div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Bought 4 Aana land in Danchhi. Clear Lalpurja documentation and smooth process. Highly recommended!"</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Reviewer 2" class="reviewer-img">
+                            <div>
+                                <h4>Pooja Sharma</h4>
+                                <span class="review-date">1 month ago</span>
+                            </div>
+                        </div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Very professional team. Guided me through field visits in Bagdhara and answered all legal queries patiently."</p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="reviewer-info">
+                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Reviewer 3" class="reviewer-img">
+                            <div>
+                                <h4>Kiran Giri</h4>
+                                <span class="review-date">3 months ago</span>
+                            </div>
+                        </div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Transparent deals without unnecessary middleman hassle. Very satisfied with my land purchase."</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row-controls">
+                <button class="row-arrow-btn" onclick="scrollRow('reviewsContainer', -345)" aria-label="Scroll Left">&#10094;</button>
+                <button class="row-arrow-btn" onclick="scrollRow('reviewsContainer', 345)" aria-label="Scroll Right">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
     <section class="container" id="contact">
         <div class="section-title">
-            <h2>Contact Us</h2>
-            <p>Visit our office or call us directly for site visits and land inquiries.</p>
+            <h2>Get in Touch</h2>
+            <p>Book a site visit or ask us about land plot availability.</p>
         </div>
-        
+
         <div class="contact-wrapper">
-            <!-- Address & Phone Box -->
             <div class="contact-info-box">
-                <h3>Office Information</h3>
-                
+                <h3>Office Address</h3>
                 <div class="info-item">
-                    <strong>🏢 Office Location:</strong>
-                    Danchhi, Bagdhara Chowk,<br>
-                    Kageshwori Manohara Municipality,<br>
-                    Kathmandu, Nepal
+                    <strong>Location</strong>
+                    <p>Bagdhara Chowk, Danchhi, Kathmandu, Nepal</p>
                 </div>
-
                 <div class="info-item">
-                    <strong>📞 Phone / WhatsApp:</strong>
-                    <a href="tel:9851029228" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851029228</a><br>
-                    <a href="tel:9851315115" style="color:#333; text-decoration:none; font-weight:bold;">+977 9851315115</a>
+                    <strong>Phone Numbers</strong>
+                    <p>+977 9800000000 / +977 01-4000000</p>
+                </div>
+                <div class="info-item">
+                    <strong>Email</strong>
+                    <p>info@dhanipurjanepal.com</p>
                 </div>
             </div>
 
-            <section class="container" id="reviews">
-    <div class="reviews-section">
-        <div class="reviews-header">
-            <div>
-                <h2>What Our Clients Say</h2>
-                <p>Real experiences from buyers and land owners across Nepal</p>
-            </div>
-      
-
-            <!-- Contact Form -->
-            <form class="contact-form">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
                 <input type="text" placeholder="Your Full Name" required>
-                <input type="tel" placeholder="Your Contact Number" required>
-                <textarea rows="4" placeholder="Mention the plot location, size (Aana/Ropani), or requirement..." required></textarea>
-                <button type="submit" class="btn">Send Direct Inquiry</button>
+                <input type="tel" placeholder="Phone Number" required>
+                <input type="email" placeholder="Email Address">
+                <textarea rows="4" placeholder="Interested location / Plot size (e.g. 4 Aana in Danchhi)" required></textarea>
+                <button type="submit" class="btn">Send Inquiry</button>
             </form>
         </div>
     </section>
-     
-     <footer>
-        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहज)</p>
-        <p>Address: Danchhi, Bagdhara, Kathmandu | Phone: 9851029228, 9851315115</p>
-        <p style="margin-top:10px; color:#aaa; font-size:0.8rem;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Dhanipurja Nepal Real Estate. All rights reserved.</p>
+        <p>Danchhi, Bagdhara, Kathmandu, Nepal | Lalpurja Verified Land Plots</p>
     </footer>
 
-</body>
-</html>
-  
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/9779851029228?text=Hello%20Dhanipurja%20Nepal,%20I%20am%20interested%20in%20buying%20land." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/9779800000000" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a13.9 13.9 0 0 0-12 20.9L2 30l7.3-1.9A13.9 13.9 0 1 0 16 2zm6.8 19.6c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.2-4.6-1.1-4-1.6-6.6-5.7-6.8-6-.2-.3-1.6-2.1-1.6-4s1-2.9 1.4-3.3c.3-.4.8-.5 1.1-.5h.8c.3 0 .6 0 .9.7.3.7 1 2.5 1.1 2.7.1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.4 1.9 2.5 2.9 1.4 1.2 2.6 1.6 3 1.8.4.2.6.1.8-.1.3-.3.9-1.1 1.2-1.5.3-.4.6-.3 1-.2s2.3 1.1 2.7 1.3c.4.2.7.3.8.5.1.2.1 1.1-.2 1.9z"/>
         </svg>
     </a>
- 
-    <!-- Full-Width Footer placed directly before </body> -->
-    <footer>
-        <p><strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल : घरजग्गा खोजी हाम्रो सहज)</p>
-        <p>Address: Danchhi, Bagdhara, Kathmandu | Phone: 9851029228, 9851315115</p>
-        <p style="margin-top:10px; color:#aaa; font-size:0.8rem;">&copy; 2026 Dhanipurja Nepal. All rights reserved.</p>
-    </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // Universal Horizontal Scroll
-        function scrollContainer(containerId, distance) {
-            document.getElementById(containerId).scrollBy({
+        // Scroll row container left/right
+        function scrollListings(distance) {
+            document.getElementById('listingsContainer').scrollBy({
                 left: distance,
                 behavior: 'smooth'
             });
+        }
+
+        // Generic row scroll function
+        function scrollRow(elementId, distance) {
+            const container = document.getElementById(elementId);
+            if (container) {
+                container.scrollBy({
+                    left: distance,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // Card Slideshow image updater
@@ -1526,7 +1201,7 @@ document.addEventListener('DOMContentLoaded', startReviewsAutoSlide);</script>
             updateCardSlide(slideshow, index);
         }
 
-        // Auto-slide image cards every 3 seconds
+        // Auto-slide every 3 seconds
         document.querySelectorAll('.card-slideshow').forEach(slideshow => {
             slideshow.setAttribute('data-current-index', 0);
             setInterval(() => {
@@ -1535,6 +1210,5 @@ document.addEventListener('DOMContentLoaded', startReviewsAutoSlide);</script>
             }, 3000);
         });
     </script>
-
-</body>
+ </body>
 </html>
