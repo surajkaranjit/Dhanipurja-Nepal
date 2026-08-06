@@ -451,7 +451,93 @@
             width: 32px;
             height: 32px;
             fill: #ffffff;
-        }
+        } 
+        /* About Us Section Styling */
+.about-wrapper {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.about-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 35px auto;
+}
+
+.about-header h2 {
+    color: var(--primary-green);
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.about-header p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+/* Stats Counter Row */
+.about-stats-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 25px 0;
+    margin-bottom: 35px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 2rem;
+    color: var(--primary-orange);
+    font-weight: 800;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grid for Mission, Vision & Core Value Cards */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 25px;
+    border-left: 4px solid var(--primary-green);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.about-card h3 {
+    color: var(--dark-green);
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-card p {
+    font-size: 0.92rem;
+    color: #444;
+    line-height: 1.6;
+}
     </style>
 </head>
 <body>
@@ -465,6 +551,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#listings">Properties</a></li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#contact" class="btn-nav">Contact Us</a></li>
         </ul>
     </nav>
@@ -885,6 +972,68 @@
             <h3>Free Site Visits</h3>
             <p>Contact us to arrange free guided site visits to inspect road access & plot views.</p>
         </div>
+    </div>
+</section>
+  
+<!-- ABOUT US SECTION -->
+<section class="container" id="about">
+    <div class="about-wrapper">
+        
+        <!-- Header & Introduction -->
+        <div class="about-header">
+            <h2>About Dhanipurja Nepal</h2>
+            <p>
+                Welcome to <strong>Dhanipurja Nepal</strong> (धनीपुर्जा नेपाल), your premier real estate partner operating in Danchhi, Bagdhara, and throughout Kathmandu Valley. We specialize in verified residential, commercial, and agricultural land transactions, delivering a modern, transparent, and hassle-free land buying and selling experience.
+            </p>
+        </div>
+
+        <!-- Key Company Stats -->
+        <div class="about-stats-row">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Verified Titles (Lalpurja)</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>10+</h3>
+                <p>Years Local Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>0%</h3>
+                <p>Hidden Commissions</p>
+            </div>
+        </div>
+
+        <!-- Mission, Vision, and Values Grid -->
+        <div class="about-grid">
+            <!-- Our Mission -->
+            <div class="about-card">
+                <h3>🎯 Our Mission</h3>
+                <p>
+                    To simplify real estate in Nepal by providing legal transparency, authentic site photos/videos, and direct connection between property sellers and buyers without unnecessary middleman friction.
+                </p>
+            </div>
+
+            <!-- Our Vision -->
+            <div class="about-card">
+                <h3>👁️ Our Vision</h3>
+                <p>
+                    To become Kathmandu’s most trusted real estate platform where every individual can find, verify, and secure their dream land plot with complete peace of mind.
+                </p>
+            </div>
+
+            <!-- Trust & Integrity -->
+            <div class="about-card">
+                <h3>🛡️ Legal Safety First</h3>
+                <p>
+                    We thoroughly verify land ownership documents, road access width, map alignments, and local government compliance before presenting any property to our clients.
+                </p>
+            </div>
+        </div>
+
     </div>
 </section>
 
