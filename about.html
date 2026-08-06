@@ -254,7 +254,51 @@
 .team-arrow-btn:hover {
     background: var(--dark-green);
     transform: scale(1.08);
+} 
+/* Why Choose Us Section - Single Row Layout */
+.features-row {
+    display: flex;
+    flex-wrap: nowrap; /* Forces everything into a single row */
+    gap: 20px;
+    justify-content: space-between;
+    overflow-x: auto; /* Enables smooth scrolling on smaller screen sizes */
+    padding-bottom: 10px;
 }
+
+.feature-card {
+    flex: 1; /* Makes all 4 cards take equal width */
+    min-width: 220px; /* Prevents cards from shrinking too small */
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.feature-card h3 {
+    color: var(--primary-green);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.feature-card p {
+    font-size: 0.88rem;
+    color: #444;
+
     </style>
 </head>
 <body>
@@ -396,3 +440,42 @@
         }, 3500); // 3500ms = 3.5 seconds
     }
 </script>
+
+<!-- WHY CHOOSE US SECTION (SINGLE ROW) -->
+<section class="container" id="why-us">
+    <div class="section-title">
+        <h2>Why Choose Dhanipurja Nepal?</h2>
+        <p>Your trusted partner for safe, hassle-free land buying and selling in Kathmandu.</p>
+    </div>
+
+    <div class="features-row">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h3>100% Legal Verification</h3>
+            <p>Every land plot is checked for clear title deeds (Lalpurja) before listing.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>Direct Owner Deals</h3>
+            <p>No hidden markups. We connect you directly with genuine land buyers & owners.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <h3>Prime Locations</h3>
+            <p>High-growth residential & commercial plots across Danchhi, Bagdhara & Kathmandu.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+            <div class="feature-icon">🚘</div>
+            <h3>Free Site Visits</h3>
+            <p>Contact us to arrange free guided site visits to inspect road access & plot views.</p>
+        </div>
+    </div>
+</section>
+  
