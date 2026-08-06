@@ -1153,62 +1153,85 @@
         </svg>
     </a>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // Scroll row container left/right
-        function scrollListings(distance) {
-            document.getElementById('listingsContainer').scrollBy({
+   <script>
+    // Scroll row container left/right
+    function scrollListings(distance) {
+        document.getElementById('listingsContainer').scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+
+    // Generic row scroll function
+    function scrollRow(elementId, distance) {
+        const container = document.getElementById(elementId);
+        if (container) {
+            container.scrollBy({
                 left: distance,
                 behavior: 'smooth'
             });
         }
+    }
 
-        // Generic row scroll function
-        function scrollRow(elementId, distance) {
-            const container = document.getElementById(elementId);
-            if (container) {
-                container.scrollBy({
-                    left: distance,
-                    behavior: 'smooth'
-                });
-            }
-        }
+    // Card Slideshow image updater
+    function updateCardSlide(slideshow, index) {
+        const wrapper = slideshow.querySelector('.slides-wrapper');
+        const slides = wrapper.querySelectorAll('img');
+        const dots = slideshow.querySelectorAll('.dot');
+        
+        if (!slides.length) return;
 
-        // Card Slideshow image updater
-        function updateCardSlide(slideshow, index) {
-            const wrapper = slideshow.querySelector('.slides-wrapper');
-            const slides = wrapper.querySelectorAll('img');
-            const dots = slideshow.querySelectorAll('.dot');
-            
-            let targetIndex = (index + slides.length) % slides.length;
-            slideshow.setAttribute('data-current-index', targetIndex);
+        let targetIndex = (index + slides.length) % slides.length;
+        slideshow.setAttribute('data-current-index', targetIndex);
 
-            wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
+        wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
 
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === targetIndex);
-            });
-        }
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === targetIndex);
+        });
+    }
 
-        function moveSlide(button, direction) {
-            const slideshow = button.closest('.card-slideshow');
+    function moveSlide(button, direction) {
+        const slideshow = button.closest('.card-slideshow');
+        let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
+        updateCardSlide(slideshow, currentIndex + direction);
+        resetAutoSlideTimer(slideshow); // Reset timer on manual action
+    }
+
+    function jumpSlide(dot, index) {
+        const slideshow = dot.closest('.card-slideshow');
+        updateCardSlide(slideshow, index);
+        resetAutoSlideTimer(slideshow); // Reset timer on manual action
+    }
+
+    // Helper to start auto-slide for a specific slideshow
+    function startAutoSlide(slideshow) {
+        slideshow.autoSlideTimer = setInterval(() => {
             let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-            updateCardSlide(slideshow, currentIndex + direction);
-        }
+            updateCardSlide(slideshow, currentIndex + 1);
+        }, 3000);
+    }
 
-        function jumpSlide(dot, index) {
-            const slideshow = dot.closest('.card-slideshow');
-            updateCardSlide(slideshow, index);
-        }
+    // Reset timer when manually clicked so it doesn't immediately slide again
+    function resetAutoSlideTimer(slideshow) {
+        clearInterval(slideshow.autoSlideTimer);
+        startAutoSlide(slideshow);
+    }
 
-        // Auto-slide every 3 seconds
+    // Initialize auto-slide safely after DOM loads
+    document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.card-slideshow').forEach(slideshow => {
             slideshow.setAttribute('data-current-index', 0);
-            setInterval(() => {
-                let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-                updateCardSlide(slideshow, currentIndex + 1);
-            }, 3000);
+            
+            // Start automatic slide
+            startAutoSlide(slideshow);
+
+            // Pause auto-slide when mouse enters card, resume when mouse leaves
+            slideshow.addEventListener('mouseenter', () => clearInterval(slideshow.autoSlideTimer));
+            slideshow.addEventListener('mouseleave', () => startAutoSlide(slideshow));
         });
-    </script>
+    });
+</script> 
+
  </body>
 </html>
