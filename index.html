@@ -948,212 +948,333 @@
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
-    <!-- PROPERTIES SECTION -->
-    <section class="container" id="listings">
-        <div class="section-title">
-            <h2>Featured Land Listings</h2>
-            <p>Explore our premium plots with road access and legal verification.</p>
-        </div>
+<!-- PROPERTIES SECTION -->
+<section class="container" id="listings">
+    <div class="section-title">
+        <h2>Featured Land Listings</h2>
+        <p>Explore our premium plots with road access and legal verification.</p>
+    </div>
 
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack">
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            
+            <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
+            <div class="slider-page listings-grid-box">
                 
-                <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
-                <div class="slider-page listings-grid-box">
-                    
-                    <!-- ROW 1 -->
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 1 - Danchhi</h3>
-                            <p>Road Access: 20ft</p>
-                            <p class="price">Area: 4 Aana</p>
+                <!-- ROW 1 -->
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 1 - Danchhi', 'Road Access: 20ft', 'Area: 4 Aana', 'Danchhi, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1">
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 2 - Bagdhara</h3>
-                            <p>South-facing plot</p>
-                            <p class="price">Area: 3.5 Aana</p>
+                    <div class="card-content">
+                        <h3>Plot 1 - Danchhi</h3>
+                        <p>Road Access: 20ft</p>
+                        <p class="price">Area: 4 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Danchhi,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 3 - Kathmandu</h3>
-                            <p>Peaceful surroundings</p>
-                            <p class="price">Area: 1 Ropani</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 4 - Bagdhara</h3>
-                            <p>Scenic mountain view</p>
-                            <p class="price">Area: 5 Aana</p>
-                        </div>
-                    </div>
-
-                    <!-- ROW 2 -->
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 5 - Sankhu</h3>
-                            <p>Full valley panorama</p>
-                            <p class="price">Area: 8 Aana</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 6 - Barmakhel</h3>
-                            <p>14ft access road</p>
-                            <p class="price">Area: 4.5 Aana</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 7 - Main Road</h3>
-                            <p>Commercial frontage</p>
-                            <p class="price">Area: 6 Aana</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 8 - Corner Land</h3>
-                            <p>Double side road access</p>
-                            <p class="price">Area: 3 Aana 2 Paisa</p>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- PAGE 2 (Remaining 6 Cards) -->
-                <div class="slider-page listings-grid-box">
-                    
-                    <!-- ROW 1 -->
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 9 - Gokarna</h3>
-                            <p>Forest view surroundings</p>
-                            <p class="price">Area: 5 Aana</p>
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 2 - Bagdhara', 'South-facing plot', 'Area: 3.5 Aana', 'Bagdhara, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2">
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 10 - Mulpani</h3>
-                            <p>Near cricket stadium</p>
-                            <p class="price">Area: 4 Aana</p>
+                    <div class="card-content">
+                        <h3>Plot 2 - Bagdhara</h3>
+                        <p>South-facing plot</p>
+                        <p class="price">Area: 3.5 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Bagdhara,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 11 - Sundarijal</h3>
-                            <p>Ideal for resort/villa</p>
-                            <p class="price">Area: 10 Aana</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 12 - Jorpati</h3>
-                            <p>Near main highway</p>
-                            <p class="price">Area: 3 Aana</p>
-                        </div>
-                    </div>
-
-                    <!-- ROW 2 -->
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 13 - Budhanilkantha</h3>
-                            <p>Prime residential area</p>
-                            <p class="price">Area: 6.5 Aana</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-slideshow">
-                            <div class="slides-wrapper">
-                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Plot 14 - Tokha</h3>
-                            <p>Quiet neighborhood</p>
-                            <p class="price">Area: 4 Aana</p>
-                        </div>
-                    </div>
-
                 </div>
 
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 3 - Kathmandu', 'Peaceful surroundings', 'Area: 1 Ropani', 'Kathmandu', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 3 - Kathmandu</h3>
+                        <p>Peaceful surroundings</p>
+                        <p class="price">Area: 1 Ropani</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 4 - Bagdhara', 'Scenic mountain view', 'Area: 5 Aana', 'Bagdhara, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 4 - Bagdhara</h3>
+                        <p>Scenic mountain view</p>
+                        <p class="price">Area: 5 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Bagdhara,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2 -->
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 5 - Sankhu', 'Full valley panorama', 'Area: 8 Aana', 'Sankhu, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 5 - Sankhu</h3>
+                        <p>Full valley panorama</p>
+                        <p class="price">Area: 8 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Sankhu,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 6 - Barmakhel', '14ft access road', 'Area: 4.5 Aana', 'Barmakhel, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 6 - Barmakhel</h3>
+                        <p>14ft access road</p>
+                        <p class="price">Area: 4.5 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Barmakhel,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 7 - Main Road', 'Commercial frontage', 'Area: 6 Aana', 'Main Road, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 7 - Main Road</h3>
+                        <p>Commercial frontage</p>
+                        <p class="price">Area: 6 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 8 - Corner Land', 'Double side road access', 'Area: 3 Aana 2 Paisa', 'Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 8 - Corner Land</h3>
+                        <p>Double side road access</p>
+                        <p class="price">Area: 3 Aana 2 Paisa</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PAGE 2 (Remaining 6 Cards) -->
+            <div class="slider-page listings-grid-box">
+                
+                <!-- ROW 1 -->
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 9 - Gokarna', 'Forest view surroundings', 'Area: 5 Aana', 'Gokarna, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 9 - Gokarna</h3>
+                        <p>Forest view surroundings</p>
+                        <p class="price">Area: 5 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Gokarna,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 10 - Mulpani', 'Near cricket stadium', 'Area: 4 Aana', 'Mulpani, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 10 - Mulpani</h3>
+                        <p>Near cricket stadium</p>
+                        <p class="price">Area: 4 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Mulpani,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 11 - Sundarijal', 'Ideal for resort/villa', 'Area: 10 Aana', 'Sundarijal, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 11 - Sundarijal</h3>
+                        <p>Ideal for resort/villa</p>
+                        <p class="price">Area: 10 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Sundarijal,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 12 - Jorpati', 'Near main highway', 'Area: 3 Aana', 'Jorpati, Kathmandu', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 12 - Jorpati</h3>
+                        <p>Near main highway</p>
+                        <p class="price">Area: 3 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Jorpati,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2 -->
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 13 - Budhanilkantha', 'Prime residential area', 'Area: 6.5 Aana', 'Budhanilkantha, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 13 - Budhanilkantha</h3>
+                        <p>Prime residential area</p>
+                        <p class="price">Area: 6.5 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Budhanilkantha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card clickable-card" onclick="openDetailsModal('Plot 14 - Tokha', 'Quiet neighborhood', 'Area: 4 Aana', 'Tokha, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
+                    <div class="card-slideshow">
+                        <div class="slides-wrapper">
+                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Plot 14 - Tokha</h3>
+                        <p>Quiet neighborhood</p>
+                        <p class="price">Area: 4 Aana</p>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=Tokha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                            <button class="details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- PROPERTY DETAILS MODAL -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeDetailsModal()">&times;</span>
+        <img id="modalImg" src="" alt="Plot Detail" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <p id="modalArea" style="font-weight: bold; color: #2e7d32;"></p>
+        <iframe id="modalMapFrame" width="100%" height="250" style="border:0; border-radius:8px; margin-top:15px;" loading="lazy" allowfullscreen src=""></iframe>
+    </div>
+</div>
+
+<!-- STYLES FOR BUTTONS AND MODAL -->
+<style>
+.clickable-card { cursor: pointer; transition: transform 0.2s; }
+.clickable-card:hover { transform: translateY(-4px); }
+.card-actions { display: flex; gap: 8px; margin-top: 10px; }
+.map-btn, .details-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+.map-btn { background-color: #e8f5e9; color: #2e7d32; }
+.details-btn { background-color: #007bff; color: #fff; }
+.modal {
+    display: none; position: fixed; z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: #fff; margin: 5% auto; padding: 20px;
+    width: 90%; max-width: 500px; border-radius: 10px; position: relative;
+}
+.close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
+</style>
+
+<!-- SCRIPT FOR MODAL INTERACTION -->
+<script>
+function openDetailsModal(title, desc, area, location, imgUrl) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('modalArea').innerText = area;
+    document.getElementById('modalImg').src = imgUrl;
+    document.getElementById('modalMapFrame').src = 'https://maps.google.com/maps?q=' + encodeURIComponent(location) + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
+    document.getElementById('detailsModal').style.display = 'block';
+}
+
+function closeDetailsModal() {
+    document.getElementById('detailsModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    var modal = document.getElementById('detailsModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
             </div>
 
             <!-- Pagination Dots -->
