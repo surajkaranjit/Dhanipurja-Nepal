@@ -784,22 +784,58 @@
             fill: #ffffff;
         }
 
-        /* Layout spacing for contact box */
+     /* Contact Section Layout */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Creates side-by-side columns */
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-top: 4px solid var(--primary-orange);
+}
+
+/* Contact Info Styling */
 .contact-info-box {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Heading color matching "Location/Phone/Email" labels */
-.social-section strong {
-    color: #d9531e; /* Adjust this hex code to match your orange heading color */
-    font-size: 14px;
-    display: block;
-    margin-bottom: 8px;
+.contact-info-box h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-/* Social icons alignment */
+.info-item strong {
+    display: block;
+    color: var(--primary-orange);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.info-item p {
+    color: #333;
+    font-size: 0.95rem;
+}
+
+/* Social Media Icons Styling */
+.social-section {
+    margin-top: 10px;
+}
+
+.social-section strong {
+    color: var(--primary-orange);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
 .social-links {
     display: flex;
     gap: 12px;
@@ -809,29 +845,60 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #e0e0e0;
+    background-color: #e2e8f0;
     color: #333;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.2s ease-in-out;
+    font-size: 18px;
+    transition: all 0.3s ease;
 }
-
-/* Hover effects with official brand colors */
+ 
 .social-links a:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     color: #ffffff;
 }
 
+/* Social Icon Hover Colors */
 .social-links a[aria-label="Facebook"]:hover { background-color: #1877f2; }
 .social-links a[aria-label="Instagram"]:hover { background-color: #e4405f; }
 .social-links a[aria-label="WhatsApp"]:hover { background-color: #25d366; }
 .social-links a[aria-label="YouTube"]:hover { background-color: #ff0000; }
 .social-links a[aria-label="TikTok"]:hover { background-color: #000000; }
 
-      
+/* Contact Form Styling */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: var(--primary-green);
+}
+
+/* Mobile Responsive adjustment */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr; /* Stack vertically on small screens */
+        gap: 30px;
+        padding: 24px;
+    }
+} 
     </style>
 </head>
 <body>
@@ -1294,53 +1361,59 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="container" id="contact">
-        <div class="section-title">
-            <h2>Get in Touch</h2>
-            <p>Book a site visit or ask us about land plot availability.</p>
-        </div>
+    <!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        <div class="contact-wrapper">
-            <div class="contact-info-box">
-                <h3>Office Address</h3>
-                <div class="info-item">
-                    <strong>Location</strong>
-                    <p>Bagdhara Chowk, Danchhi, Kathmandu, Nepal</p>
-                </div>
-                <div class="info-item">
-                    <strong>Phone Numbers</strong>
-                    <p>+977 9800000000 / +977 01-4000000</p>
-                </div>
-                <div class="info-item">
-                    <strong>Email</strong>
-                    <p>info@dhanipurjanepal.com</p>
-                </div>
+<!-- Contact Section -->
+<section class="container" id="contact">
+    <div class="section-title">
+        <h2>Get in Touch</h2>
+        <p>Reach out to discuss your property needs or visit our office.</p>
+    </div>
+
+    <div class="contact-wrapper">
+        <!-- Left Side: Office Info -->
+        <div class="contact-info-box">
+            <h3>Office Address</h3>
+            
+            <div class="info-item">
+                <strong>Location</strong>
+                <p>Bagdhara Chowk, Danchhi, Kathmandu, Nepal</p>
+            </div>
+            
+            <div class="info-item">
+                <strong>Phone Numbers</strong>
+                <p>+977 98XXXXXXXX / +977 01-4XXXXXX</p> <!-- Replace with actual numbers -->
+            </div>
+            
+            <div class="info-item">
+                <strong>Email</strong>
+                <p>info@dhanipurjanepal.com</p> <!-- Replace with actual email -->
             </div>
 
-            <!-- Social Media Section placed right HERE -->
-    <div class="social-section">
-        <strong>Follow Us</strong>
-        <div class="social-links">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <div class="social-section">
+                <strong>Follow Us</strong>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
- 
-           <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <input type="email" placeholder="Email Address">
-                <textarea rows="4" placeholder="Interested location / Plot size (e.g. 4 Aana in Danchhi)" required></textarea>
-                <button type="submit" class="btn">Send Inquiry</button>
-            </form>
-        </div>
-    </section>
 
+        <!-- Right Side: Contact Form -->
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
+            <input type="text" placeholder="Your Full Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="email" placeholder="Email Address" required>
+            <textarea rows="4" placeholder="Interested location / Plot size (e.g. 4 Aana in Danchhi)" required></textarea>
+            <button type="submit" class="btn">Send Inquiry</button>
+        </form>
+    </div>
+</section>
+    
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Dhanipurja Nepal Real Estate. All rights reserved.</p>
