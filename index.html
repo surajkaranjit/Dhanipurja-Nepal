@@ -224,40 +224,53 @@
             color: var(--primary-green);
         }
 
-        /* Single Row Container Box for Listings */
-        .listings-row-box {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+       /* 6 Columns Grid Container */
+.listings-grid-box {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 cards per row */
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
 
-        /* Single Row Scroll Area */
-        .grid-row {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 25px;
-            width: 100%;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 5px 15px 5px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
+/* Make font sizes and padding tighter so 6 cards fit cleanly */
+.card-content h3 {
+    font-size: 0.95rem;
+}
 
-        .grid-row::-webkit-scrollbar {
-            display: none;
-        }
+.card-content p {
+    font-size: 0.8rem;
+}
 
-        .card-row-item {
-            flex: 0 0 320px;
-        }
+/* Responsive Scaling for Smaller Screens */
+@media (max-width: 1400px) {
+    .listings-grid-box {
+        grid-template-columns: repeat(4, 1fr); /* 4 per row on standard desktop */
+    }
+}
+
+@media (max-width: 992px) {
+    .listings-grid-box {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .listings-grid-box {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .listings-grid-box {
+        grid-template-columns: 1fr; /* 1 per row on mobile */
+    }
+}
 
         /* Card Slideshow Styling */
         .card-slideshow {
@@ -966,148 +979,262 @@
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
-    <!-- Land Listings -->
-    <section class="container" id="listings">
-        <div class="section-title">
-            <h2>Featured Land Plots for Sale</h2>
-            <p>Direct plots with legal verification (Lalpurja clear).</p>
-        </div>
-
-        <div class="listings-row-box">
-            <div class="grid-row" id="listingsContainer">
-                
-                <!-- Card 1 -->
-                <div class="card card-row-item">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Danchhi Plot Photo 1" 
-                                 onclick="openModal(this)" 
-                                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Danchhi Plot Photo 2" 
-                                 onclick="openModal(this)" 
-                                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Danchhi Plot Photo 3" 
-                                 onclick="openModal(this)" 
-                                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                        </div>
-                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                        <div class="slide-dots">
-                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                        </div>
+   <!-- 2 Rows x 6 Columns Grid (12 Cards Total) -->
+        <div class="listings-grid-box">
+            
+            <!-- ROW 1 / CARD 1 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
                     </div>
-                    <div class="card-content">
-                        <h3>Residential Plot - Danchhi</h3>
-                        <p>Road Access: 20ft | Ready for house construction.</p>
-                        <p class="price">Area: 4 Aana | Negotiable</p>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
                     </div>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="card card-row-item">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Bagdhara Plot Photo 1"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Bagdhara Plot Photo 2"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Bagdhara Plot Photo 3"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                        </div>
-                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                        <div class="slide-dots">
-                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Prime Land - Bagdhara Chowk</h3>
-                        <p>South-facing plot, excellent sunlight, 20ft road.</p>
-                        <p class="price">Area: 3.5 Aana | On Request</p>
-                    </div>
+                <div class="card-content">
+                    <h3>Plot 1 - Danchhi</h3>
+                    <p>Road Access: 20ft</p>
+                    <p class="price">Area: 4 Aana</p>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="card card-row-item">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Agricultural Land Photo 1"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Agricultural Land Photo 2"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Agricultural Land Photo 3"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Kathmandu">
-                        </div>
-                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                        <div class="slide-dots">
-                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Farming Plot - Kathmandu</h3>
-                        <p>Peaceful surroundings, high investment potential.</p>
-                        <p class="price">Area: 1 Ropani | Negotiable</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="card card-row-item">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Hillside Land Photo 1"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
-                                 alt="Hillside Land Photo 2"
-                                 onclick="openModal(this)"
-                                 data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                        </div>
-                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                        <div class="slide-dots">
-                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Hillside Heights - Bagdhara</h3>
-                        <p>Clean air, scenic mountain view, road connection.</p>
-                        <p class="price">Area: 5 Aana | On Request</p>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="row-controls">
-                <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
-                <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
+            <!-- ROW 1 / CARD 2 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 2 - Bagdhara</h3>
+                    <p>South-facing plot</p>
+                    <p class="price">Area: 3.5 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 1 / CARD 3 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Kathmandu Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Kathmandu Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 3 - Kathmandu</h3>
+                    <p>Peaceful surroundings</p>
+                    <p class="price">Area: 1 Ropani</p>
+                </div>
+            </div>
+
+            <!-- ROW 1 / CARD 4 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Heights 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Heights 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 4 - Bagdhara</h3>
+                    <p>Scenic mountain view</p>
+                    <p class="price">Area: 5 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 1 / CARD 5 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sankhu Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sankhu+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sankhu Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sankhu+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 5 - Sankhu</h3>
+                    <p>Full valley panorama</p>
+                    <p class="price">Area: 8 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 1 / CARD 6 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Barmakhel Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Barmakhel+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Barmakhel Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Barmakhel+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 6 - Barmakhel</h3>
+                    <p>14ft access road</p>
+                    <p class="price">Area: 4.5 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 7 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Commercial 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Commercial 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 7 - Main Road</h3>
+                    <p>Commercial frontage</p>
+                    <p class="price">Area: 6 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 8 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Corner Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Corner Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 8 - Corner Land</h3>
+                    <p>Double side road access</p>
+                    <p class="price">Area: 3 Aana 2 Paisa</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 9 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Gokarna Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Gokarna+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Gokarna Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Gokarna+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 9 - Gokarna</h3>
+                    <p>Forest view surroundings</p>
+                    <p class="price">Area: 5 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 10 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Mulpani Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Mulpani+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Mulpani Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Mulpani+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 10 - Mulpani</h3>
+                    <p>Near cricket stadium</p>
+                    <p class="price">Area: 4 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 11 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sundarijal Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sundarijal+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sundarijal Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sundarijal+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 11 - Sundarijal</h3>
+                    <p>Ideal for resort/villa</p>
+                    <p class="price">Area: 10 Aana</p>
+                </div>
+            </div>
+
+            <!-- ROW 2 / CARD 12 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Jorpati Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Jorpati+Kathmandu">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Jorpati Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Jorpati+Kathmandu">
+                    </div>
+                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+                    <div class="slide-dots">
+                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 12 - Jorpati</h3>
+                    <p>Near main highway</p>
+                    <p class="price">Area: 3 Aana</p>
+                </div>
             </div>
 
         </div>
-    </section> 
 
     <!-- LAND VIDEOS SECTION -->
     <section class="container" id="videos">
