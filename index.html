@@ -784,6 +784,53 @@
             fill: #ffffff;
         }
 
+        /* Layout spacing for contact box */
+.contact-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Heading color matching "Location/Phone/Email" labels */
+.social-section strong {
+    color: #d9531e; /* Adjust this hex code to match your orange heading color */
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Social icons alignment */
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover effects with official brand colors */
+.social-links a:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+.social-links a[aria-label="Facebook"]:hover { background-color: #1877f2; }
+.social-links a[aria-label="Instagram"]:hover { background-color: #e4405f; }
+.social-links a[aria-label="WhatsApp"]:hover { background-color: #25d366; }
+.social-links a[aria-label="YouTube"]:hover { background-color: #ff0000; }
+.social-links a[aria-label="TikTok"]:hover { background-color: #000000; }
+
       
     </style>
 </head>
@@ -1270,6 +1317,19 @@
                     <p>info@dhanipurjanepal.com</p>
                 </div>
             </div>
+
+            <!-- Social Media Section placed right HERE -->
+    <div class="social-section">
+        <strong>Follow Us</strong>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </div>
+</div>
  
            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
                 <input type="text" placeholder="Your Full Name" required>
