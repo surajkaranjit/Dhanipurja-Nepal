@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
-    
+     
     <style>
         /* Reset & Base Styles */
         * {
@@ -792,29 +791,27 @@
 
 .social-links {
     display: flex;
-    gap: 12px;
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    margin-top: 10px; /* Space right under the email address */
 }
 
 .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: #f0f0f0;
     color: #333;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    font-size: 15px;
+    transition: all 0.2s ease;
 }
 
-/* Hover effects */
+/* Colors on hover */
 .social-links a:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     color: #fff;
 }
 
@@ -823,7 +820,7 @@
 .social-links a[aria-label="WhatsApp"]:hover { background-color: #25d366; }
 .social-links a[aria-label="YouTube"]:hover { background-color: #ff0000; }
 .social-links a[aria-label="TikTok"]:hover { background-color: #000000; }
- 
+
     </style>
 </head>
 <body>
@@ -1310,15 +1307,17 @@
                 </div>
             </div>
 
-            <!-- Social Media Logos -->
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
+            <!-- Social Icons directly under Email -->
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
+    </div>
+</div>
+
 
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
                 <input type="text" placeholder="Your Full Name" required>
