@@ -224,122 +224,84 @@
             color: var(--primary-green);
         }
 
-       /* 6 Columns Grid Container */
-.listings-grid-box {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 cards per row */
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
+        /* Outer slider frame */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            border-radius: 16px;
+        }
 
-/* Make font sizes and padding tighter so 6 cards fit cleanly */
-.card-content h3 {
-    font-size: 0.95rem;
-}
+        /* Sliding track */
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            width: 100%;
+        }
 
-.card-content p {
-    font-size: 0.8rem;
-}
+        /* Page container taking full width */
+        .slider-page {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
 
-/* Responsive Scaling for Smaller Screens */
-@media (max-width: 1400px) {
-    .listings-grid-box {
-        grid-template-columns: repeat(4, 1fr); /* 4 per row on standard desktop */
-    }
-}
+        /* Grid box */
+        .listings-grid-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
 
-@media (max-width: 992px) {
-    .listings-grid-box {
-        grid-template-columns: repeat(3, 1fr); /* 3 per row on tablets */
-    }
-}
+        .card-content h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--primary-green);
+        }
 
-@media (max-width: 768px) {
-    .listings-grid-box {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on small screens */
-    }
-}
+        .card-content p {
+            font-size: 0.8rem;
+        }
 
-@media (max-width: 480px) {
-    .listings-grid-box {
-        grid-template-columns: 1fr; /* 1 per row on mobile */
-    }
-}
+        /* Page indicator dots */
+        .slider-dots {
+            text-align: center;
+            padding: 15px 0;
+        }
 
-  /* Outer slider frame */
-.slider-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    border-radius: 16px;
-}
+        .page-dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-/* Sliding track */
-.slider-track {
-    display: flex;
-    transition: transform 0.6s ease-in-out;
-    width: 100%;
-}
+        .page-dot.active {
+            background-color: #333;
+        }
 
-/* Page container taking full width */
-.slider-page {
-    min-width: 100%;
-    box-sizing: border-box;
-}
+        /* Mobile & Tablet responsiveness for Grid */
+        @media (max-width: 1024px) {
+            .listings-grid-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-/* Enforces 4 columns x 2 rows max */
-.listings-grid-box {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-/* Page indicator dots */
-.slider-dots {
-    text-align: center;
-    padding: 15px 0;
-}
-
-.page-dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.page-dot.active {
-    background-color: #333;
-}
-
-/* Mobile & Tablet responsiveness */
-@media (max-width: 1024px) {
-    .listings-grid-box {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .listings-grid-box {
-        grid-template-columns: 1fr;
-    }
-}
+        @media (max-width: 600px) {
+            .listings-grid-box {
+                grid-template-columns: 1fr;
+            }
+        }
 
         /* Row Scroll Controls */
         .row-controls {
@@ -387,9 +349,20 @@
         .card-content {
             padding: 20px;
         }
-        .card-content h3 {
-            margin-bottom: 8px;
-            color: var(--primary-green);
+        .card-slideshow {
+            position: relative;
+            overflow: hidden;
+        }
+        .slides-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        .slides-wrapper img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            flex-shrink: 0;
         }
         .price {
             color: var(--primary-orange);
@@ -975,244 +948,221 @@
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
-   <div class="slider-container">
-    <div class="slider-track" id="sliderTrack">
-        
-        <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
-        <div class="slider-page listings-grid-box">
-            
-            <!-- ROW 1 -->
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 1 - Danchhi</h3>
-                    <p>Road Access: 20ft</p>
-                    <p class="price">Area: 4 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 2 - Bagdhara</h3>
-                    <p>South-facing plot</p>
-                    <p class="price">Area: 3.5 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 3 - Kathmandu</h3>
-                    <p>Peaceful surroundings</p>
-                    <p class="price">Area: 1 Ropani</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 4 - Bagdhara</h3>
-                    <p>Scenic mountain view</p>
-                    <p class="price">Area: 5 Aana</p>
-                </div>
-            </div>
-
-            <!-- ROW 2 -->
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 5 - Sankhu</h3>
-                    <p>Full valley panorama</p>
-                    <p class="price">Area: 8 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 6 - Barmakhel</h3>
-                    <p>14ft access road</p>
-                    <p class="price">Area: 4.5 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 7 - Main Road</h3>
-                    <p>Commercial frontage</p>
-                    <p class="price">Area: 6 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 8 - Corner Land</h3>
-                    <p>Double side road access</p>
-                    <p class="price">Area: 3 Aana 2 Paisa</p>
-                </div>
-            </div>
-
+    <!-- PROPERTIES SECTION -->
+    <section class="container" id="listings">
+        <div class="section-title">
+            <h2>Featured Land Listings</h2>
+            <p>Explore our premium plots with road access and legal verification.</p>
         </div>
 
-        <!-- PAGE 2 (Remaining 6 Cards) -->
-        <div class="slider-page listings-grid-box">
-            
-            <!-- ROW 1 -->
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                
+                <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
+                <div class="slider-page listings-grid-box">
+                    
+                    <!-- ROW 1 -->
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 1 - Danchhi</h3>
+                            <p>Road Access: 20ft</p>
+                            <p class="price">Area: 4 Aana</p>
+                        </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 2 - Bagdhara</h3>
+                            <p>South-facing plot</p>
+                            <p class="price">Area: 3.5 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 3 - Kathmandu</h3>
+                            <p>Peaceful surroundings</p>
+                            <p class="price">Area: 1 Ropani</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 4 - Bagdhara</h3>
+                            <p>Scenic mountain view</p>
+                            <p class="price">Area: 5 Aana</p>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 5 - Sankhu</h3>
+                            <p>Full valley panorama</p>
+                            <p class="price">Area: 8 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 6 - Barmakhel</h3>
+                            <p>14ft access road</p>
+                            <p class="price">Area: 4.5 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 7 - Main Road</h3>
+                            <p>Commercial frontage</p>
+                            <p class="price">Area: 6 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 8 - Corner Land</h3>
+                            <p>Double side road access</p>
+                            <p class="price">Area: 3 Aana 2 Paisa</p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="card-content">
-                    <h3>Plot 9 - Gokarna</h3>
-                    <p>Forest view surroundings</p>
-                    <p class="price">Area: 5 Aana</p>
+
+                <!-- PAGE 2 (Remaining 6 Cards) -->
+                <div class="slider-page listings-grid-box">
+                    
+                    <!-- ROW 1 -->
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 9 - Gokarna</h3>
+                            <p>Forest view surroundings</p>
+                            <p class="price">Area: 5 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 10 - Mulpani</h3>
+                            <p>Near cricket stadium</p>
+                            <p class="price">Area: 4 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 11 - Sundarijal</h3>
+                            <p>Ideal for resort/villa</p>
+                            <p class="price">Area: 10 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 12 - Jorpati</h3>
+                            <p>Near main highway</p>
+                            <p class="price">Area: 3 Aana</p>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 13 - Budhanilkantha</h3>
+                            <p>Prime residential area</p>
+                            <p class="price">Area: 6.5 Aana</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14" onclick="openModal(this)">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Plot 14 - Tokha</h3>
+                            <p>Quiet neighborhood</p>
+                            <p class="price">Area: 4 Aana</p>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 10 - Mulpani</h3>
-                    <p>Near cricket stadium</p>
-                    <p class="price">Area: 4 Aana</p>
-                </div>
+            <!-- Pagination Dots -->
+            <div class="slider-dots">
+                <span class="page-dot active" onclick="goToPage(0)"></span>
+                <span class="page-dot" onclick="goToPage(1)"></span>
             </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 11 - Sundarijal</h3>
-                    <p>Ideal for resort/villa</p>
-                    <p class="price">Area: 10 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 12 - Jorpati</h3>
-                    <p>Near main highway</p>
-                    <p class="price">Area: 3 Aana</p>
-                </div>
-            </div>
-
-            <!-- ROW 2 -->
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 13 - Budhanilkantha</h3>
-                    <p>Prime residential area</p>
-                    <p class="price">Area: 6.5 Aana</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-slideshow">
-                    <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3>Plot 14 - Tokha</h3>
-                    <p>Quiet neighborhood</p>
-                    <p class="price">Area: 4 Aana</p>
-                </div>
-            </div>
-
         </div>
-
-    </div>
-
-    <script>let currentPage = 0;
-const track = document.getElementById('sliderTrack');
-const dots = document.querySelectorAll('.page-dot');
-const totalPages = document.querySelectorAll('.slider-page').length;
-const slideInterval = 5000; // Time in ms (5 seconds)
-
-function goToPage(pageIndex) {
-    currentPage = pageIndex;
-    track.style.transform = `translateX(-${currentPage * 100}%)`;
-    
-    // Update active dot
-    dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentPage);
-    });
-}
-
-function autoSlideGrid() {
-    let nextIndex = (currentPage + 1) % totalPages;
-    goToPage(nextIndex);
-}
-
-// Auto play timer
-let timer = setInterval(autoSlideGrid, slideInterval);
-
-// Pause auto-sliding on hover
-const container = document.querySelector('.slider-container');
-container.addEventListener('mouseenter', () => clearInterval(timer));
-container.addEventListener('mouseleave', () => {
-    timer = setInterval(autoSlideGrid, slideInterval);
-});</script>
-    
-    <!-- Optional Pagination Dots -->
-    <div class="slider-dots">
-        <span class="page-dot active" onclick="goToPage(0)"></span>
-        <span class="page-dot" onclick="goToPage(1)"></span>
-    </div>
-</div>
+    </section>
 
     <!-- LAND VIDEOS SECTION -->
     <section class="container" id="videos">
@@ -1237,7 +1187,7 @@ container.addEventListener('mouseleave', () => {
                         <p>Walkthrough video showing plot layout and nearby main road access.</p>
                     </div>
                 </div>
- 
+
                 <!-- Video 2 -->
                 <div class="video-card">
                     <iframe 
@@ -1476,18 +1426,45 @@ container.addEventListener('mouseleave', () => {
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Horizontal Scroll Controls
-        function scrollListings(distance) {
-            document.getElementById('listingsContainer').scrollBy({
-                left: distance,
-                behavior: 'smooth'
+        // Grid Slider Logic
+        let currentPage = 0;
+        const track = document.getElementById('sliderTrack');
+        const dots = document.querySelectorAll('.page-dot');
+        const totalPages = document.querySelectorAll('.slider-page').length;
+        const slideInterval = 5000;
+
+        function goToPage(pageIndex) {
+            currentPage = pageIndex;
+            if (track) {
+                track.style.transform = `translateX(-${currentPage * 100}%)`;
+            }
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentPage);
             });
         }
 
+        function autoSlideGrid() {
+            if (totalPages > 0) {
+                let nextIndex = (currentPage + 1) % totalPages;
+                goToPage(nextIndex);
+            }
+        }
+
+        let timer = setInterval(autoSlideGrid, slideInterval);
+
+        const container = document.querySelector('.slider-container');
+        if (container) {
+            container.addEventListener('mouseenter', () => clearInterval(timer));
+            container.addEventListener('mouseleave', () => {
+                timer = setInterval(autoSlideGrid, slideInterval);
+            });
+        }
+
+        // Horizontal Row Scroll Controls
         function scrollRow(elementId, distance) {
-            const container = document.getElementById(elementId);
-            if (container) {
-                container.scrollBy({
+            const rowContainer = document.getElementById(elementId);
+            if (rowContainer) {
+                rowContainer.scrollBy({
                     left: distance,
                     behavior: 'smooth'
                 });
@@ -1497,8 +1474,8 @@ container.addEventListener('mouseleave', () => {
         // Card Image Slideshow Functions
         function updateCardSlide(slideshow, index) {
             const wrapper = slideshow.querySelector('.slides-wrapper');
-            const slides = wrapper.querySelectorAll('img');
-            const dots = slideshow.querySelectorAll('.dot');
+            const slides = wrapper ? wrapper.querySelectorAll('img') : [];
+            const slideDots = slideshow.querySelectorAll('.dot');
             
             if (!slides.length) return;
 
@@ -1507,7 +1484,7 @@ container.addEventListener('mouseleave', () => {
 
             wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
 
-            dots.forEach((dot, idx) => {
+            slideDots.forEach((dot, idx) => {
                 dot.classList.toggle('active', idx === targetIndex);
             });
         }
@@ -1570,11 +1547,14 @@ container.addEventListener('mouseleave', () => {
         // DOM Initialization
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.card-slideshow').forEach(slideshow => {
-                slideshow.setAttribute('data-current-index', 0);
-                startAutoSlide(slideshow);
+                const slides = slideshow.querySelectorAll('.slides-wrapper img');
+                if (slides.length > 1) {
+                    slideshow.setAttribute('data-current-index', 0);
+                    startAutoSlide(slideshow);
 
-                slideshow.addEventListener('mouseenter', () => clearInterval(slideshow.autoSlideTimer));
-                slideshow.addEventListener('mouseleave', () => startAutoSlide(slideshow));
+                    slideshow.addEventListener('mouseenter', () => clearInterval(slideshow.autoSlideTimer));
+                    slideshow.addEventListener('mouseleave', () => startAutoSlide(slideshow));
+                }
             });
         });
     </script>
