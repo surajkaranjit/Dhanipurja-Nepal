@@ -899,6 +899,100 @@
         padding: 24px;
     }
 } 
+/* Make card images clickable */
+.slides-wrapper img {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.slides-wrapper img:hover {
+    opacity: 0.9;
+}
+
+/* Lightbox Modal Overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Lightbox Modal Card */
+.modal-content {
+    background: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+}
+
+.modal-body {
+    padding: 20px 25px;
+}
+
+.modal-body h3 {
+    color: var(--primary-green);
+    margin-bottom: 8px;
+}
+
+.modal-body p {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.modal-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-orange);
+    margin-top: 12px;
+}
+
+.modal-map-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: var(--primary-green);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.modal-map-btn:hover {
+    background-color: var(--dark-green);
+}
     </style>
 </head>
 <body>
@@ -944,28 +1038,39 @@
             <!-- Single Row Flex Wrapper -->
             <div class="grid-row" id="listingsContainer">
                 
-                <!-- Card 1 -->
-                <div class="card card-row-item">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 1">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 2">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot Photo 3">
-                        </div>
-                        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                        <div class="slide-dots">
-                            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 1)"></span>
-                            <span class="dot" onclick="jumpSlide(this, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Residential Plot - Danchhi</h3>
-                        <p>Road Access: 20ft | Ready for house construction.</p>
-                        <p class="price">Area: 4 Aana | Negotiable</p>
-                    </div>
-                </div>
+              <!-- Card 1 -->
+<div class="card card-row-item">
+    <div class="card-slideshow">
+        <div class="slides-wrapper">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
+                 alt="Danchhi Plot Photo 1" 
+                 onclick="openModal(this)" 
+                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+                 
+            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
+                 alt="Danchhi Plot Photo 2" 
+                 onclick="openModal(this)" 
+                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+                 
+            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" 
+                 alt="Danchhi Plot Photo 3" 
+                 onclick="openModal(this)" 
+                 data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
+        </div>
+        <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
+        <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
+        <div class="slide-dots">
+            <span class="dot active" onclick="jumpSlide(this, 0)"></span>
+            <span class="dot" onclick="jumpSlide(this, 1)"></span>
+            <span class="dot" onclick="jumpSlide(this, 2)"></span>
+        </div>
+    </div>
+    <div class="card-content">
+        <h3>Residential Plot - Danchhi</h3>
+        <p>Road Access: 20ft | Ready for house construction.</p>
+        <p class="price">Area: 4 Aana | Negotiable</p>
+    </div>
+</div>
 
                 <!-- Card 2 -->
                 <div class="card card-row-item">
@@ -1083,6 +1188,7 @@
                 <button class="row-arrow-btn" onclick="scrollListings(-345)" aria-label="Scroll Left">&#10094;</button>
                 <button class="row-arrow-btn" onclick="scrollListings(345)" aria-label="Scroll Right">&#10095;</button>
             </div>
+
         </div>
     </section> 
 
@@ -1505,6 +1611,33 @@
             slideshow.addEventListener('mouseleave', () => startAutoSlide(slideshow));
         });
     });
+    <script>
+        /* Existing slider functions... */
+
+        /* PASTE THIS NEW MODAL JS BELOW YOUR EXISTING SCRIPT CODE */
+        function openModal(imgElement) {
+            const card = imgElement.closest('.card');
+            
+            const title = card.querySelector('.card-content h3').innerText;
+            const desc = card.querySelector('.card-content p:nth-child(2)').innerText;
+            const price = card.querySelector('.price').innerText;
+            const mapUrl = imgElement.getAttribute('data-map') || '#';
+
+            document.getElementById('modalImg').src = imgElement.src;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalMap').href = mapUrl;
+
+            document.getElementById('propertyModal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            document.getElementById('propertyModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
 </script> 
  
  </body>
