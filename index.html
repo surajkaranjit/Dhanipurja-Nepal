@@ -272,78 +272,74 @@
     }
 }
 
-        /* Card Slideshow Styling */
-        .card-slideshow {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
+  /* Outer slider frame */
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+}
 
-        .slides-wrapper {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
+/* Sliding track */
+.slider-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    width: 100%;
+}
 
-        .slides-wrapper img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
+/* Page container taking full width */
+.slider-page {
+    min-width: 100%;
+    box-sizing: border-box;
+}
 
-        .slides-wrapper img:hover {
-            opacity: 0.9;
-        }
+/* Enforces 4 columns x 2 rows max */
+.listings-grid-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
 
-        /* Slide Navigation Arrows & Dots */
-        .slide-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            font-size: 1.1rem;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            z-index: 10;
-            transition: background 0.3s ease;
-        }
+/* Page indicator dots */
+.slider-dots {
+    text-align: center;
+    padding: 15px 0;
+}
 
-        .slide-btn:hover { background: rgba(0, 0, 0, 0.8); }
-        .slide-btn.prev { left: 8px; }
-        .slide-btn.next { right: 8px; }
+.page-dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .slide-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            z-index: 10;
-        }
+.page-dot.active {
+    background-color: #333;
+}
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+/* Mobile & Tablet responsiveness */
+@media (max-width: 1024px) {
+    .listings-grid-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-        .dot.active {
-            background: #ffffff;
-            width: 18px;
-            border-radius: 10px;
-        }
+@media (max-width: 600px) {
+    .listings-grid-box {
+        grid-template-columns: 1fr;
+    }
+}
 
         /* Row Scroll Controls */
         .row-controls {
@@ -979,21 +975,17 @@
         <a href="#listings" class="btn">Explore Land Listings</a>
     </section>
 
-   <!-- 2 Rows x 6 Columns Grid (12 Cards Total) -->
-        <div class="listings-grid-box">
+   <div class="slider-container">
+    <div class="slider-track" id="sliderTrack">
+        
+        <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
+        <div class="slider-page listings-grid-box">
             
-            <!-- ROW 1 / CARD 1 -->
+            <!-- ROW 1 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1003,18 +995,10 @@
                 </div>
             </div>
 
-            <!-- ROW 1 / CARD 2 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1024,18 +1008,10 @@
                 </div>
             </div>
 
-            <!-- ROW 1 / CARD 3 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Kathmandu Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Kathmandu Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1045,18 +1021,10 @@
                 </div>
             </div>
 
-            <!-- ROW 1 / CARD 4 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Heights 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bagdhara Heights 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1066,18 +1034,11 @@
                 </div>
             </div>
 
-            <!-- ROW 1 / CARD 5 -->
+            <!-- ROW 2 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sankhu Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sankhu+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sankhu Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sankhu+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1087,18 +1048,10 @@
                 </div>
             </div>
 
-            <!-- ROW 1 / CARD 6 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Barmakhel Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Barmakhel+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Barmakhel Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Barmakhel+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1108,18 +1061,10 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 7 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Commercial 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Danchhi Commercial 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Danchhi+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1129,18 +1074,10 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 8 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Corner Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Corner Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Bagdhara+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1150,18 +1087,16 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 9 -->
+        </div>
+
+        <!-- PAGE 2 (Remaining 6 Cards) -->
+        <div class="slider-page listings-grid-box">
+            
+            <!-- ROW 1 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Gokarna Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Gokarna+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Gokarna Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Gokarna+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1171,18 +1106,10 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 10 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Mulpani Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Mulpani+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Mulpani Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Mulpani+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1192,18 +1119,10 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 11 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sundarijal Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sundarijal+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sundarijal Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Sundarijal+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1213,18 +1132,10 @@
                 </div>
             </div>
 
-            <!-- ROW 2 / CARD 12 -->
             <div class="card">
                 <div class="card-slideshow">
                     <div class="slides-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Jorpati Plot 1" onclick="openModal(this)" data-map="https://maps.google.com/?q=Jorpati+Kathmandu">
-                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Jorpati Plot 2" onclick="openModal(this)" data-map="https://maps.google.com/?q=Jorpati+Kathmandu">
-                    </div>
-                    <button class="slide-btn prev" onclick="moveSlide(this, -1)">&#10094;</button>
-                    <button class="slide-btn next" onclick="moveSlide(this, 1)">&#10095;</button>
-                    <div class="slide-dots">
-                        <span class="dot active" onclick="jumpSlide(this, 0)"></span>
-                        <span class="dot" onclick="jumpSlide(this, 1)"></span>
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12">
                     </div>
                 </div>
                 <div class="card-content">
@@ -1234,7 +1145,74 @@
                 </div>
             </div>
 
+            <!-- ROW 2 -->
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 13 - Budhanilkantha</h3>
+                    <p>Prime residential area</p>
+                    <p class="price">Area: 6.5 Aana</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-slideshow">
+                    <div class="slides-wrapper">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Plot 14 - Tokha</h3>
+                    <p>Quiet neighborhood</p>
+                    <p class="price">Area: 4 Aana</p>
+                </div>
+            </div>
+
         </div>
+
+    </div>
+
+    <script>let currentPage = 0;
+const track = document.getElementById('sliderTrack');
+const dots = document.querySelectorAll('.page-dot');
+const totalPages = document.querySelectorAll('.slider-page').length;
+const slideInterval = 5000; // Time in ms (5 seconds)
+
+function goToPage(pageIndex) {
+    currentPage = pageIndex;
+    track.style.transform = `translateX(-${currentPage * 100}%)`;
+    
+    // Update active dot
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentPage);
+    });
+}
+
+function autoSlideGrid() {
+    let nextIndex = (currentPage + 1) % totalPages;
+    goToPage(nextIndex);
+}
+
+// Auto play timer
+let timer = setInterval(autoSlideGrid, slideInterval);
+
+// Pause auto-sliding on hover
+const container = document.querySelector('.slider-container');
+container.addEventListener('mouseenter', () => clearInterval(timer));
+container.addEventListener('mouseleave', () => {
+    timer = setInterval(autoSlideGrid, slideInterval);
+});</script>
+    
+    <!-- Optional Pagination Dots -->
+    <div class="slider-dots">
+        <span class="page-dot active" onclick="goToPage(0)"></span>
+        <span class="page-dot" onclick="goToPage(1)"></span>
+    </div>
+</div>
 
     <!-- LAND VIDEOS SECTION -->
     <section class="container" id="videos">
