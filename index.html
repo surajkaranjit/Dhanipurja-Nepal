@@ -1215,8 +1215,8 @@
 </section>
 
 <!-- PROPERTY DETAILS MODAL -->
-<div id="detailsModal" class="modal">
-    <div class="modal-content"> 
+<div id="detailsModal" class="modal" onclick="closeDetailsModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
         <img id="modalImg" src="" alt="Plot Detail" style="width:100%; border-radius:8px; margin-bottom:15px;">
         <h2 id="modalTitle"></h2>
         <p id="modalDesc"></p>
@@ -1280,6 +1280,7 @@ window.onclick = function(event) {
         closeDetailsModal();
     }
 }
+
 </script>
             </div>
 
