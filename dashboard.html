@@ -82,8 +82,17 @@
         .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
         table { width: 100%; border-collapse: collapse; text-align: left; }
-        th, td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 0.9rem; vertical-align: middle; }
         th { background-color: #f8f9fa; color: var(--dark-green); }
+
+        .thumb-preview {
+            width: 55px; height: 40px; border-radius: 6px; object-fit: cover; border: 1px solid #ddd;
+        }
+
+        .media-link {
+            color: #d95d08; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 5px;
+        }
+        .media-link:hover { text-decoration: underline; }
 
         .status { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; }
         .status.available { background: #d4edda; color: #155724; }
@@ -103,7 +112,7 @@
             background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-box {
-            background: #fff; width: 400px; padding: 25px; border-radius: 10px; position: relative;
+            background: #fff; width: 440px; max-height: 90vh; overflow-y: auto; padding: 25px; border-radius: 10px; position: relative;
         }
         .modal-box h3 { margin-bottom: 15px; color: var(--primary-green); }
         .modal-box label { font-size: 0.85rem; font-weight: bold; display: block; margin-top: 10px; }
@@ -133,7 +142,7 @@
         <header class="header">
             <div>
                 <h2 id="page-title">Overview Dashboard</h2>
-                <p>Manage your properties, field leads, and client inquiries.</p>
+                <p>Manage your properties, photos, video links, and client inquiries.</p>
             </div>
             <div class="user-profile">
                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="Admin">
@@ -182,10 +191,12 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Photo</th>
                             <th>Plot Title</th>
                             <th>Location</th>
                             <th>Area</th>
                             <th>Status</th>
+                            <th>Video Link</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -203,7 +214,7 @@
                     <h3>All Listed Properties</h3>
                     <button class="btn-action" onclick="openPlotModal()"><i class="fa-solid fa-plus"></i> Add New Plot</button>
                 </div>
-                <p>Use the <strong>Dashboard</strong> tab to modify property statuses or add new entries directly into your local database.</p>
+                <p>Use the <strong>Dashboard</strong> tab to modify photos, videos, or status for any listed property.</p>
             </section>
         </div>
 
@@ -241,12 +252,13 @@
         </div>
     </main>
 
-    <!-- Modal Form for Adding/Editing Plots -->
+    <!-- Modal Form for Adding/Editing Plots, Photos, and Videos -->
     <div class="modal-overlay" id="plotModal">
         <div class="modal-box">
             <h3 id="modalFormTitle">Add New Property</h3>
             <form id="plotForm" onsubmit="savePlot(event)">
                 <input type="hidden" id="plotId">
+                
                 <label>Plot Title</label>
                 <input type="text" id="plotTitle" required placeholder="e.g. Plot 5 - Sankhu">
 
@@ -263,9 +275,15 @@
                     <option value="sold">Sold</option>
                 </select>
 
+                <label>Photo URL (Image Link)</label>
+                <input type="url" id="plotPhoto" placeholder="https://images.unsplash.com/photo-..." required>
+
+                <label>Video URL (YouTube or MP4 Link)</label>
+                <input type="url" id="plotVideo" placeholder="https://www.youtube.com/watch?v=...">
+
                 <div class="form-btns">
                     <button type="button" class="btn-action btn-delete" onclick="closePlotModal()">Cancel</button>
-                    <button type="submit" class="btn-action">Save Plot</button>
+                    <button type="submit" class="btn-action">Save Changes</button>
                 </div>
             </form>
         </div>
@@ -273,13 +291,15 @@
 
     <!-- JavaScript Engine -->
     <script>
-        // Initial Dataset
-        let plots = JSON.parse(localStorage.getItem('dhanipurja_plots')) || [
-            { id: 1, title: 'Plot 1 - Danchhi', location: 'Danchhi, Kathmandu', area: '4 Aana', status: 'available' },
-            { id: 2, title: 'Plot 2 - Bagdhara', location: 'Bagdhara, Kathmandu', area: '3.5 Aana', status: 'reserved' },
-            { id: 3, title: 'Plot 3 - Kathmandu', location: 'Kathmandu', area: '1 Ropani', status: 'sold' },
-            { id: 4, title: 'Plot 4 - Bagdhara', location: 'Bagdhara, Kathmandu', area: '5 Aana', status: 'available' }
+        // Initial Dataset with Photo & Video URLs
+        let defaultData = [
+            { id: 1, title: 'Plot 1 - Danchhi', location: 'Danchhi, Kathmandu', area: '4 Aana', status: 'available', photo: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80', video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+            { id: 2, title: 'Plot 2 - Bagdhara', location: 'Bagdhara, Kathmandu', area: '3.5 Aana', status: 'reserved', photo: 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80', video: '' },
+            { id: 3, title: 'Plot 3 - Kathmandu', location: 'Kathmandu', area: '1 Ropani', status: 'sold', photo: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80', video: '' },
+            { id: 4, title: 'Plot 4 - Bagdhara', location: 'Bagdhara, Kathmandu', area: '5 Aana', status: 'available', photo: 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80', video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' }
         ];
+
+        let plots = JSON.parse(localStorage.getItem('dhanipurja_plots')) || defaultData;
 
         function renderDashboard() {
             localStorage.setItem('dhanipurja_plots', JSON.stringify(plots));
@@ -294,11 +314,18 @@
             tbody.innerHTML = '';
             plots.forEach(plot => {
                 const tr = document.createElement('tr');
+                
+                const videoCell = plot.video 
+                    ? `<a href="${plot.video}" target="_blank" class="media-link"><i class="fa-brands fa-youtube" style="color:red;"></i> Watch</a>` 
+                    : '<span style="color:#aaa;">No Video</span>';
+
                 tr.innerHTML = `
+                    <td><img src="${plot.photo || 'https://via.placeholder.com/60'}" class="thumb-preview" alt="Thumbnail"></td>
                     <td>${plot.title}</td>
                     <td>${plot.location}</td>
                     <td>${plot.area}</td>
                     <td><span class="status ${plot.status}">${plot.status}</span></td>
+                    <td>${videoCell}</td>
                     <td>
                         <button class="btn-action" onclick="editPlot(${plot.id})">Edit</button>
                         <button class="btn-action btn-delete" onclick="deletePlot(${plot.id})">Delete</button>
@@ -324,7 +351,7 @@
             document.getElementById('page-title').innerText = titles[tabName];
         }
 
-        // Modal Functions
+        // Modal Controls
         function openPlotModal() {
             document.getElementById('plotForm').reset();
             document.getElementById('plotId').value = '';
@@ -345,8 +372,10 @@
             document.getElementById('plotLocation').value = plot.location;
             document.getElementById('plotArea').value = plot.area;
             document.getElementById('plotStatus').value = plot.status;
+            document.getElementById('plotPhoto').value = plot.photo || '';
+            document.getElementById('plotVideo').value = plot.video || '';
 
-            document.getElementById('modalFormTitle').innerText = 'Edit Property';
+            document.getElementById('modalFormTitle').innerText = 'Edit Property & Media';
             document.getElementById('plotModal').style.display = 'flex';
         }
 
@@ -356,16 +385,17 @@
             const title = document.getElementById('plotTitle').value;
             const location = document.getElementById('plotLocation').value;
             const area = document.getElementById('plotArea').value;
-            document.getElementById('plotStatus').value;
             const status = document.getElementById('plotStatus').value;
+            const photo = document.getElementById('plotPhoto').value;
+            const video = document.getElementById('plotVideo').value;
 
             if (id) {
-                // Edit mode
+                // Edit existing
                 const index = plots.findIndex(p => p.id == id);
-                plots[index] = { id: Number(id), title, location, area, status };
+                plots[index] = { id: Number(id), title, location, area, status, photo, video };
             } else {
-                // New item mode
-                const newPlot = { id: Date.now(), title, location, area, status };
+                // Add new
+                const newPlot = { id: Date.now(), title, location, area, status, photo, video };
                 plots.push(newPlot);
             }
 
@@ -380,7 +410,7 @@
             }
         }
 
-        // Initialize on Load
+        // Initialize on page load
         renderDashboard();
     </script>
 </body>
