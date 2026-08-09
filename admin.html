@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Dhanipurja Nepal</title>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f4f7f4; color: #2c3e50; }
+        
+        .header { background: #145222; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 1.4rem; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .card h2 { color: #1e7e34; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid #f4f7f4; padding-bottom: 8px; }
+        
+        form { display: flex; flex-direction: column; gap: 12px; }
+        input, textarea, button { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; }
+        button { background: #1e7e34; color: white; font-weight: bold; border: none; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #145222; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        th { background: #f8f9fa; color: #555; }
+        .btn-delete { background: #d9534f; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; }
+        .btn-delete:hover { background: #c9302c; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { background: #e0e0e0; color: #333; padding: 8px 16px; border-radius: 6px; }
+        .tab-btn.active { background: #1e7e34; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Dhanipurja Nepal - Admin Panel</h1>
+        <a href="index (3).html" target="_blank" style="color: #ffc107; text-decoration: none; font-weight: bold;">View Main Site ↗</a>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            
+            <!-- LEFT COLUMN: ADD NEW PROPERTY -->
+            <div class="card">
+                <h2>Add New Land Property</h2>
+                <form id="addPropertyForm">
+                    <input type="text" id="p_title" placeholder="Title (e.g. Plot 17 - Danchhi)" required>
+                    <input type="text" id="p_desc" placeholder="Description (e.g. 20ft road access)" required>
+                    <input type="text" id="p_area" placeholder="Area Size (e.g. Area: 4 Aana)" required>
+                    <input type="text" id="p_location" placeholder="Location (e.g. Danchhi, Kathmandu)" required>
+                    <input type="url" id="p_image" placeholder="Image URL (Unsplash or image link)" required>
+                    <input type="url" id="p_map" placeholder="Google Maps Link" required>
+                    <button type="submit">Publish Property Listing</button>
+                </form>
+            </div>
+
+            <!-- RIGHT COLUMN: MANAGING LISTINGS & INQUIRIES -->
+            <div>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('properties')">Properties List</button>
+                    <button class="tab-btn" onclick="switchTab('inquiries')">Customer Inquiries</button>
+                </div>
+
+                <!-- PROPERTIES SECTION -->
+                <div id="propertiesSection" class="card">
+                    <h2>Active Listings</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Area</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="propertiesTableBody">
+                            <tr><td colspan="4">Loading listings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- INQUIRIES SECTION -->
+                <div id="inquiriesSection" class="card" style="display: none;">
+                    <h2>Received Messages</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiriesTableBody">
+                            <tr><td colspan="4">Loading inquiries...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. CONFIGURATION (REPLACE WITH YOUR KEYS)
+        const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 2. FETCH PROPERTIES
+        async function fetchProperties() {
+            const { data, error } = await supabaseClient
+                .from('properties')
+                .select('*')
+                .order('id', { ascending: false });
+
+            const tbody = document.getElementById('propertiesTableBody');
+            tbody.innerHTML = '';
+
+            if (error || !data.length) {
+                tbody.innerHTML = '<tr><td colspan="4">No listings found.</td></tr>';
+                return;
+            }
+
+            data.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${item.title}</strong></td>
+                        <td>${item.area}</td>
+                        <td>${item.location}</td>
+                        <td><button class="btn-delete" onclick="deleteProperty(${item.id})">Delete</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // 3. ADD PROPERTY
+        document.getElementById('addPropertyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('p_title').value;
+            const description = document.getElementById('p_desc').value;
+            const area = document.getElementById('p_area').value;
+            const location = document.getElementById('p_location').value;
+            const image_url = document.getElementById('p_image').value;
+            const map_url = document.getElementById('p_map').value;
+
+            const { error } = await supabaseClient
+                .from('properties')
+                .insert([{ title, description, area, location, image_url, map_url }]);
+
+            if (error) {
+                alert('Error adding property: ' + error.message);
+            } else {
+                alert('Property published successfully!');
+                document.getElementById('addPropertyForm').reset();
+                fetchProperties();
+            }
+        });
+
+        // 4. DELETE PROPERTY
+        async function deleteProperty(id) {
+            if (confirm('Are you sure you want to delete this listing?')) {
+                const { error } = await supabaseClient.from('properties').delete().eq('id', id);
+                if (error) {
+                    alert('Error deleting: ' + error.message);
+                } else {
+                    fetchProperties();
+                }
+            }
+        }
+
+        // 5. FETCH INQUIRIES
+        async function fetchInquiries() {
+            const { data, error } = await supabaseClient
+                .from('inquiries')
+                .select('*')
+                .order('submitted_at', { ascending: false });
+
+            const tbody = document.getElementById('inquiriesTableBody');
+            tbody.innerHTML = '';
+
+            if (error || !data.length) {
+                tbody.innerHTML = '<tr><td colspan="4">No customer inquiries yet.</td></tr>';
+                return;
+            }
+
+            data.forEach(item => {
+                const date = new Date(item.submitted_at).toLocaleDateString();
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${item.full_name}</strong><br><small>${item.email}</small></td>
+                        <td>${item.phone_number}</td>
+                        <td>${item.message}</td>
+                        <td>${date}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // TAB SWITCHING
+        function switchTab(tab) {
+            const propSec = document.getElementById('propertiesSection');
+            const inqSec = document.getElementById('inquiriesSection');
+            const btns = document.querySelectorAll('.tab-btn');
+
+            if (tab === 'properties') {
+                propSec.style.display = 'block';
+                inqSec.style.display = 'none';
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            } else {
+                propSec.style.display = 'none';
+                inqSec.style.display = 'block';
+                btns[0].classList.remove('active');
+                btns[1].classList.add('active');
+                fetchInquiries();
+            }
+        }
+
+        // INITIAL LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchProperties();
+        });
+    </script>
+</body>
+</html>
