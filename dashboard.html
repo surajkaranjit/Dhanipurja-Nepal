@@ -3,217 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
-
+    <title>Dashboard | Dhanipurja Nepal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { color: #2c3e50; line-height: 1.6; background-color: #eef2ee; }
-
         :root {
             --primary-green: #1e7e34;
             --primary-orange: #d95d08;
             --dark-green: #145222;
-            --light-bg: #f4f7f4;
-            --whatsapp-green: #25d366;
-            --whatsapp-hover: #1eb956;
+            --light-bg: #eef2ee;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --sidebar-width: 250px;
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 0.8rem 5%;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            display: flex;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--dark-green);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            color: #ffc107;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 25px;
+            color: #d1e7dd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .sidebar-menu li a:hover, 
+        .sidebar-menu li a.active {
+            background-color: var(--primary-green);
+            color: #fff;
+            border-left: 4px solid var(--primary-orange);
+        }
+
+        /* Main Content Container */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 30px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Top Bar Header */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
-        .logo-container img { height: 60px; width: auto; }
-        nav > ul { display: flex; list-style: none; align-items: center; }
-        nav > ul > li { margin-left: 25px; position: relative; }
-        nav ul li a { color: #333; text-decoration: none; font-weight: 600; padding: 10px 0; }
-        nav ul li a:hover { color: var(--primary-green); }
-        .btn-nav { background-color: var(--primary-green); color: white !important; padding: 8px 18px !important; border-radius: 5px; }
 
-        /* Container & Slider */
-        .container { padding: 60px 5%; max-width: 1600px; margin: auto; }
-        .section-title { text-align: center; margin-bottom: 40px; }
-        .section-title h2 { font-size: 2rem; color: var(--primary-green); }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
 
-        .slider-container { width: 100%; overflow: hidden; position: relative; border-radius: 16px; }
-        .slider-track { display: flex; transition: transform 0.4s ease-in-out; width: 100%; }
-        .slider-page { min-width: 100%; box-sizing: border-box; }
-        
-        .listings-grid-box {
+        .user-profile img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        /* KPI / Analytics Cards */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 25px;
+            margin-bottom: 30px;
         }
 
-        @media (max-width: 1024px) { .listings-grid-box { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .listings-grid-box { grid-template-columns: 1fr; } }
-
-        /* Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.8);
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-card .info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-top: 5px;
+        }
+
+        .stat-card .info p {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .stat-card .icon {
+            font-size: 2rem;
+            color: var(--primary-orange);
+            background: rgba(217, 93, 8, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        /* Data Tables Section */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--dark-green);
+        }
+
+        .status {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status.available { background: #d4edda; color: #155724; }
+        .status.sold { background: #f8d7da; color: #721c24; }
+        .status.pending { background: #fff3cd; color: #856404; }
+
+        .btn-action {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 0.8rem;
         }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-content { padding: 15px; }
-        .card-content h3 { font-size: 1rem; color: var(--primary-green); margin-bottom: 5px; }
-        .price { color: var(--primary-orange); font-weight: bold; margin-top: 5px; }
-        .card-actions { display: flex; gap: 8px; margin-top: 10px; }
-        .map-btn, .details-btn {
-            padding: 6px 12px; font-size: 12px; border-radius: 4px; text-decoration: none; border: none; cursor: pointer;
-        }
-        .map-btn { background-color: #e8f5e9; color: #2e7d32; }
-        .details-btn { background-color: var(--primary-green); color: #fff; }
 
-        /* Dots */
-        .slider-dots { text-align: center; padding: 15px 0; }
-        .page-dot { height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer; }
-        .page-dot.active { background-color: var(--primary-green); }
+        .btn-action:hover {
+            background: var(--dark-green);
+        }
 
-        /* Modal Overlay */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 10000;
-            justify-content: center; align-items: center; padding: 20px;
+        /* Mobile Responsive adjustment */
+        @media (max-width: 768px) {
+            .sidebar { width: 70px; }
+            .sidebar span, .sidebar-header h2 { display: none; }
+            .main-content { margin-left: 70px; width: calc(100% - 70px); }
         }
-        .modal-content {
-            background: #ffffff; max-width: 500px; width: 100%; border-radius: 12px;
-            padding: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .modal-close { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- Nav Bar with Dashboard Link -->
-    <nav>
-        <a href="#" class="logo-container"><img src="Main logo.png" alt="Dhanipurja Nepal Logo"></a>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#listings">Properties</a></li>
-            <li><a href="#Team">Our Team</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Dhanipurja Admin</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a></li>
+            <li><a href="index.html#listings"><i class="fa-solid fa-map-location-dot"></i> <span>Properties</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-envelope"></i> <span>Inquiries</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-users"></i> <span>Team Members</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Settings</span></a></li>
+            <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> <span>View Website</span></a></li>
         </ul>
-    </nav>
+    </aside>
 
-    <!-- Listings Section -->
-    <section class="container" id="listings">
-        <div class="section-title">
-            <h2>Featured Land Listings</h2>
-            <p>Explore our premium plots with road access and legal verification.</p>
-        </div>
-
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack">
-                
-                <!-- PAGE 1 -->
-                <div class="slider-page listings-grid-box">
-                    <div class="card" onclick="openModal('Plot 1 - Danchhi', 'Road Access: 20ft', 'Area: 4 Aana', 'Danchhi, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Plot 1">
-                        <div class="card-content">
-                            <h3>Plot 1 - Danchhi</h3>
-                            <p>Road Access: 20ft</p>
-                            <p class="price">Area: 4 Aana</p>
-                            <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Danchhi,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 Map</a>
-                                <button class="details-btn">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" onclick="openModal('Plot 2 - Bagdhara', 'South-facing plot', 'Area: 3.5 Aana', 'Bagdhara, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
-                        <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80" alt="Plot 2">
-                        <div class="card-content">
-                            <h3>Plot 2 - Bagdhara</h3>
-                            <p>South-facing plot</p>
-                            <p class="price">Area: 3.5 Aana</p>
-                            <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Bagdhara,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 Map</a>
-                                <button class="details-btn">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PAGE 2 -->
-                <div class="slider-page listings-grid-box">
-                    <div class="card" onclick="openModal('Plot 9 - Gokarna', 'Forest view surroundings', 'Area: 5 Aana', 'Gokarna, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Plot 9">
-                        <div class="card-content">
-                            <h3>Plot 9 - Gokarna</h3>
-                            <p>Forest view surroundings</p>
-                            <p class="price">Area: 5 Aana</p>
-                            <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Gokarna,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 Map</a>
-                                <button class="details-btn">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Bar Header -->
+        <header class="header">
+            <div>
+                <h2>Overview Dashboard</h2>
+                <p>Manage your properties, field leads, and client inquiries.</p>
             </div>
-        </div>
+            <div class="user-profile">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="Admin">
+                <span><strong>Ram Shrestha</strong></span>
+            </div>
+        </header>
 
-        <div class="slider-dots">
-            <span class="page-dot active" onclick="goToPage(0)"></span>
-            <span class="page-dot" onclick="goToPage(1)"></span>
-        </div>
-    </section>
+        <!-- KPI / Metrics Grid -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="info">
+                    <p>Total Plots</p>
+                    <h3>16</h3>
+                </div>
+                <i class="fa-solid fa-layer-group icon"></i>
+            </div>
+            <div class="stat-card">
+                <div class="info">
+                    <p>Available Plots</p>
+                    <h3>12</h3>
+                </div>
+                <i class="fa-solid fa-circle-check icon"></i>
+            </div>
+            <div class="stat-card">
+                <div class="info">
+                    <p>Pending Inquiries</p>
+                    <h3>28</h3>
+                </div>
+                <i class="fa-solid fa-comments icon"></i>
+            </div>
+            <div class="stat-card">
+                <div class="info">
+                    <p>Sold Plots</p>
+                    <h3>4</h3>
+                </div>
+                <i class="fa-solid fa-handshake icon"></i>
+            </div>
+        </section>
 
-    <!-- Single Fixed Details Modal -->
-    <div id="detailsModal" class="modal-overlay" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <img id="modalImg" src="" alt="Plot Detail" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
-            <h3 id="modalTitle" style="color:var(--primary-green)"></h3>
-            <p id="modalDesc" style="margin: 5px 0;"></p>
-            <p id="modalArea" style="font-weight: bold; color: var(--primary-orange);"></p>
-            <iframe id="modalMapFrame" width="100%" height="200" style="border:0; border-radius:8px; margin-top:10px;" loading="lazy" src=""></iframe>
-        </div>
-    </div>
+        <!-- Manage Listings Table -->
+        <section class="table-container">
+            <div class="table-header">
+                <h3>Recent Property Status</h3>
+                <button class="btn-action" onclick="alert('Add listing form popup')"><i class="fa-solid fa-plus"></i> Add New Plot</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plot Title</th>
+                        <th>Location</th>
+                        <th>Area</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Plot 1 - Danchhi</td>
+                        <td>Danchhi, Kathmandu</td>
+                        <td>4 Aana</td>
+                        <td><span class="status available">Available</span></td>
+                        <td><button class="btn-action">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Plot 2 - Bagdhara</td>
+                        <td>Bagdhara, Kathmandu</td>
+                        <td>3.5 Aana</td>
+                        <td><span class="status pending">Reserved</span></td>
+                        <td><button class="btn-action">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Plot 3 - Kathmandu</td>
+                        <td>Kathmandu</td>
+                        <td>1 Ropani</td>
+                        <td><span class="status sold">Sold</span></td>
+                        <td><button class="btn-action">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Plot 4 - Bagdhara</td>
+                        <td>Bagdhara, Kathmandu</td>
+                        <td>5 Aana</td>
+                        <td><span class="status available">Available</span></td>
+                        <td><button class="btn-action">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-    <script>
-        // Grid Slider Logic
-        let currentPage = 0;
-        function goToPage(index) {
-            currentPage = index;
-            document.getElementById('sliderTrack').style.transform = `translateX(-${currentPage * 100}%)`;
-            let dots = document.querySelectorAll('.page-dot');
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentPage));
-        }
-
-        // Modal Logic
-        function openModal(title, desc, area, location, imgUrl) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('modalArea').innerText = area;
-            document.getElementById('modalImg').src = imgUrl;
-            document.getElementById('modalMapFrame').src = 'https://maps.google.com/maps?q=' + encodeURIComponent(location) + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
-            document.getElementById('detailsModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('detailsModal').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
