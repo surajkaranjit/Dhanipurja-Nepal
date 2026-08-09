@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Include Supabase JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
@@ -1765,5 +1767,99 @@ window.onclick = function(event) {
             });
         });
     </script>
+
+    <script>
+    // 1. REPLACE THESE WITH YOUR KEYS FROM SUPABASE DASHBOARD
+    // Find these in: Supabase Dashboard -> Project Settings -> API
+    const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+    // 2. Initialize Supabase Connection
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // 3. Function to fetch land properties from Supabase table
+    async function loadPropertiesFromDatabase() {
+        const { data: properties, error } = await supabaseClient
+            .from('properties')
+            .select('*');
+
+        if (error) {
+            console.error('Error fetching properties from Supabase:', error);
+            return;
+        }
+
+        const sliderTrack = document.getElementById('sliderTrack');
+        if (!sliderTrack) return;
+
+        // Clear hardcoded static cards
+        sliderTrack.innerHTML = '';
+
+        // Display properties in pages of 8 cards each
+        const pageSize = 8;
+        for (let i = 0; i < properties.length; i += pageSize) {
+            const pageProperties = properties.slice(i, i + pageSize);
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'slider-page listings-grid-box';
+
+            pageProperties.forEach(item => {
+                pageDiv.innerHTML += `
+                    <div class="card clickable-card" onclick="openDetailsModal('${item.title}', '${item.description}', '${item.area}', '${item.location}', '${item.image_url}')">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="${item.image_url}" alt="${item.title}">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <p class="price">${item.area}</p>
+                            <div class="card-actions">
+                                <a href="${item.map_url}" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
+                                <button class="details-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            sliderTrack.appendChild(pageDiv);
+        }
+    }
+
+    // 4. Function to capture form inputs and insert into the Supabase 'inquiries' table
+    async function handleInquirySubmission(event) {
+        event.preventDefault(); // Stop page refresh
+
+        const form = event.target;
+        const full_name = form.querySelector('input[placeholder="Your Full Name"]').value;
+        const phone_number = form.querySelector('input[placeholder="Phone Number"]').value;
+        const email = form.querySelector('input[placeholder="Email Address"]').value;
+        const message = form.querySelector('textarea').value;
+
+        // Save data to Supabase table named 'inquiries'
+        const { data, error } = await supabaseClient
+            .from('inquiries')
+            .insert([{ full_name, phone_number, email, message }]);
+
+        if (error) {
+            alert('Submission failed. Please check your network connection.');
+            console.error('Database Error:', error);
+        } else {
+            alert('Thank you! Your inquiry has been saved successfully.');
+            form.reset();
+        }
+    }
+
+    // 5. Trigger database actions once the webpage finishes loading
+    document.addEventListener('DOMContentLoaded', () => {
+        loadPropertiesFromDatabase();
+
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.onsubmit = handleInquirySubmission;
+        }
+    });
+</script>  
+
 </body>
 </html>
