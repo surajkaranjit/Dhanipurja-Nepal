@@ -1,1916 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanipurja Nepal | Real Estate & Land Sales</title>
-
-    <!-- Font Awesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>GharJagga - Real Estate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset & Base Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #eeeeee;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #1a252f;
+            --secondary-color: #ff6b6b;
+            --accent-color: #5dedc7;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #f8f9fa;
+            --border-color: #2d2d2d;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         body {
-            color: #2c3e50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
-            background-color: #eef2ee;
         }
 
-        /* Color Palette Constants */
-        :root {
-            --primary-green: #1e7e34;
-            --primary-orange: #d95d08;
-            --dark-green: #145222;
-            --light-bg: #f4f7f4;
-            --whatsapp-green: #25d366;
-            --whatsapp-hover: #1eb956;
-        }
-
-        /* Top Header Bar */
-        .top-bar {
-            background-color: var(--dark-green);
-            color: #fff;
-            padding: 8px 5%;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .top-bar-info {
-            display: flex;
-            gap: 20px;
-        }
-        .top-bar-info a {
-            color: #ffc107;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Navigation Container */
-        nav {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 0.8rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        /* Image Logo Styling */
-        .logo-container {
+        .navbar {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .logo-container img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* Main Nav List */
-        nav > ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav > ul > li {
-            margin-left: 25px;
-            position: relative;
-        }
-
-        nav ul li a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            display: block;
-            padding: 10px 0;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-green);
-        }
-
-        .btn-nav {
-            background-color: var(--primary-green);
-            color: white !important;
-            padding: 8px 18px !important;
-            border-radius: 5px;
-        }
-
-        .btn-nav:hover {
-            background-color: var(--dark-green);
-        }
-
-        /* Dropdown Menu */
-        .has-dropdown > a::after {
-            content: ' ▾';
-            font-size: 0.8rem;
-            margin-left: 4px;
-        }
-
-        .has-dropdown {
-            position: relative;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #ffffff;
-            min-width: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            padding: 8px 0;
-            z-index: 1001;
-            list-style: none;
-            flex-direction: column;
-        }
-
-        .dropdown-menu li {
-            margin-left: 0 !important;
-            width: 100%;
-            display: block;
-        }
-
-        .dropdown-menu li a {
-            padding: 10px 18px;
-            color: #333;
-            font-size: 0.95rem;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .dropdown-menu li a:hover {
-            background-color: #f4f7f4;
-            color: var(--primary-green);
-        }
-
-        .has-dropdown:hover .dropdown-menu {
-            display: flex;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            height: 65vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            max-width: 650px;
-        }
-        .btn {
-            background-color: var(--primary-orange);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn:hover {
-            background-color: #b84c03;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Container */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-color);
+        }
+
         .container {
-            padding: 60px 5%;
-            max-width: 1600px;
-            margin: auto;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-title h2 {
+            margin-bottom: 2rem;
             font-size: 2rem;
-            color: var(--primary-green);
+            color: var(--primary-color);
         }
 
-        /* Outer slider frame */
+        /* Property Slider Styles */
         .slider-container {
-            width: 100%;
-            overflow: hidden;
             position: relative;
-            border-radius: 16px;
+            overflow: hidden;
+            border-radius: 10px;
+            padding: 10px 0;
         }
 
-        /* Sliding track */
         .slider-track {
             display: flex;
-            transition: transform 0.3s ease-in-out;
-            width: 100%;
-        }
-
-        /* Page container taking full width */
-        .slider-page {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Grid box */
-        .listings-grid-box {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: transform 0.5s ease;
         }
 
-        .card-content h3 {
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            color: var(--primary-green);
-        }
-
-        .card-content p {
-            font-size: 0.8rem;
-        }
-
-        /* Page indicator dots */
-        .slider-dots {
-            text-align: center;
-            padding: 15px 0;
-        }
-
-        .page-dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .page-dot.active {
-            background-color: #333;
-        }
-
-        /* Mobile & Tablet responsiveness for Grid */
-        @media (max-width: 1024px) {
-            .listings-grid-box {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .listings-grid-box {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Row Scroll Controls */
-        .row-controls {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .row-arrow-btn {
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .row-arrow-btn:hover {
-            background: var(--dark-green);
-            transform: scale(1.08);
-        }
-
-        /* Card Effect */
-        .card {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 12px;
+        .property-card {
+            min-width: 300px;
+            max-width: 300px;
+            background: var(--card-bg);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        }
-        .card-content {
-            padding: 20px;
-        }
-        .card-slideshow {
-            position: relative;
-            overflow: hidden;
-        }
-        .slides-wrapper {
-            display: flex;
-            transition: transform 0.3s ease;
-        }
-        .slides-wrapper img {
+
+        .property-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .price {
-            color: var(--primary-orange);
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 10px;
         }
 
-        /* Video Section */
-        .video-carousel-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .video-row {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 20px;
-            width: 100%;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 5px 20px 5px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .video-row::-webkit-scrollbar {
-            display: none;
-        }
-
-        .video-card {
-            flex: 0 0 320px;
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .video-card video, 
-        .video-card iframe {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border: none;
-            display: block;
-        }
-
-        .video-card-content {
+        .property-info {
             padding: 15px;
         }
 
-        .video-card-content h3 {
-            color: var(--primary-green);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+        .property-price {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: bold;
         }
 
-        .video-card-content p {
-            font-size: 0.88rem;
-            color: #444;
-        }
-
-        .arrow-controls {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .arrow-btn {
-            background: var(--primary-green);
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
             color: white;
             border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.2rem;
+            padding: 15px;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .arrow-btn:hover {
-            background: var(--dark-green);
-            transform: scale(1.08);
-        }
-
-        /* Team Section */
-        .team-row-box {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 30px 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .team-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 15px;
-            width: 100%;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 5px 15px 5px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .team-row::-webkit-scrollbar {
-            display: none;
-        }
-
-        .team-card {
-            flex: 0 0 240px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 20px 15px;
-            transition: transform 0.3s ease;
-        } 
-
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .team-img {
-            width: 100%;
-            height: 260px;
-            border-radius: 15px;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        .team-card h3 {
-            color: #2c3e50;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .team-card .position {
-            color: var(--primary-orange);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .team-card .phone {
-            font-size: 0.85rem;
-            color: #444;
-            font-weight: 500;
-        }
-
-        /* Reviews Section */
-        .reviews-section {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 16px;
-            padding: 35px 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            margin: 40px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .reviews-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .reviews-header h2 {
-            color: var(--primary-green);
-            font-size: 1.8rem;
-            border-bottom: 3px solid var(--primary-orange);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .google-badge {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #ffffff;
-            padding: 8px 16px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid #eee;
-        }
-
-        .google-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4285F4;
-        }
-
-        .badge-info strong {
-            font-size: 1.05rem;
-            color: #2c3e50;
-        }
-
-        .badge-info span {
-            font-size: 0.78rem;
-            color: #777;
-            display: block;
-        }
-
-        .reviews-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 25px;
-            width: 100%;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 5px 15px 5px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .reviews-row::-webkit-scrollbar {
-            display: none;
-        }
-
-        .review-card {
-            flex: 0 0 320px;
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 22px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .reviewer-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .reviewer-img {
-            width: 45px;
-            height: 45px;
             border-radius: 50%;
-            object-fit: cover;
+            z-index: 10;
         }
 
-        .reviewer-info h4 {
-            font-size: 1rem;
-            color: #2c3e50;
-            margin: 0;
-        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
 
-        .review-date {
-            font-size: 0.78rem;
-            color: #888;
-        }
-
-        .stars {
-            color: #f1c40f;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .review-text {
-            font-size: 0.93rem;
-            color: #555;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        /* Contact Section */
-        .contact-wrapper {
+        /* Video Section */
+        .video-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-top: 4px solid var(--primary-orange);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .contact-info-box {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .contact-info-box h3 {
-            color: var(--primary-green);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .info-item strong {
-            display: block;
-            color: var(--primary-orange);
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-
-        .info-item p {
-            color: #333;
-            font-size: 0.95rem;
-        }
-
-        .social-section {
-            margin-top: 10px;
-        }
-
-        .social-section strong {
-            color: var(--primary-orange);
-            font-size: 0.95rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #e2e8f0;
-            color: #333;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            color: #ffffff;
-        }
-
-        .social-links a[aria-label="Facebook"]:hover { background-color: #1877f2; }
-        .social-links a[aria-label="Instagram"]:hover { background-color: #e4405f; }
-        .social-links a[aria-label="WhatsApp"]:hover { background-color: #25d366; }
-        .social-links a[aria-label="YouTube"]:hover { background-color: #ff0000; }
-        .social-links a[aria-label="TikTok"]:hover { background-color: #000000; }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-form input, 
-        .contact-form textarea {
-            padding: 14px 16px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
+        .video-card {
+            background: var(--card-bg);
             border-radius: 8px;
-            font-size: 0.95rem;
-            width: 100%;
-            outline: none;
-            transition: border-color 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .contact-form input:focus, 
-        .contact-form textarea:focus {
-            border-color: var(--primary-green);
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
         }
 
-        @media (max-width: 768px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 24px;
-            }
-        }
-
-        /* Lightbox Modal Overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
+        .video-wrapper iframe {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
+            border: 0;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            text-align: center;
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .modal-content {
-            background: #ffffff;
-            max-width: 600px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-img {
-            width: 100%;
-            max-height: 350px;
+        .team-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             object-fit: cover;
+            margin-bottom: 10px;
         }
 
-        .modal-body {
-            padding: 20px 25px;
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        .modal-body h3 {
-            color: var(--primary-green);
-            margin-bottom: 8px;
+        .review-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
         }
 
-        .modal-body p {
-            margin-bottom: 8px;
-            color: #444;
+        .stars {
+            color: #f1c40f;
+            margin-bottom: 10px;
         }
 
-        .modal-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-orange);
-            margin-top: 12px;
-        }
-
-        .modal-map-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 16px;
-            background-color: var(--primary-green);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .modal-map-btn:hover {
-            background-color: var(--dark-green);
-        }
-
-        /* Footer */
         footer {
-            background-color: var(--dark-green);
+            background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            clear: both;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--whatsapp-green);
-            color: #ffffff;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.25);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: var(--whatsapp-hover);
-        }
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: #ffffff;
+            padding: 2rem;
+            margin-top: 4rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#" class="logo-container">
-            <img src="Main logo.png" alt="Dhanipurja Nepal Logo">
-        </a>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#listings">Properties</a></li>
-            <li><a href="#Team">Our Team</a></li>
-            <li class="has-dropdown">
-                <a href="about.html">About Us</a>
-                <ul class="dropdown-menu">
-                    <li><a href="about.html#story">Our Story</a></li>
-                    <li><a href="office location.html#location">Office Location</a></li>
-                    <li><a href="FAQ.html#FAQ">FAQ</a></li>
-                </ul>
-            </li>
-            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
-        </ul>
-    </nav>
-        
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Your Gateway to Owning Land in Nepal</h1>
-        <p>Verified residential, commercial, and agricultural land plots across Danchhi, Bagdhara, Kathmandu &amp; beyond.</p>
-        <a href="#listings" class="btn">Explore Land Listings</a>
-    </section>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo"><i class="fas fa-home"></i> GharJagga</a>
+            <ul class="nav-links">
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#videos">Tours</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i> Dark</button>
+        </nav>
+    </header>
 
-<!-- PROPERTIES SECTION -->
-<section class="container" id="listings">
-    <div class="section-title">
-        <h2>Featured Land Listings</h2>
-        <p>Explore our premium plots with road access and legal verification.</p>
-    </div>
-
-    <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-            
-            <!-- PAGE 1 (4 Columns x 2 Rows = 8 Cards) -->
-            <div class="slider-page listings-grid-box">
-                
-                <!-- ROW 1 -->
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 1 - Danchhi', 'Road Access: 20ft', 'Area: 4 Aana', 'Danchhi, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 1">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 1 - Danchhi</h3>
-                        <p>Road Access: 20ft</p>
-                        <p class="price">Area: 4 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Danchhi,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 2 - Bagdhara', 'South-facing plot', 'Area: 3.5 Aana', 'Bagdhara, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 2">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 2 - Bagdhara</h3>
-                        <p>South-facing plot</p>
-                        <p class="price">Area: 3.5 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Bagdhara,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 3 - Kathmandu', 'Peaceful surroundings', 'Area: 1 Ropani', 'Kathmandu', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 3">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 3 - Kathmandu</h3>
-                        <p>Peaceful surroundings</p>
-                        <p class="price">Area: 1 Ropani</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 4 - Bagdhara', 'Scenic mountain view', 'Area: 5 Aana', 'Bagdhara, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 4">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 4 - Bagdhara</h3>
-                        <p>Scenic mountain view</p>
-                        <p class="price">Area: 5 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Bagdhara,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROW 2 -->
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 5 - Sankhu', 'Full valley panorama', 'Area: 8 Aana', 'Sankhu, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 5">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 5 - Sankhu</h3>
-                        <p>Full valley panorama</p>
-                        <p class="price">Area: 8 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Sankhu,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 6 - Barmakhel', '14ft access road', 'Area: 4.5 Aana', 'Barmakhel, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 6">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 6 - Barmakhel</h3>
-                        <p>14ft access road</p>
-                        <p class="price">Area: 4.5 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Barmakhel,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 7 - Main Road', 'Commercial frontage', 'Area: 6 Aana', 'Main Road, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 7">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 7 - Main Road</h3>
-                        <p>Commercial frontage</p>
-                        <p class="price">Area: 6 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 8 - Corner Land', 'Double side road access', 'Area: 3 Aana 2 Paisa', 'Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 8">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 8 - Corner Land</h3>
-                        <p>Double side road access</p>
-                        <p class="price">Area: 3 Aana 2 Paisa</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- PAGE 2 (Remaining 6 Cards) -->
-            <div class="slider-page listings-grid-box">
-                
-                <!-- ROW 1 -->
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 9 - Gokarna', 'Forest view surroundings', 'Area: 5 Aana', 'Gokarna, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 9">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 9 - Gokarna</h3>
-                        <p>Forest view surroundings</p>
-                        <p class="price">Area: 5 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Gokarna,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 10 - Mulpani', 'Near cricket stadium', 'Area: 4 Aana', 'Mulpani, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 10">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 10 - Mulpani</h3>
-                        <p>Near cricket stadium</p>
-                        <p class="price">Area: 4 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Mulpani,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 11 - Sundarijal', 'Ideal for resort/villa', 'Area: 10 Aana', 'Sundarijal, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 11">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 11 - Sundarijal</h3>
-                        <p>Ideal for resort/villa</p>
-                        <p class="price">Area: 10 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Sundarijal,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card clickable-card" onclick="openDetailsModal('Plot 12 - Jorpati', 'Near main highway', 'Area: 3 Aana', 'Jorpati, Kathmandu', 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80')">
-                    <div class="card-slideshow">
-                        <div class="slides-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 12">
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Plot 12 - Jorpati</h3>
-                        <p>Near main highway</p>
-                        <p class="price">Area: 3 Aana</p>
-                        <div class="card-actions">
-                            <a href="https://maps.google.com/?q=Jorpati,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-                            <button class="details-btn">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-               
-                <!-- ROW 2 -->
-<div class="card clickable-card" onclick="openDetailsModal('Plot 13 - Budhanilkantha', 'Prime residential area', 'Area: 6.5 Aana', 'Budhanilkantha, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-    <div class="card-slideshow">
-        <div class="slides-wrapper">
-            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 13">
+    <div class="container" id="properties">
+        <h2 class="section-title">Featured Properties</h2>
+        <div class="slider-container">
+            <button class="slider-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-track" id="sliderTrack"></div>
+            <button class="slider-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
-    <div class="card-content">
-        <h3>Plot 13 - Budhanilkantha</h3>
-        <p>Prime residential area</p>
-        <p class="price">Area: 6.5 Aana</p>
-        <div class="card-actions">
-            <a href="https://maps.google.com/?q=Budhanilkantha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-            <button class="details-btn">View Details</button>
-        </div>
+
+    <div class="container" id="videos">
+        <h2 class="section-title">Video Tours</h2>
+        <div class="video-grid" id="videoContainer"></div>
     </div>
-</div>
 
-<div class="card clickable-card" onclick="openDetailsModal('Plot 14 - Tokha', 'Quiet neighborhood', 'Area: 4 Aana', 'Tokha, Kathmandu', 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=600&q=80')">
-    <div class="card-slideshow">
-        <div class="slides-wrapper">
-            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 14">
-        </div>
+    <div class="container" id="team">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid" id="teamContainer"></div>
     </div>
-    <div class="card-content">
-        <h3>Plot 14 - Tokha</h3>
-        <p>Quiet neighborhood</p>
-        <p class="price">Area: 4 Aana</p>
-        <div class="card-actions">
-            <a href="https://maps.google.com/?q=Tokha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-            <button class="details-btn">View Details</button>
-        </div>
+
+    <div class="container" id="reviews">
+        <h2 class="section-title">Client Reviews</h2>
+        <div class="reviews-grid" id="reviewsContainer"></div>
     </div>
-</div>
 
-<div class="card clickable-card" onclick="openDetailsModal('Plot 15 - Tokha', 'Quiet neighborhood', 'Area: 4 Aana', 'Tokha, Kathmandu', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80')">
-    <div class="card-slideshow">
-        <div class="slides-wrapper">
-            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 15">
-        </div>
-    </div>
-    <div class="card-content">
-        <h3>Plot 15 - Tokha</h3>
-        <p>Quiet neighborhood</p>
-        <p class="price">Area: 4 Aana</p>
-        <div class="card-actions">
-            <a href="https://maps.google.com/?q=Tokha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-            <button class="details-btn">View Details</button>
-        </div>
-    </div>
-</div>
-
-<div class="card clickable-card" onclick="openDetailsModal('Plot 16 - Tokha', 'Quiet neighborhood', 'Area: 4 Aana', 'Tokha, Kathmandu', 'https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=600&q=80')">
-    <div class="card-slideshow">
-        <div class="slides-wrapper">
-            <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Plot 16">
-        </div>
-    </div>
-    <div class="card-content">
-        <h3>Plot 16 - Tokha</h3>
-        <p>Quiet neighborhood</p>
-        <p class="price">Area: 4 Aana</p>
-        <div class="card-actions">
-            <a href="https://maps.google.com/?q=Tokha,Kathmandu" target="_blank" class="map-btn" onclick="event.stopPropagation()">📍 View Map</a>
-            <button class="details-btn">View Details</button>
-        </div>
-    </div>
-</div>
-
-            </div> <!-- Closes slider-page -->
-        </div> <!-- Closes slider-track -->
-    </div> <!-- Closes slider-container -->
-</section>
-
-<!-- PROPERTY DETAILS MODAL -->
-<div id="detailsModal" class="modal" onclick="closeDetailsModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <img id="modalImg" src="" alt="Plot Detail" style="width:100%; border-radius:8px; margin-bottom:15px;">
-        <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
-        <p id="modalArea" style="font-weight: bold; color: #2e7d32;"></p>
-        <iframe id="modalMapFrame" width="100%" height="250" style="border:0; border-radius:8px; margin-top:15px;" loading="lazy" allowfullscreen src=""></iframe>
-    </div>
-</div>
-
-<!-- STYLES FOR BUTTONS AND MODAL -->
-<style>
-.clickable-card { cursor: pointer; transition: transform 0.2s; }
-.clickable-card:hover { transform: translateY(-4px); }
-.card-actions { display: flex; gap: 8px; margin-top: 10px; }
-.map-btn, .details-btn {
-    padding: 6px 12px;
-    font-size: 13px;
-    border-radius: 4px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-.map-btn { background-color: #e8f5e9; color: #2e7d32; }
-.details-btn { background-color: #007bff; color: #fff; }
-.modal {
-    display: none; position: fixed; z-index: 1001;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    overflow-y: auto;
-    cursor: pointer; /* Indicates the overlay is clickable to dismiss */
-}
-.modal-content {
-    background-color: #fff; 
-    margin: 20px auto; 
-    padding: 20px;
-    width: 90%; max-width: 500px; border-radius: 10px; position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    cursor: default; /* Keeps regular cursor inside modal box */
-}
-.close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
-</style>
-
-<!-- SCRIPT FOR MODAL INTERACTION -->
-<script>
-function openDetailsModal(title, desc, area, location, imgUrl) {
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalDesc').innerText = desc;
-    document.getElementById('modalArea').innerText = area;
-    document.getElementById('modalImg').src = imgUrl;
-    document.getElementById('modalMapFrame').src = 'https://maps.google.com/maps?q=' + encodeURIComponent(location) + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
-    document.getElementById('detailsModal').style.display = 'block';
-}
-
-function closeDetailsModal() {
-    document.getElementById('detailsModal').style.display = 'none';
-}
-
-
-// Close modal when clicking anywhere outside of modal-content
-window.onclick = function(event) {
-    var modal = document.getElementById('detailsModal');
-    if (event.target == modal) {
-        closeDetailsModal();
-    }
-}
-
-</script>
-            </div>
-
-            <!-- Pagination Dots -->
-            <div class="slider-dots">
-                <span class="page-dot active" onclick="goToPage(0)"></span>
-                <span class="page-dot" onclick="goToPage(1)"></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- LAND VIDEOS SECTION -->
-    <section class="container" id="videos">
-        <div class="section-title">
-            <h2>Land Video Tours</h2>
-            <p>Take a virtual video tour of our featured plots in Danchhi &amp; Bagdhara.</p>
-        </div>
-
-        <div class="video-carousel-wrapper">
-            <div class="video-row" id="videoContainer">
-                <!-- Video 1 -->
-                <div class="video-card">
-                    <iframe 
-                        src="https://www.youtube.com/embed/kX6_x1drl3o" 
-                        title="40 लाखमा जग्गा तपाईंले काहीँ पाउनुहुन्छ ? - Ropani Sewa" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                    <div class="video-card-content">
-                        <h3>Barmakhel Residential Plot</h3>
-                        <p>Walkthrough video showing plot layout and nearby main road access.</p>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div class="video-card">
-                    <iframe 
-                        src="https://www.youtube.com/embed/9KLfNX6Uj3g" 
-                        title="मात्र 25 लाख cash, बाँकी किस्तामा - Ropanisewa" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                    <div class="video-card-content">
-                        <h3>Salkha Plot Overview</h3>
-                        <p>Drone footage highlighting 20ft road access &amp; local surroundings.</p>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div class="video-card">
-                    <video controls poster="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&amp;fit=crop&amp;w=600&amp;q=80">
-                        <source src="land-tour-2.mp4" type="video/mp4">
-                        Your browser does not support video.
-                    </video>
-                    <div class="video-card-content">
-                        <h3>Kathmandu Agricultural Land</h3>
-                        <p>Full perimeter walk-through of the 1-Ropani farming plot.</p>
-                    </div>
-                </div>
-
-                <!-- Video 4 -->
-                <div class="video-card">
-                    <video controls poster="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&amp;fit=crop&amp;w=600&amp;q=80">
-                        <source src="land-tour-3.mp4" type="video/mp4">
-                        Your browser does not support video.
-                    </video>
-                    <div class="video-card-content">
-                        <h3>Hillside View - Bagdhara</h3>
-                        <p>Scenery view showing elevation, sunlight, and neighborhood layout.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="arrow-controls">
-                <button class="arrow-btn" onclick="scrollRow('videoContainer', -340)" aria-label="Scroll Left">&#10094;</button>
-                <button class="arrow-btn" onclick="scrollRow('videoContainer', 340)" aria-label="Scroll Right">&#10095;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR TEAM SECTION -->
-    <section class="container" id="Team">
-        <div class="section-title">
-            <h2>Meet Our Team</h2>
-            <p>Experienced local real estate advisors ready to assist your land purchase.</p>
-        </div>
-
-        <div class="team-row-box">
-            <div class="team-row" id="teamContainer">
-                
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Ram Shrestha" class="team-img">
-                    <h3>Ram Shrestha</h3>
-                    <p class="position">Lead Property Consultant</p>
-                    <p class="phone">+977 9800000000</p>
-                </div>
-
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Sita Adhikari" class="team-img">
-                    <h3>Sita Adhikari</h3>
-                    <p class="position">Legal &amp; Documentation Head</p>
-                    <p class="phone">+977 9811111111</p>
-                </div>
-
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Bikash Karki" class="team-img">
-                    <h3>Bikash Karki</h3>
-                    <p class="position">Field Verification Officer</p>
-                    <p class="phone">+977 9822222222</p>
-                </div>
-
-                <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Aarti Thapa" class="team-img">
-                    <h3>Aarti Thapa</h3>
-                    <p class="position">Customer Relations</p>
-                    <p class="phone">+977 9833333333</p>
-                </div>
-
-                  <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Aarti Thapa" class="team-img">
-                    <h3>Aarti Thapa</h3>
-                    <p class="position">Customer Relations</p>
-                    <p class="phone">+977 9833333333</p>
-                </div>
- 
-                  <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Aarti Thapa" class="team-img">
-                    <h3>Aarti Thapa</h3>
-                    <p class="position">Customer Relations</p>
-                    <p class="phone">+977 9833333333</p>
-                </div>
-
-
-            </div>
-
-            <div class="row-controls">
-                <button class="row-arrow-btn" onclick="scrollRow('teamContainer', -255)" aria-label="Scroll Left">&#10094;</button>
-                <button class="row-arrow-btn" onclick="scrollRow('teamContainer', 255)" aria-label="Scroll Right">&#10095;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS SECTION -->
-    <section class="container" id="reviews">
-        <div class="reviews-section">
-            <div class="reviews-header">
-                <h2>Client Testimonials</h2>
-                <div class="google-badge">
-                    <span class="google-logo">G</span>
-                    <div class="badge-info">
-                        <strong>4.9 / 5.0 Stars</strong>
-                        <span>Verified Google Reviews</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reviews-row" id="reviewsContainer">
-                
-                <div class="review-card">
-                    <div>
-                        <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Sujan Maharjan" class="reviewer-img">
-                            <div>
-                                <h4>Sujan Maharjan</h4>
-                                <span class="review-date">2 weeks ago</span>
-                            </div>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Bought 4 Aana land in Danchhi. Clear Lalpurja documentation and smooth process. Highly recommended!"</p>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div>
-                        <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Pooja Sharma" class="reviewer-img">
-                            <div>
-                                <h4>Pooja Sharma</h4>
-                                <span class="review-date">1 month ago</span>
-                            </div>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Very professional team. Guided me through field visits in Bagdhara and answered all legal queries patiently."</p>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div>
-                        <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Kiran Giri" class="reviewer-img">
-                            <div>
-                                <h4>Kiran Giri</h4>
-                                <span class="review-date">3 months ago</span>
-                            </div>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Transparent deals without unnecessary middleman hassle. Very satisfied with my land purchase."</p>
-                    </div>
-                </div>
-
-                    <div class="review-card">
-                    <div>
-                        <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Kiran Giri" class="reviewer-img">
-                            <div>
-                                <h4>Kiran Giri</h4>
-                                <span class="review-date">3 months ago</span>
-                            </div>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Transparent deals without unnecessary middleman hassle. Very satisfied with my land purchase."</p>
-                    </div>
-                </div>
-
-                    <div class="review-card">
-                    <div>
-                        <div class="reviewer-info">
-                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Kiran Giri" class="reviewer-img">
-                            <div>
-                                <h4>Kiran Giri</h4>
-                                <span class="review-date">3 months ago</span>
-                            </div>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Transparent deals without unnecessary middleman hassle. Very satisfied with my land purchase."</p>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="row-controls">
-                <button class="row-arrow-btn" onclick="scrollRow('reviewsContainer', -345)" aria-label="Scroll Left">&#10094;</button>
-                <button class="row-arrow-btn" onclick="scrollRow('reviewsContainer', 345)" aria-label="Scroll Right">&#10095;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="container" id="contact">
-        <div class="section-title">
-            <h2>Get in Touch</h2>
-            <p>Reach out to discuss your property needs or visit our office.</p>
-        </div>
-
-        <div class="contact-wrapper">
-            <div class="contact-info-box">
-                <h3>Office Address</h3>
-                
-                <div class="info-item">
-                    <strong>Location</strong>
-                    <p>Bagdhara Chowk, Danchhi, Kathmandu, Nepal</p>
-                </div>
-                
-                <div class="info-item">
-                    <strong>Phone Numbers</strong>
-                    <p>+977 9800000000 / +977 01-4000000</p>
-                </div>
-                
-                <div class="info-item">
-                    <strong>Email</strong>
-                    <p>info@dhanipurjanepal.com</p>
-                </div>
-
-                <div class="social-section">
-                    <strong>Follow Us</strong>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/9779800000000" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="4" placeholder="Interested location / Plot size (e.g. 4 Aana in Danchhi)" required></textarea>
-                <button type="submit" class="btn">Send Inquiry</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- LIGHTBOX MODAL OVERLAY -->
-    <div class="modal-overlay" id="propertyModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <img class="modal-img" id="modalImg" src="" alt="Property Preview">
-            <div class="modal-body">
-                <h3 id="modalTitle">Property Details</h3>
-                <p id="modalDesc"></p>
-                <p class="modal-price" id="modalPrice"></p>
-                <a href="#" target="_blank" class="modal-map-btn" id="modalMap">View Location on Map</a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Dhanipurja Nepal Real Estate. All rights reserved.</p>
-        <p>Danchhi, Bagdhara, Kathmandu, Nepal | Lalpurja Verified Land Plots</p>
+        <p>&copy; 2026 GharJagga Real Estate. All rights reserved.</p>
     </footer>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="https://wa.me/9779800000000" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 2a13.9 13.9 0 0 0-12 20.9L2 30l7.3-1.9A13.9 13.9 0 1 0 16 2zm6.8 19.6c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.2-4.6-1.1-4-1.6-6.6-5.7-6.8-6-.2-.3-1.6-2.1-1.6-4s1-2.9 1.4-3.3c.3-.4.8-.5 1.1-.5h.8c.3 0 .6 0 .9.7.3.7 1 2.5 1.1 2.7.1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.4 1.9 2.5 2.9 1.4 1.2 2.6 1.6 3 1.8.4.2.6.1.8-.1.3-.3.9-1.1 1.2-1.5.3-.4.6-.3 1-.2s2.3 1.1 2.7 1.3c.4.2.7.3.8.5.1.2.1 1.1-.2 1.9z"/>
-        </svg>
-    </a>
-
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Grid Slider Logic
-        let currentPage = 0;
-        const track = document.getElementById('sliderTrack');
-        const dots = document.querySelectorAll('.page-dot');
-        const totalPages = document.querySelectorAll('.slider-page').length;
-        const slideInterval = 5000;
+        const initialProperties = [
+            { id: 1, title: 'Plot 1 - Danchhi', price: 'Rs. 35 Lakhs/Aana', location: 'Danchhi, Kathmandu', type: 'land', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, title: 'Plot 2 - Mulpani', price: 'Rs. 28 Lakhs/Aana', location: 'Mulpani, Kathmandu', type: 'land', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, title: 'Modern House', price: 'Rs. 2.5 Crore', location: 'Baneshwor, Kathmandu', type: 'house', img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80' }
+        ];
 
-        function goToPage(pageIndex) {
-            currentPage = pageIndex;
-            if (track) {
-                track.style.transform = `translateX(-${currentPage * 100}%)`;
-            }
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentPage);
-            });
-        }
+        const initialVideos = [
+            { id: 1, title: 'Danchhi Land Tour', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+        ];
 
-        function autoSlideGrid() {
-            if (totalPages > 0) {
-                let nextIndex = (currentPage + 1) % totalPages;
-                goToPage(nextIndex);
-            }
-        }
+        const initialTeam = [
+            { id: 1, name: 'Ram Shrestha', role: 'Senior Agent', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80' }
+        ];
 
-        let timer = setInterval(autoSlideGrid, slideInterval);
+        const initialReviews = [
+            { id: 1, name: 'Hari Sharma', text: 'Great service! Found my land quickly.', rating: 5 }
+        ];
 
-        const container = document.querySelector('.slider-container');
-        if (container) {
-            container.addEventListener('mouseenter', () => clearInterval(timer));
-            container.addEventListener('mouseleave', () => {
-                timer = setInterval(autoSlideGrid, slideInterval);
-            });
-        }
-
-        // Horizontal Row Scroll Controls
-        function scrollRow(elementId, distance) {
-            const rowContainer = document.getElementById(elementId);
-            if (rowContainer) {
-                rowContainer.scrollBy({
-                    left: distance,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Card Image Slideshow Functions
-        function updateCardSlide(slideshow, index) {
-            const wrapper = slideshow.querySelector('.slides-wrapper');
-            const slides = wrapper ? wrapper.querySelectorAll('img') : [];
-            const slideDots = slideshow.querySelectorAll('.dot');
-            
-            if (!slides.length) return;
-
-            let targetIndex = (index + slides.length) % slides.length;
-            slideshow.setAttribute('data-current-index', targetIndex);
-
-            wrapper.style.transform = `translateX(-${targetIndex * 100}%)`;
-
-            slideDots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === targetIndex);
-            });
-        }
-
-        function moveSlide(button, direction) {
-            const slideshow = button.closest('.card-slideshow');
-            let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-            updateCardSlide(slideshow, currentIndex + direction);
-            resetAutoSlideTimer(slideshow);
-        }
-
-        function jumpSlide(dot, index) {
-            const slideshow = dot.closest('.card-slideshow');
-            updateCardSlide(slideshow, index);
-            resetAutoSlideTimer(slideshow);
-        }
-
-        function startAutoSlide(slideshow) {
-            slideshow.autoSlideTimer = setInterval(() => {
-                let currentIndex = parseInt(slideshow.getAttribute('data-current-index') || 0);
-                updateCardSlide(slideshow, currentIndex + 1);
-            }, 3000);
-        }
-
-        function resetAutoSlideTimer(slideshow) {
-            clearInterval(slideshow.autoSlideTimer);
-            startAutoSlide(slideshow);
-        }
-
-        // Lightbox Modal Functions
-        function openModal(imgElement) {
-            const card = imgElement.closest('.card');
-            
-            const title = card.querySelector('.card-content h3') ? card.querySelector('.card-content h3').innerText : 'Property Preview';
-            const desc = card.querySelector('.card-content p:nth-child(2)') ? card.querySelector('.card-content p:nth-child(2)').innerText : '';
-            const price = card.querySelector('.price') ? card.querySelector('.price').innerText : '';
-            const mapUrl = imgElement.getAttribute('data-map') || '#';
-
-            document.getElementById('modalImg').src = imgElement.src;
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalMap').href = mapUrl;
-
-            document.getElementById('propertyModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('propertyModal').style.display = 'none';
-        }
-
-        // Close Modal when clicking outside content area
-        window.onclick = function(event) {
-            const modal = document.getElementById('propertyModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        };
-
-        // DOM Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.card-slideshow').forEach(slideshow => {
-                const slides = slideshow.querySelectorAll('.slides-wrapper img');
-                if (slides.length > 1) {
-                    slideshow.setAttribute('data-current-index', 0);
-                    startAutoSlide(slideshow);
-
-                    slideshow.addEventListener('mouseenter', () => clearInterval(slideshow.autoSlideTimer));
-                    slideshow.addEventListener('mouseleave', () => startAutoSlide(slideshow));
-                }
-            });
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i> Light' : '<i class="fas fa-moon"></i> Dark';
         });
+
+        function loadData() {
+            const properties = JSON.parse(localStorage.getItem('properties')) || initialProperties;
+            const videos = JSON.parse(localStorage.getItem('videos')) || initialVideos;
+            const team = JSON.parse(localStorage.getItem('team')) || initialTeam;
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || initialReviews;
+
+            document.getElementById('sliderTrack').innerHTML = properties.length ? properties.map(p => `
+                <div class="property-card">
+                    <img src="${p.img || 'https://via.placeholder.com/300x200'}" class="property-img" alt="${p.title}">
+                    <div class="property-info">
+                        <h3>${p.title}</h3>
+                        <p class="property-price">${p.price}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${p.location}</p>
+                    </div>
+                </div>
+            `).join('') : '<p>No properties listed.</p>';
+
+            document.getElementById('videoContainer').innerHTML = videos.length ? videos.map(v => `
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="${v.url}" allowfullscreen></iframe>
+                    </div>
+                    <div style="padding: 10px; font-weight: bold;">${v.title}</div>
+                </div>
+            `).join('') : '<p>No video tours available.</p>';
+
+            document.getElementById('teamContainer').innerHTML = team.length ? team.map(t => `
+                <div class="team-card">
+                    <img src="${t.img || 'https://via.placeholder.com/100'}" class="team-img" alt="${t.name}">
+                    <h3>${t.name}</h3>
+                    <p>${t.role}</p>
+                </div>
+            `).join('') : '<p>No team members listed.</p>';
+
+            document.getElementById('reviewsContainer').innerHTML = reviews.length ? reviews.map(r => `
+                <div class="review-card">
+                    <div class="stars">${'★'.repeat(r.rating || 5)}</div>
+                    <p>"${r.text}"</p>
+                    <h4 style="margin-top: 10px;">- ${r.name}</h4>
+                </div>
+            `).join('') : '<p>No reviews available.</p>';
+        }
+
+        let slideIndex = 0;
+        const sliderTrack = document.getElementById('sliderTrack');
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            const maxSlides = sliderTrack.children.length - 1;
+            if (slideIndex < maxSlides) {
+                slideIndex++;
+                sliderTrack.style.transform = `translateX(-${slideIndex * 320}px)`;
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (slideIndex > 0) {
+                slideIndex--;
+                sliderTrack.style.transform = `translateX(-${slideIndex * 320}px)`;
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', loadData);
     </script>
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanipurja - Real Estate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-        body { background:#f8f9fa; color:#333; }
-        
-        /* Hero Banner */
-        .hero {
-            height: 60vh; background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            color: white; text-align: center; padding: 20px; position: relative;
-        }
-        .hero-overlay { background: rgba(0,0,0,0.5); padding: 40px; border-radius: 10px; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
-        .btn-cta { background: #d95d08; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-
-        /* General Sections */
-        .section { padding: 40px 10%; }
-        .section-title { text-align: center; margin-bottom: 30px; color: #1e7e34; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 15px; }
-        .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
-        .card iframe { width: 100%; height: 180px; border-radius: 6px; border: none; }
-        .card h3 { margin: 10px 0 5px; color: #1e7e34; }
-        
-        .status { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; text-transform: capitalize; }
-        .available { background: #d4edda; color: #155724; }
-        .sold { background: #f8d7da; color: #721c24; }
-        .reserved { background: #fff3cd; color: #856404; }
-        .stars { color: #ffc107; margin: 5px 0; }
-    </style>
-</head>
-<body>
-
-    <!-- 1. HERO BANNER -->
-    <div id="hero-banner" class="hero">
-        <div class="hero-overlay">
-            <h1 id="banner-title">Loading...</h1>
-            <p id="banner-subtitle">Loading...</p>
-            <a href="#listings" id="banner-cta" class="btn-cta">Explore Land</a>
-        </div>
-    </div>
-
-    <!-- 2. LAND LISTINGS -->
-    <section class="section" id="listings">
-        <h2 class="section-title">Available Land Plots</h2>
-        <div class="grid" id="listings-container"></div>
-    </section>
-
-    <!-- 3. LAND VIDEO TOURS -->
-    <section class="section" style="background: #eef2ee;">
-        <h2 class="section-title">Video Walkthroughs</h2>
-        <div class="grid" id="videos-container"></div>
-    </section>
-
-    <!-- 4. CLIENT REVIEWS -->
-    <section class="section">
-        <h2 class="section-title">Client Reviews</h2>
-        <div class="grid" id="reviews-container"></div>
-    </section>
-
-    <!-- 5. OUR TEAM -->
-    <section class="section" style="background: #eef2ee;">
-        <h2 class="section-title">Meet Our Team</h2>
-        <div class="grid" id="team-container"></div>
-    </section>
-
-    <script>
-        // Read data saved from Dashboard via localStorage
-        const banners = JSON.parse(localStorage.getItem('dhani_banners')) || [];
-        const plots = JSON.parse(localStorage.getItem('dhani_plots')) || [];
-        const videos = JSON.parse(localStorage.getItem('dhani_videos')) || [];
-        const reviews = JSON.parse(localStorage.getItem('dhani_reviews')) || [];
-        const team = JSON.parse(localStorage.getItem('dhani_team')) || [];
-
-        // 1. Render Banner
-        if (banners.length > 0) {
-            const b = banners[0]; // Display first banner
-            document.getElementById('hero-banner').style.backgroundImage = `url('${b.image}')`;
-            document.getElementById('banner-title').innerText = b.title;
-            document.getElementById('banner-subtitle').innerText = b.subtitle;
-            document.getElementById('banner-cta').innerText = b.cta;
-        }
-
-        // 2. Render Land Listings
-        const listingsBox = document.getElementById('listings-container');
-        plots.forEach(p => {
-            listingsBox.innerHTML += `
-                <div class="card">
-                    <img src="${p.photo}" alt="${p.title}">
-                    <h3>${p.title}</h3>
-                    <p><strong>Location:</strong> ${p.location}</p>
-                    <p><strong>Area:</strong> ${p.area}</p>
-                    <p><span class="status ${p.status}">${p.status}</span></p>
-                </div>
-            `;
-        });
-
-        // 3. Render Videos
-        const videoBox = document.getElementById('videos-container');
-        videos.forEach(v => {
-            videoBox.innerHTML += `
-                <div class="card">
-                    <iframe src="${v.url}" allowfullscreen></iframe>
-                    <h3>${v.title}</h3>
-                </div>
-            `;
-        });
-
-        // 4. Render Reviews
-        const reviewsBox = document.getElementById('reviews-container');
-        reviews.forEach(r => {
-            reviewsBox.innerHTML += `
-                <div class="card" style="text-align:center;">
-                    <img src="${r.photo}" style="width:70px; height:70px; border-radius:50%; margin:0 auto;" alt="${r.name}">
-                    <h3>${r.name}</h3>
-                    <div class="stars">${'⭐'.repeat(r.rating)}</div>
-                    <p>"${r.comment}"</p>
-                </div>
-            `;
-        });
-
-        // 5. Render Team
-        const teamBox = document.getElementById('team-container');
-        team.forEach(m => {
-            teamBox.innerHTML += `
-                <div class="card" style="text-align:center;">
-                    <img src="${m.photo}" style="width:80px; height:80px; border-radius:50%; margin:0 auto;" alt="${m.name}">
-                    <h3>${m.name}</h3>
-                    <p><strong>${m.role}</strong></p>
-                    <p><i class="fa-solid fa-phone"></i> ${m.phone}</p>
-                </div>
-            `;
-        });
-    </script>
-</body>
-</html>
-  
 </body>
 </html>
