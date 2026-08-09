@@ -1841,76 +1841,71 @@ window.onclick = function(event) {
         <div class="grid" id="team-container"></div>
     </section>
 
-    <script>
-        // Read data saved from Dashboard via localStorage
-        const banners = JSON.parse(localStorage.getItem('dhani_banners')) || [];
-        const plots = JSON.parse(localStorage.getItem('dhani_plots')) || [];
-        const videos = JSON.parse(localStorage.getItem('dhani_videos')) || [];
-        const reviews = JSON.parse(localStorage.getItem('dhani_reviews')) || [];
-        const team = JSON.parse(localStorage.getItem('dhani_team')) || [];
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    // 1. Read localStorage datasets
+    const banners = JSON.parse(localStorage.getItem('dhani_banners')) || [];
+    const plots = JSON.parse(localStorage.getItem('dhani_plots')) || [];
+    const videos = JSON.parse(localStorage.getItem('dhani_videos')) || [];
+    const reviews = JSON.parse(localStorage.getItem('dhani_reviews')) || [];
+    const team = JSON.parse(localStorage.getItem('dhani_team')) || [];
 
-        // 1. Render Banner
-        if (banners.length > 0) {
-            const b = banners[0]; // Display first banner
-            document.getElementById('hero-banner').style.backgroundImage = `url('${b.image}')`;
-            document.getElementById('banner-title').innerText = b.title;
-            document.getElementById('banner-subtitle').innerText = b.subtitle;
-            document.getElementById('banner-cta').innerText = b.cta;
+    // 2. Render Hero Banner
+    if (banners.length > 0) {
+        const b = banners[0];
+        const heroSection = document.getElementById('home');
+        if (heroSection) {
+            heroSection.style.background = `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${b.image}') center/cover no-repeat`;
+            const h1 = heroSection.querySelector('h1');
+            const p = heroSection.querySelector('p');
+            const btn = heroSection.querySelector('.btn');
+            if (h1) h1.innerText = b.title;
+            if (p) p.innerText = b.subtitle;
+            if (btn) btn.innerText = b.cta;
         }
+    }
 
-        // 2. Render Land Listings
-        const listingsBox = document.getElementById('listings-container');
-        plots.forEach(p => {
-            listingsBox.innerHTML += `
-                <div class="card">
-                    <img src="${p.photo}" alt="${p.title}">
-                    <h3>${p.title}</h3>
-                    <p><strong>Location:</strong> ${p.location}</p>
-                    <p><strong>Area:</strong> ${p.area}</p>
-                    <p><span class="status ${p.status}">${p.status}</span></p>
-                </div>
-            `;
-        });
+    // 3. Render Listings dynamically
+    const sliderTrack = document.getElementById('sliderTrack');
+    if (sliderTrack && plots.length > 0) {
+        sliderTrack.innerHTML = `
+            <div class="slider-page listings-grid-box">
+                ${plots.map(p => `
+                    <div class="card clickable-card" onclick="openDetailsModal('${p.title}', '${p.location}', 'Area: ${p.area}', '${p.location}', '${p.photo}')">
+                        <div class="card-slideshow">
+                            <div class="slides-wrapper">
+                                <img src="${p.photo}" alt="${p.title}">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>${p.title}</h3>
+                            <p>${p.location}</p>
+                            <p class="price">Area: ${p.area}</p>
+                            <span class="status ${p.status}">${p.status}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
 
-        // 3. Render Videos
-        const videoBox = document.getElementById('videos-container');
-        videos.forEach(v => {
-            videoBox.innerHTML += `
-                <div class="card">
-                    <iframe src="${v.url}" allowfullscreen></iframe>
-                    <h3>${v.title}</h3>
-                </div>
-            `;
-        });
+    // 4. Render Team
+    const teamContainer = document.getElementById('teamContainer');
+    if (teamContainer && team.length > 0) {
+        teamContainer.innerHTML = team.map(m => `
+            <div class="team-card">
+                <img src="${m.photo}" alt="${m.name}" class="team-img">
+                <h3>${m.name}</h3>
+                <p class="position">${m.role}</p>
+                <p class="phone">${m.phone}</p>
+            </div>
+        `).join('');
+    }
 
-        // 4. Render Reviews
-        const reviewsBox = document.getElementById('reviews-container');
-        reviews.forEach(r => {
-            reviewsBox.innerHTML += `
-                <div class="card" style="text-align:center;">
-                    <img src="${r.photo}" style="width:70px; height:70px; border-radius:50%; margin:0 auto;" alt="${r.name}">
-                    <h3>${r.name}</h3>
-                    <div class="stars">${'⭐'.repeat(r.rating)}</div>
-                    <p>"${r.comment}"</p>
-                </div>
-            `;
-        });
+    // 5. Listen for Live Dashboard Updates (Cross-Tab Sync)
+    window.addEventListener('storage', () => {
+        location.reload();
+    });
+});</script>
 
-        // 5. Render Team
-        const teamBox = document.getElementById('team-container');
-        team.forEach(m => {
-            teamBox.innerHTML += `
-                <div class="card" style="text-align:center;">
-                    <img src="${m.photo}" style="width:80px; height:80px; border-radius:50%; margin:0 auto;" alt="${m.name}">
-                    <h3>${m.name}</h3>
-                    <p><strong>${m.role}</strong></p>
-                    <p><i class="fa-solid fa-phone"></i> ${m.phone}</p>
-                </div>
-            `;
-        });
-    </script>
-</body>
-</html>
-  
 </body>
 </html>
